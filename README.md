@@ -1,2 +1,3 @@
 # JS-review-and-practice
-Practicing Js with Wes Bos
+Reviewing Js and practicing a lot more with Wes Bos!
+
