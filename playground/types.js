@@ -1,3 +1,4 @@
+// SNOBN'U'S
 // String
 // Number
 // Object
@@ -62,5 +63,42 @@ todos comemos ${Math.trunc(
 // Nan= not a number.
 */
 //------------------------------------------------------
+// OBJECTS!!!!!!!
+//------------------------------------------------------
+/*
+const person = {
+  name: 'Manuel',
+  age: 40,
+  isCool: true,
+};
+console.log(
+  `${person.name} is ${person.age} years old, an it's ${person.isCool} he is Cool`
+);
+*/
+//------------------------------------------------------
+// UNDEFINED!!!!!!!
+//------------------------------------------------------
+/*
+let dog; I build the variable, but I don't assign a value to it.
+console.log(dog);
+*/
+//------------------------------------------------------
+// NULL!!!!!!!
+//------------------------------------------------------
+/*
+const someThingNull = null; I explicilly say that the variable is null. That's it's value.
+*/
+//------------------------------------------------------
 // BOOLEAN!!!!!!!
 //------------------------------------------------------
+/*
+const isDrawing = true;
+let age = 40; // asign
+const ofAge = age > 30;
+console.log(`isDrawing: ${isDrawing}`);
+console.log(`ofAge: ${ofAge}`);
+age = 50; // update
+const bool = '10' === 10; // false
+const bool2 = '10' == 10; // true --> strict equality, tyoe and value
+console.log(bool, bool2);
+*/
