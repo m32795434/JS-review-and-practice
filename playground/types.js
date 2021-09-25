@@ -61,6 +61,8 @@ todos comemos ${Math.trunc(
 // if I store monetary values, it is advisable to do so in cents, and avoid some degree of inaccuracy.
 // 10 ** 2 = 10 * 10 = 100;
 // Nan= not a number.
+parse.Float('10.5') returns 10.5 as a number
+parse.Int('10.5') returns 10 as a number, but only the integer part of the number.
 */
 //------------------------------------------------------
 // OBJECTS!!!!!!!
