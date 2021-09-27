@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // a closure gives you access to an outer function’s scope from an inner function
+        // EVEN AFTER THE OUTER FUNCTION IS DONE.
+        /*
+        function outer() {
+            const outerVar = `Hey Iam the outer`;
+            function inner() {
+                const innerVar = `Hey Iam the inner`;
+                console.log(innerVar);
+                console.log(outerVar);
+            }
+            inner(); // so "outer()"" will run inner().
+        } 
+        */
+        // WE CAN DO THIS TOO.
+        /*eslint-disable*/
+        function outer() {
+            const outerVar = `Hey Iam the outer`;
+            function inner() {
+                const innerVar = `Hey Iam the inner`;
+                console.log(innerVar);
+                console.log(outerVar); // this is in a top level scope. It's fine.
+                //It's working the closure.
+            }
+            return inner;// the outer must return the inner function.
+        }
+
+        const innerFn = outer();
+        innerFn(); // IT WILL RUN outer() and "inner" as a function; Even outer() is done.
+
+        // --------------------ANOTHER EXAMPLE---------------------
+
+        function createGreeting(greeting = '') {
+            const myGreet = greeting.toUpperCase();
+            return function (name) { // return the inner function.
+                return console.log(`${myGreet} ${name.toUpperCase()}`);
+            }
+        }
+        const sayHello = createGreeting('hello'); // the argument for "greeting";
+        const sayHi = createGreeting('hi');
+        sayHello('Manuel'); // the argument for "name"; WE ARE CALLING THE INNER...
+        sayHi('Lauti');//...FUNCTION IN DIFERENTS WAYS. RECYCLING THE CODE...
+        //...EVEN WHEN THE OUTER FUNCTION IS DONE.
+
+        // --------------------ANOTHER EXAMPLE INCREASING PRIVATE VARIABLES---------------------
+        // this function, will increase the private variable by 1, individually 
+        //(for football or bas.), in each call.
+
+        function createGame(name) {
+            let score = 0;
+            return function () {
+                score++;
+                return `your ${name} score is ${score}`;
+            }
+        }
+        const football = createGame('football');
+        // the inner function update "score" by 1, eache time it's called.
+        const basketball = createGame('basketball');
+
+    </script>
+</body>
+
+</html>
