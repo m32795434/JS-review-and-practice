@@ -9,6 +9,12 @@
 </head>
 
 <body>
+  <!-- to attach metadata to an element // "data-algunTipo" -->
+  <img data-name="Manu" data-last="Bravard" class="custom " src="https://source.unsplash.com/random/300x300" />
+  <img data-name="Vico" class="nice cool" src="https://source.unsplash.com/random/300x300" />
+  <img data-name="Lauti" class="cool1" src="https://source.unsplash.com/random/300x300" />
+  <img data-name="Ikki" class="cool2" src="https://source.unsplash.com/random/300x300" />
+  <hr>
   <h1>HEY, I'M A HEADING!
     <style>
       h1 {
@@ -29,6 +35,17 @@
     <p id="first-p">Hi I'm an item</p>
     <p>Hi I'm an item</p>
   </div>
+  <style>
+    img {
+      transition: all 0.5s;
+    }
+
+    .round {
+      border-radius: 50%;
+      transform: rotate(1turn) scale(0.5);
+      box-shadow: 0 0 40px black;
+    }
+  </style>
   <script src="the-dom.js"></script>
 </body>
 

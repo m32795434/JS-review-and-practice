@@ -28,10 +28,10 @@ Node.childNodes and methods such as document.querySelectorAll(). It's not an arr
 */
 /*
  
+
 document: DOM interface. is the root node of the DOM tree.
 querySelectorAll(): method.
 textContent: property.
-
 
 
 const p = document.querySelectorAll('p'); // a node list;
@@ -68,3 +68,35 @@ const firstP2 = document.querySelector('#first-p');
 // firstP2.textContent = `${firstP2.textContent} 👧`; this render slower than what's next one...
 firstP2.insertAdjacentText('beforeend', '🍕');
 */
+
+// ---------------------------CLASSES---------------------------------
+
+const pic = document.querySelector('.nice');
+pic.classList.add('open');
+pic.classList.remove('cool');
+// console.log(pic.classList);
+
+function toggleRound() {
+  pic.classList.toggle('round');
+}
+pic.addEventListener('click', toggleRound);
+
+// console.log(pic.classList.contains('round')); // true or false
+
+// ------------------------ATTRIBUTES---------------------------------
+// provided to an element as an aditional info.
+pic.alt = 'random'; // setter
+pic.setAttribute('alt', 'random2'); // onother way. Even for non-standard attributes.
+console.log(pic.getAttribute('alt')); // getter.
+console.log(pic.alt); // the same as above. getter
+console.log(pic.naturalWidth); // will return "0", because the image is not loaded yet from the server.
+window.addEventListener('load', () => {
+  // when the page is loaded
+  console.log(pic.naturalWidth); // will show at the end in the console.
+});
+pic.width = 200;
+const custom = document.querySelector('.custom');
+console.log(custom.dataset); // will show an object with all the "data" attributes.
+custom.addEventListener('click', () => {
+  alert(`Welcome ${custom.dataset.name} ${custom.dataset.last}!`);
+});
