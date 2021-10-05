@@ -48,9 +48,9 @@
             }
         }
         const sayHello = createGreeting('hello'); // the argument for "greeting";
-        const sayHi = createGreeting('hi');
+        const sayHi = createGreeting('hi');//...FUNCTION IN DIFERENTS WAYS. RECYCLING THE CODE...
         sayHello('Manuel'); // the argument for "name"; WE ARE CALLING THE INNER...
-        sayHi('Lauti');//...FUNCTION IN DIFERENTS WAYS. RECYCLING THE CODE...
+        sayHi('Lauti');
         //...EVEN WHEN THE OUTER FUNCTION IS DONE.
 
         // --------------------ANOTHER EXAMPLE INCREASING PRIVATE VARIABLES---------------------
@@ -59,15 +59,19 @@
 
         function createGame(name) {
             let score = 0;
-            return function () {
+            return function () { //this f. dowsn't recibe any argument as a parameter.
                 score++;
                 return `your ${name} score is ${score}`;
             }
         }
         const football = createGame('football');
         // the inner function update "score" by 1, eache time it's called.
+        // score continues alive after the outer function is done.
+        // but score is private, so it's not accessible from outside.
+        // unless we call the function again, and again.
         const basketball = createGame('basketball');
-
+        football();
+        basketball();
     </script>
 </body>
 

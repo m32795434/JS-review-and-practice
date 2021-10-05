@@ -3,7 +3,7 @@ const wes = document.querySelector('.wes');
 console.log(wes.children); // child elements.
 console.log(wes.firstElementChild);
 console.log(wes.lastElementChild);
-console.log(wes.previousElementSibling);
+console.log(wes.previousElementSibling); //previous element in the same level.
 console.log(wes.nextElementSibling);
 console.log(wes.parentElement);
 */

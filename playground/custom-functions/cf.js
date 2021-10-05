@@ -11,7 +11,7 @@ const billAmountExt = 100;
 const taxRateExt = 0.13;
 const myTotal1 = calculateBill(billAmountExt, taxRateExt);
 const myTotal2 = calculateBill(250, 0.13);
-// console.log(`your total is $${calculateBill()}`); it's valid. A function in a console.log
+// console.log(`your total is $${calculateBill(15)}`); it's valid. A function in a console.log
 // console.log(`total 1 $${myTotal1}`);
 // console.log(`total 2 $${myTotal2}`);
 // console.log(calculateBill(500));

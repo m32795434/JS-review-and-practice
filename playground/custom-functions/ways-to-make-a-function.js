@@ -70,7 +70,7 @@ const makeABaby4 = (first, last) => ({name: `${first} ${last}`, age: 0});
 
 //-----------------------METHODS!!-------------------------
 // methods are functions that are attached to objects.
-// They are functions that are stored as properties of objects.
+// These are functions that are stored as properties of objects.
 
 const person = {
   name: `Manuel`,
@@ -83,9 +83,9 @@ const person = {
     console.log(`hey ${this.name}`);
   },
   // arrow function
-  sayHi3: () => {
-    // we can't use "this" here.
-    console.log(`hey Manuel Augusto!`);
+  sayHi3: (otroNombre) => {
+    // we can't use "this" here. So we can't reach others higher scope propierties.
+    console.log(`hey Manuel ${otroNombre}!`);
   }
 };
 

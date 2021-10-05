@@ -13,7 +13,7 @@ function sayHi() {
 }
 
 //-------------------------FUNCTION SCOPE-----------------
-//Variables declared with "var" are function scope, so they doesn't live outside the function.
+//Variables declared INSIDE A FUNCTION with "var" are function scope, so they doesn't live outside the function.
 /* eslint-disable */
 function hairColor() {
 //const first = `Raul`;// it's not a good practice.So Rename the variable.
@@ -39,7 +39,7 @@ function isCool(name){
         cool1 = true;
     }
     if (name ===`Manuel`) {
-        const cool = true;
+        const cool = true; // it's a block scoped variable. 
     }
     //console.log(cool); //cool undefined
     if (name ===`Manuel`) {

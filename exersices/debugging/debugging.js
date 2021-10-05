@@ -26,14 +26,6 @@ people.forEach((person, index) => {
   console.groupEnd(`name: ${person.name}`);
 }); */
 
-// ------------------Callstack------------------------
-// if we call:
-//go(); // it will cause an error =>
-/*
-Uncaught ReferenceError: doesntExist is not defined
-    at greet (debugging.js:54)//were doesntExist is not defined
-    at go (debugging.js:59)//were we call greet()
-    at debugging.js:30 */ //were we call go()
 
 // --------------------Grabbing Elements--------------
 // With $0,$1,$2,$3...we can see in console the html code, of the element we "click" at last,  and before.
@@ -73,6 +65,16 @@ function go() {
   const Dname = doctorize(greet('Wes'));
   console.log(Dname);
 }
+
+// ------------------Callstack------------------------
+// if we call:
+go(); // it will cause an error =>
+/*
+Uncaught ReferenceError: doesntExist is not defined
+    at greet (debugging.js:60)//were doesntExist is not defined
+    at go (debugging.js:65)//were we call greet()
+    at debugging.js:71 */ //were we call go()
+
 
 const button = document.querySelector('.bigger');
 button.addEventListener('click', function(e) {

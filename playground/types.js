@@ -9,9 +9,9 @@
 //------------------------------------------------------
 /* STRINGS!!!!!!!
 //------------------------------------------------------
-const age = 40;
+const age = '40';
 
-const age2 = 0;
+const age2 = '0';
 
 console.log(age, age2);
 const name = 'Manuel';
@@ -42,7 +42,7 @@ document.body.innerHTML = html;
 //------------------------------------------------------
 /*
 const age = 40;
-const type = typeof age;
+const type = typeof age; // number
 const inner = `
 <div>
 <p>${age}</p><p> is a${type}</p>
@@ -100,7 +100,7 @@ const ofAge = age > 30;
 console.log(`isDrawing: ${isDrawing}`);
 console.log(`ofAge: ${ofAge}`);
 age = 50; // update
-const bool = '10' === 10; // false
-const bool2 = '10' == 10; // true --> strict equality, tyoe and value
+const bool = '10' === 10; // false --> strict equality, type and value
+const bool2 = '10' == 10; // true 
 console.log(bool, bool2);
 */
