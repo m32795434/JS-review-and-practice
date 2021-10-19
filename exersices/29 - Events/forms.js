@@ -47,3 +47,13 @@ signUpForm.name.addEventListener('keyup', (k) => {
 // signUpForm.name.addEventListener('keydown', logEvent); // press in
 // signUpForm.name.addEventListener('focus', logEvent);
 // signUpForm.name.addEventListener('blur', logEvent);// leave the focus
+
+// ACCESIBILITY PITFALLS.
+const photo = document.querySelector('.photo');
+function handlePhotoClick(event) {
+  if (event.type === 'click' || event.key === 'Enter') {
+    console.log('you click the photo');
+  }
+}
+photo.addEventListener('click', handlePhotoClick);
+photo.addEventListener('keyup', handlePhotoClick);
