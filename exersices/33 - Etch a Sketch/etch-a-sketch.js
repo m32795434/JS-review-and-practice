@@ -70,6 +70,7 @@ window.addEventListener('keydown', handleKey);
 // clear canvas
 function clearCanvas() {
   canvas.classList.add('shake');
+  ctx.clearRect(0, 0, width, height);
   canvas.addEventListener(
     'animationend',
     () => {
