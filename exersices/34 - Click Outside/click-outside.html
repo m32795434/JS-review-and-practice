@@ -70,10 +70,14 @@
       left: 0;
       justify-content: center;
       align-items: center;
-      opacity: 0.1;
+      opacity: 0;
       /* disable mouse events for this outer. We will hide it, until we need it*/
       pointer-events: none;
-      transition: opacity 0.5s;
+      transition: opacity 1s;
+    }
+
+    .modal-outer img {
+      width: 100%;
     }
 
     .modal-outer.open {
@@ -88,6 +92,13 @@
       border-radius: 5px;
       min-height: 200px;
       background: white;
+      transform: translateY(-300%);
+      transition: transform 2s;
+    }
+
+    /* we grab here the modal-inner!! */
+    .modal-outer.open .modal-inner {
+      transform: translateY(0);
     }
   </style>
   <script src="./click-outside.js"></script>
