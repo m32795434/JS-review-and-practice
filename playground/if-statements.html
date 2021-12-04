@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>If Statements</title>
+  <link rel="stylesheet" href="../base.css">
+</head>
+
+<body>
+  <script>
+    if (10 > 2) {
+      console.log('Yep');
+    }
+    const age = 120;
+    if (age > 180) {
+      console.log('it is higher than 180');
+    } else if (age === 180) {
+      console.log('age is 180');
+    } else {
+      console.log('it is lower than 180');
+    }
+
+    function slugify(sentence, lowercase) {
+      if (lowercase) {
+        return sentence.replace(/\s+/g, '-').toLowerCase();
+      } // I save one "else" and curly brackets
+      return sentence.replace(/\s+/g, '-');
+    }
+  </script>
+</body>
+
+</html>
