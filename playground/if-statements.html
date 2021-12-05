@@ -87,6 +87,55 @@
       }
     });
     console.groupEnd();
+
+    console.clear();
+
+    const isCool = true;
+    // so !isCool is false.
+    // Coerce the value to a boolean using the concept of truthy and falsy values:
+    // const something = Nan; it is falsy so !something is true.
+
+    // TERNARY
+    const count = 10;
+    const word = count === 1 ? 'item' : 'items'; // you can put this condition inside the template literals
+    // const sentence2 = `you have ${count} item${count === 1 ? '' : 's'}`;
+    const sentence2 = `you have ${count} ${word} in your cart`;
+    console.log(sentence2);
+
+    function showAdminBar() {
+      console.log('admin bar');
+    }
+    /* eslint-disable */
+    const isAdmin = true;
+    // isAdmin ? showAdminBar() : null;
+    /* eslint-enable */
+    // AND AND TRICK!
+    function check1() {
+      console.log('running checked 1');
+      return true;
+    }
+    function check2() {
+      console.log('running checked 2');
+      return false;
+    }
+    function check3() {
+      console.log('running checked 3');
+      return true;
+    }
+    // short circuit
+    if (check1() && check2() && check3()) {
+      // it will run the functions, and stop when the result is false.
+      console.log('all checked passed');
+    } else {
+      console.log('something went wrong');
+    }
+    /* eslint-disable */
+    // ABUSING THE CONDITION CHAINING
+    isAdmin && showAdminBar();
+    /* eslint-enable */
+
+    // BLOCKLESS IF STATEMENT
+    if (isAdmin) showAdminBar(); // maybe not well readable.
   </script>
 </body>
 
