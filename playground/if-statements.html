@@ -9,6 +9,21 @@
 </head>
 
 <body>
+  <h2>falsy values</h2>
+  <!-- 
+    0
+    undefined variable: let score;
+    variable set to null: let score = null;
+    Nan: let score = NaN; or let score = 'manu' / 2;
+  -->
+
+  <h2>truthy values</h2>
+  <!-- 
+  a number different than 0
+  "including something, even if it is a space"
+  {}empty object
+  []empty array
+-->
   <script>
     if (10 > 2) {
       console.log('Yep');
@@ -28,6 +43,50 @@
       } // I save one "else" and curly brackets
       return sentence.replace(/\s+/g, '-');
     }
+
+    const first = 'manu';
+    const last = 'Bravard';
+    const isIncluded = 'manualidades'.includes(first);
+    if (isIncluded) {
+      console.log('the first name is included');
+    }
+
+    function isIncluded2(name) {
+      return 'manualidades'.includes(name);
+    }
+    if (isIncluded2(first)) {
+      console.log('it seems to be included in "manualidades"');
+    }
+    const score = NaN; // NaN
+    if (score) {
+      console.log('you have a score');
+    } else {
+      console.log('there is not a score');
+    }
+    // Object.keys() returns an array of all the keys of an object
+    // Array.length
+    const values = [
+      [],
+      {},
+      -10,
+      1,
+      0,
+      '',
+      'full string',
+      ' ',
+      undefined,
+      NaN,
+      null,
+    ];
+    console.group('truthy or falsy values');
+    values.forEach((value) => {
+      if (value) {
+        console.log(value, 'it is truthy');
+      } else {
+        console.log(value, 'it is falsy');
+      }
+    });
+    console.groupEnd();
   </script>
 </body>
 
