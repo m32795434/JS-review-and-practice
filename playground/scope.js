@@ -28,9 +28,12 @@ return hair;
 // -------------------------BLOCK SCOPE -------------------
 // when we have curly brackets {}
 //var are function scoped, and let and const are block scoped.
+//and no one variable declared inside a function lives outside.
 if(1 === 1) {
     const age = 30;
+    var nombre22 = `Manuel`; //we can access it from the global scope, outside the curly brackets.
 }
+    
 //console.log(age); //undefined
 
 function isCool(name){

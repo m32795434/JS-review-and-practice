@@ -57,7 +57,7 @@ function doctorize(name) {
 }
 
 function greet(name) {
-  doesntExist();
+  // doesntExist();
   return `Hello ${name}`;
 }
 

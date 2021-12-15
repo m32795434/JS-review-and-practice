@@ -12,17 +12,22 @@
     <script>
         // a closure gives you access to an outer function’s scope from an inner function
         // EVEN AFTER THE OUTER FUNCTION IS DONE.
+        // we must return the innerf from the outerf, and store the outerf in a variable
+        // in order to call it later.
+        // then the outer variables are still alive, and can be used in the inner function.
+        // and we can update and increase the outer variable value, again, and again, calling
+        // the variable where it's stored the outerf, AS A FUNCTION, because this runs the innerf.
         /*
-        function outer() {
-            const outerVar = `Hey Iam the outer`;
-            function inner() {
-                const innerVar = `Hey Iam the inner`;
-                console.log(innerVar);
-                console.log(outerVar);
-            }
-            inner(); // so "outer()"" will run inner().
-        } 
-        */
+            function outer() {
+                const outerVar = `Hey Iam the outer`;
+                function inner() {
+                    const innerVar = `Hey Iam the inner`;
+                    console.log(innerVar);
+                    console.log(outerVar);
+                }
+                inner(); // so "outer()"" will run inner().
+            } 
+            */
         // WE CAN DO THIS TOO.
         /*eslint-disable*/
         function outer() {
@@ -59,7 +64,7 @@
 
         function createGame(name) {
             let score = 0;
-            return function () { //this f. dowsn't recibe any argument as a parameter.
+            return function () { //this f. doesn't recibe any argument as a parameter.
                 score++;
                 return `your ${name} score is ${score}`;
             }
