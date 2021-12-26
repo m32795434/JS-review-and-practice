@@ -25,7 +25,7 @@ function handleTabClick(event) {
   tabPanel.hidden = false;
   */
 
-  // METHOD 2 - find in the array of tabPanels
+  // METHOD 2 - find the FIRST match in the array of tabPanels
   const tabPanel = tabPanels.find(
     (panel) => panel.getAttribute('aria-labelledby') === id
   );

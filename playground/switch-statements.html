@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title></title>
+  <link rel="stylesheet" href="../base.css">
+</head>
+
+<body>
+  <style>
+    .turt {
+      position: relative;
+      --x: 10px;
+      --y: 10px;
+      transform: translateX(var(--x)) translateY(var(--y));
+    }
+  </style>
+  <img width="200" src="./turtle.png" alt="turt" class="turt">
+  <script>
+    const turtle = document.querySelector('.turt');
+    let x = 0;
+    let y = 0;
+
+    /* eslint-disable*/
+    function handleKeyDown(event) {
+      if (!event.key.includes('Arrow')) { return; }
+      /* eslint-enable */
+      switch (event.key) {
+        case 'ArrowUp':
+          y -= 1;
+          break;
+        case 'ArrowDown':
+          y += 1;
+          break;
+        case 'ArrowLeft':
+          x -= 1;
+          break;
+        case 'ArrowRight':
+          x += 1;
+          break;
+        default:
+          console.log('that is not valid');
+          break;
+      }
+      console.log(x, y);
+    }
+
+    window.addEventListener('keydown', handleKeyDown);
+  </script>
+</body>
+
+</html>
