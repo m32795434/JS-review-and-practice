@@ -10,11 +10,16 @@
 
 <body>
   <style>
+    * {
+      --x: 0;
+      --y: 0;
+      --rotatey: 0;
+      --rotate: 0;
+    }
+
     .turt {
       position: relative;
-      --x: 10px;
-      --y: 10px;
-      transform: translateX(var(--x)) translateY(var(--y));
+      transform: translateX(var(--x)) translateY(var(--y)) rotateY(var(--rotatey)) rotate(var(--rotate));
     }
   </style>
   <img width="200" src="./turtle.png" alt="turt" class="turt">
@@ -22,6 +27,9 @@
     const turtle = document.querySelector('.turt');
     let x = 0;
     let y = 0;
+    const speed = 50;
+    let flippedy = false;
+    let rotate = 0;
 
     /* eslint-disable*/
     function handleKeyDown(event) {
@@ -30,21 +38,43 @@
       switch (event.key) {
         case 'ArrowUp':
           y -= 1;
+          rotate = -90;
           break;
         case 'ArrowDown':
           y += 1;
+          rotate = 90;
           break;
         case 'ArrowLeft':
           x -= 1;
+          flippedy = true;
+          rotate = 0;
           break;
         case 'ArrowRight':
           x += 1;
+          flippedy = false;
+          rotate = 0;
           break;
         default:
           console.log('that is not valid');
           break;
       }
-      console.log(x, y);
+      turtle.setAttribute(
+        'style',
+        `
+      --rotatey: ${flippedy ? '180deg' : '0'};
+      --rotate: ${rotate}deg;
+      --x: ${x * speed}px; 
+      --y: ${y * speed}px;`
+      ); // at once, I can insert all the css code into ``.
+      /* other way */
+      // turtle.style.setProperty('--x', `${x}px`); // needs two arguments, and just for one property
+      /*eslint-disable*/
+      turtle.style['background'] = `hsla(${x + 1 + y}, 100%, 50%, 1)`;
+      /* eslint-enable */
+      /* OTHER WAYS */
+      // turtle.style.background = `hsla(${x + 50 + y}, 100%, 50%, 1)`;
+      // turtle.style.setProperty('background', `hsla(${x + 50 + y}, 100%, 50%, 1)`);
+      // turtle.setAttribute('style', `background: hsla(${x + 50 + y}, 100%, 50%, 1)`);
     }
 
     window.addEventListener('keydown', handleKeyDown);
