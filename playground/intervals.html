@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Intervals and Timers</title>
+  <link rel="stylesheet" href="../base.css">
+</head>
+
+<body>
+  <button class="stopFiveSecondsLater">stop FiveSecondsLater</button>
+  <button class="stopthreeSecondsInt">stop threeSecondsInt</button>
+  <div class="myWrapper">
+
+  </div>
+
+  <script>
+    const fiveSecondsLater = document.querySelector('.stopFiveSecondsLater');
+    const threeSecondsInt = document.querySelector('.stopthreeSecondsInt');
+    const wrapper = document.querySelector('.myWrapper');
+    let x = 1;
+
+    wrapper.setAttribute(
+      'style',
+      `
+    background-color: white;
+    padding: 10px;  
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    box-sizing: border-box;
+    width: 100%;
+    flex-wrap: wrap;
+    `
+    );
+    const myHtml5 = `<p>5 seconds later</p>`;
+    const myFragment5 = document.createRange().createContextualFragment(myHtml5);
+
+    function fiveSecondsLaterF() {
+      console.log('5 seconds later');
+      wrapper.append(myFragment5);
+    }
+    function threeSecondsIntF() {
+      console.log('three Seconds Interval');
+      const p = document.createElement('p');
+      p.textContent = `three Seconds Interval pass ${x}`;
+      p.setAttribute(
+        'style',
+        `
+      border: 1px solid black;
+      padding: 10px;
+      color: hsl(${x ** x}, 100%, 50%);`
+      );
+      x += 1;
+      wrapper.append(p);
+    }
+    function inmediatlyAndFourSecondsLater() {
+      console.log('inmediatly and 4 seconds later');
+    }
+
+    // if we want to run inmediatly and then for an interval
+
+    function setInmediateInterval(funcToRun, ms) {
+      // right away call the function
+      funcToRun();
+      // run a regular interval
+      return setInterval(funcToRun, ms);
+    }
+    setInmediateInterval(inmediatlyAndFourSecondsLater, 4000);
+
+    // SET AND CLEAR TIMEOUT AND INTERVAL
+
+    const bomb1 = setTimeout(fiveSecondsLaterF, 5000);
+    const bomb2 = setInterval(threeSecondsIntF, 3000);
+
+    fiveSecondsLater.addEventListener('click', () => {
+      console.log('you stop the 5 seconds later');
+      // stop the timer!
+      clearTimeout(bomb1);
+    });
+    threeSecondsInt.addEventListener('click', () => {
+      console.log('you stop the 3 seconds interval');
+      // stop the timer!
+      clearInterval(bomb2);
+    });
+  </script>
+</body>
+
+</html>
