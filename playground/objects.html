@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title></title>
+  <link rel="stylesheet" href="../base.css">
+</head>
+
+<body>
+  <!-- <input type="text" name="first" value="wes"> -->
+  <script>
+    const age = 100;
+    /* eslint-disable */
+    const wes = {
+      age,
+      propertyToCheck: 'NEVER',
+      name: 'wes',
+      'cool-dude': true,
+      'really-cool': false,
+      777: true,
+      dog: 'snickers',
+      clothing: {
+        shirts: 10,
+        pants: 2,
+      },
+      sayHello: function (greeting = 'Hey') {
+        return `${greeting} ${this.name}`;
+      },
+    };
+    wes.job = 'web developer';
+    wes.age = '50';
+
+    const wesFroze = Object.freeze(wes);
+
+    console.log(wes, wesFroze);
+    console.log(wes.age);
+    /*eslint-disable */
+    console.log(wes['age']);
+    // const propertyToCheck = prompt('What property do you want to check?');
+    // console.log(propertyToCheck);
+    // console.log(wes[propertyToCheck]);
+    console.log(wes.propertyToCheck);
+    console.log(wes['cool-dude']);
+    console.log(wes?.jobs ? wes.jobs.first : `job doesn't exist`);
+
+    // Optional chaining (?.) returns undefined if the property doesn't exist, not an error. 
+    console.log(wes?.jobs?.first); //undefined. It shortcut the circuit at jobs.
+    console.log(wes?.clothing?.pants);// 2
+    console.log(!wes?.clothing?.pants);// false
+
+    const input = document.querySelector('input[name= "first"]');
+    /* IF input DOWSN'T EXIST, IT RETURNS NULL
+    const inputValue = input.value; //Uncaught TypeError: Cannot read properties of null (reading 'value')
+    console.log(inputValue);
+    */
+    // catching to this error, and preventing it from happening.
+    const name = input ? input.value : '';
+    console.log(name);
+
+    // DELETING A PROPERTY
+    delete (wes.clothing.pants);
+    console.log(wes.clothing.pants);
+    //METHODS!
+    console.log(wes.sayHello());
+    console.log(wes.sayHello('Hey there!'));
+
+
+  </script>
+</body>
+
+</html>
