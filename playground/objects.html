@@ -10,9 +10,15 @@
 
 <body>
   <!-- <input type="text" name="first" value="wes"> -->
+  <script src="https://unpkg.com/lodash"></script>
   <script>
     const age = 100;
+    // WE CAN USE TOO
+    /* const wes = new Object({});
+    as well as 
+    const name = new String('wes'); */
     /* eslint-disable */
+    //OBJECT LITERAL SINTAX
     const wes = {
       age,
       propertyToCheck: 'NEVER',
@@ -61,12 +67,73 @@
 
     // DELETING A PROPERTY
     delete (wes.clothing.pants);
-    console.log(wes.clothing.pants);
+    console.log(wes.clothing.pants); // undefined
     //METHODS!
     console.log(wes.sayHello());
     console.log(wes.sayHello('Hey there!'));
 
+    const person1 = {
+      first: 'manuel',
+      last: 'Bravard',
+      clothing: {
+        shirts: 10,
+        pants: 2,
+      },
+    }
+    const person2 = {
+      first: 'wes',
+      last: 'Bos',
+    }
+    /*
+    const person3 = person2; // person 3 is a reference to person 2.  
+    person3.first = 'manuel';
+    console.log(person2.first, person3.first); // manuel manuel
+    */
+    // const person3 = { ...person1 }; // person 3 is a copy of person 1. its a shallow copy.
+    // its the same as Object.assign({}, person1); it is a shallow copy.
+    const person3 = _.cloneDeep(person1); // person 3 is a deep copy of person 1.
+    person3.first = 'wes';
+    console.log(person1.first, person3.first);// manuel wes
+    person3.clothing.shirts = 100;
+    // with spread and Object.assing:
+    //console.log(person3.clothing.shirts, person1.clothing.shirts); //100 100
+    console.log(person3.clothing.shirts, person1.clothing.shirts);// 100 10
 
+    //MERGIN OBJECTS
+    const meetInventory = {
+      beacon: 15,
+      sausage: 2,
+    };
+    const veggieInventory = {
+      lettuce: 15,
+      tomatoes: 2,
+    };
+    /* eslint-enable */
+    const inventory = {
+      ...meetInventory,
+      ...veggieInventory,
+      bananas: 10,
+      apples: 5,
+    };
+    console.log(inventory);
+
+    // MODIFYING OBJECTS VS OTHER DATA TYPES
+    const name1 = 'Manuel';
+    function doStuff(data) {
+      let dataI = data;
+      dataI = 'something else';
+      console.log(dataI);
+    }
+    doStuff(name1);
+    console.log(name1); // Manuel
+
+    // we can modify OBJECTS AND ARRAYS from a function
+    function dostuff2(data) {
+      const dataI = data;
+      return (dataI.tomatoes = 'something else');
+    }
+    dostuff2(inventory);
+    console.log(inventory.tomatoes); // something else
   </script>
 </body>
 
