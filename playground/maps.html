@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../base.css">
+</head>
+
+<body>
+    <ul class="prizes"></ul>
+    <script>
+        // WE USE MAPS TO STORE DATA AND WHEN THE ORDER IS IMPORTANT.
+        // we can't use methods inside a map like in objects
+        /* we can't stringify and parse.
+        We can use Object.fromEntries(myMap), 
+        but it doesn't recognize a key when it is an object */
+
+        const person1 = {
+            name: 'wes',
+            age: 100,
+        };
+
+        const myMap = new Map();
+        // .set()
+        myMap.set('name', 'Jhon');
+        myMap.age = '30'; // this is a property, not an entry
+        myMap.set(100, 'a number');
+        myMap.set(person1, 'really good guy');
+        console.log(myMap);
+        // WE CAN ALSO USE map literal syntax
+        const myMap2 = new Map([
+            ['eyes', 'green'],
+            ['age', '35'],
+            ['stature', '1.75'],
+        ]);
+        console.log(myMap2);
+        // .get()
+        console.log(myMap.get(person1));
+        const score = 100;
+        const prizes = new Map();
+        prizes.set(100, 'duck');
+        prizes.set(200, 'bear');
+        prizes.set(300, 'cat');
+        // .get()
+        console.log(`you win a ${prizes.get(score)}`);
+        console.log(myMap.size);
+        // select that ul
+        const ul = document.querySelector('.prizes');
+        prizes.forEach((key) => {
+            console.log(key); // only the values
+        });
+        for (const [points, prize] of prizes) {
+            const li = `<li>You won ${prize} for ${points} points</li>`;
+            ul.innerHTML += li;
+        }
+        // .delete()
+        myMap.delete('name');
+        console.log(myMap);
+    </script>
+
+</body>
+
+</html>

@@ -134,6 +134,12 @@
     }
     dostuff2(inventory);
     console.log(inventory.tomatoes); // something else
+
+    // STRINGIFY AND PARSE
+    const stringified = JSON.stringify(inventory);
+    console.log(stringified); // a string
+    const parsed = JSON.parse(stringified);
+    console.log(parsed);
   </script>
 </body>
 
