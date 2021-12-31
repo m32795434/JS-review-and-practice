@@ -17,7 +17,7 @@
         // LENGTH OF AN ARRAY
         console.log(names.length); // 3
         // the last one!
-        console.log(names[names.length - 1]); // the las one!
+        console.log(names[names.length - 1]); // the last one!
         // adding an item
         names.push('chicken');
         // maintaining the original inmutable with spread operator
@@ -48,7 +48,7 @@
 
         function deleteComment(id, comments) {
             // first find the index of the comment
-            const commentIndex = comments.findIndex((comment) => comment.id === id);
+            const commentIndex = comments.findIndex((comment) => comment.id === id); // LOOP
             // make a new array with the comment removed
             // return the new array
             return [
@@ -67,7 +67,7 @@
         const numbersReversed = [...numbers1].reverse();
         console.log(numbersReversed, numbers1); // [9,8,7,6,5,4,3,2,1] [1,2,3,4,5,6,7,8,9] 
 
-        // SPLICE MUTATE THE ORIGINAL - we take off items from the original, or we can replace the item
+        // SPLICE MUTATE THE ORIGINAL TOO - we take off items from the original, or we can replace the item
         const numbers1 = [1, 2, 3, 4, 5, 6, 7, 8, 9];
         const numbers2 = numbers1.splice(3, 2);
         console.log(numbers1, numbers2); // [1,2,3,6,7,8,9][4,5]
