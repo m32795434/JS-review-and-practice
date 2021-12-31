@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../base.css">
+
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const names = ['wes', 'kate', 'snickers', 'the las one!'];
+        console.log(Array.isArray(names)); // true
+        // LENGTH OF AN ARRAY
+        console.log(names.length); // 3
+        // the last one!
+        console.log(names[names.length - 1]); // the las one!
+        // adding an item
+        names.push('chicken');
+        // maintaining the original inmutable with spread operator
+        const names2 = [...names, 'rost'];
+        // adding at the front of the array
+        names2.unshift('crocodile');
+        // making a copy with spread operator
+        const names3 = ['sheep', ...names2];
+
+        // INTRODUCING ITEMS TO THE MIDDLE OF AN ARRAY
+        const bikes = ['trek', 'giant', 'redline', 'specialized'];
+        let newBikes = [...bikes.slice(0, 2), 'benotto', ...bikes.slice(2)];
+        console.log(newBikes); // ['trek', 'giant', 'benotto', 'redline', 'specialized']
+
+        // DELETING ITEMS FROM AN ARRAY
+        // deleting 'redline'
+        newBikes = [...newBikes.slice(0, 3), ...newBikes.slice(4)];
+        console.log(newBikes); // ['trek', 'giant', 'benotto', 'specialized']
+
+        const comments = [
+            { id: 1723, text: 'awesome post' },
+            { id: 8989, text: 'terrible post' },
+            { id: 2938, text: 'good post' },
+            { id: 172, text: 'awesome post' },
+            { id: 898, text: 'terrible post' },
+            { id: 293, text: 'good post' },
+        ];
+
+        function deleteComment(id, comments) {
+            // first find the index of the comment
+            const commentIndex = comments.findIndex((comment) => comment.id === id);
+            // make a new array with the comment removed
+            // return the new array
+            return [
+                ...comments.slice(0, commentIndex),
+                ...comments.slice(commentIndex + 1),
+            ];
+        }
+
+        /*
+        // REVERSE IS A MUTABLE METHOD
+        const numbers1 = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+        // const numbers2 = numbers1.reverse();
+        // console.log(numbers1, numbers2); // [9, 8, 7, 6, 5, 4, 3, 2, 1] twice.
+        // if we want to NOT mutate the original:
+        // we need to take a copy of the original array
+        const numbersReversed = [...numbers1].reverse();
+        console.log(numbersReversed, numbers1); // [9,8,7,6,5,4,3,2,1] [1,2,3,4,5,6,7,8,9] 
+
+        // SPLICE MUTATE THE ORIGINAL - we take off items from the original, or we can replace the item
+        const numbers1 = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+        const numbers2 = numbers1.splice(3, 2);
+        console.log(numbers1, numbers2); // [1,2,3,6,7,8,9][4,5]
+        //REPLACE one item
+        numbers1.splice(3, 0, '4'); // replace the item at index 3 with '4' 
+
+        
+        
+        // SLICE IS A INMUTABLE METHOD
+        const numbers3 = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+        const pizzaSlice = numbers3.slice(2, 4);
+        console.log(pizzaSlice); // [3, 4]
+        console.log(numbers3); // [1, 2, 3, 4, 5, 6, 7, 8, 9] */
+    </script>
+</body>
+
+</html>
