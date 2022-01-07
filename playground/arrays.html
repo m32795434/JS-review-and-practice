@@ -15,7 +15,7 @@
         const names = ['wes', 'kate', 'snickers', 'the las one!'];
         console.log(Array.isArray(names)); // true
         // LENGTH OF AN ARRAY
-        console.log(names.length); // 3
+        console.log(names.length); // 4
         // the last one!
         console.log(names[names.length - 1]); // the last one!
         // adding an item
@@ -52,10 +52,14 @@
             // make a new array with the comment removed
             // return the new array
             return [
-                ...comments.slice(0, commentIndex),
+                ...comments.slice(0, commentIndex), // doesn't mutate the original array
                 ...comments.slice(commentIndex + 1),
             ];
         }
+        // when the condition is true "name === 'kait'" it takes the index of the element that represents "name"
+        const kateIndex = names.findIndex((name) => name === 'kate');
+        console.log(kateIndex);
+        console.log(names[kateIndex]);
 
         /*
         // REVERSE IS A MUTABLE METHOD
@@ -69,6 +73,7 @@
 
         // SPLICE MUTATE THE ORIGINAL TOO - we take off items from the original, or we can replace the item
         const numbers1 = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+        //splice(start on order 3, delete 2 items)
         const numbers2 = numbers1.splice(3, 2);
         console.log(numbers1, numbers2); // [1,2,3,6,7,8,9][4,5]
         //REPLACE one item
@@ -78,6 +83,7 @@
         
         // SLICE IS A INMUTABLE METHOD
         const numbers3 = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+        slice(start on order 2, end on order 4-1)
         const pizzaSlice = numbers3.slice(2, 4);
         console.log(pizzaSlice); // [3, 4]
         console.log(numbers3); // [1, 2, 3, 4, 5, 6, 7, 8, 9] */

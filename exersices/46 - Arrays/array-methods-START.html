@@ -81,17 +81,36 @@
     console.log(Object.entries(meats)); // [ [ 'beef', 5 ], [ 'pork', 7 ], [ 'beyond', 10 ] ]
     console.log(Object.keys(meats)); // [ 'beyond', 'beef', 'pork' ]
     console.log(Object.values(meats)); // [10, 5, 7 ]
+    /*
+        Object.entries(meats).forEach((entry) => {
+          // const item = entry[0];
+          // const qty = entry[1];
+          const [item, qty] = entry;
+          return console.log(item, qty);
+        }); */
+
+    // OR COMPLETLY DESTRUCTURED IN ONE LINE.
+    // LOOP
+
+    Object.entries(meats).forEach(([item, qty]) => console.log(item, qty));
 
     /*
       Instance Methods
     */
 
-    // Display all bun types with " or " - use join()
+    // Convert an array into a string with " or " - use join()
 
-    // We have a string "hot dogs,hamburgers,sausages,corn" - use split() to turn it into a string
+    console.log(buns.join(' or ')); // egg or wonder or brioche
 
+    // We have a string "hot dogs,hamburgers,sausages,corn" - use split() to turn it into an array.
+    const foodString = 'hot dogs, hamburgers, sausage, corn';
+    console.log(foodString.split(',')); // [ 'hot dogs', 'hamburgers', 'sausage', 'corn' ]
     // take the last item off toppings with pop()
+    const lastItem = toppings.pop();
+    console.log(lastItem, toppings); // "Cheese" and the original without cheese
     // add it back with push()
+    const t2 = toppings.push(lastItem);
+    console.log(t2, toppings); // [ 'Mushrooms ', 'Tomatoes', 'Eggs', 'Chili', 'Lettuce', 'Avocado', 'Chiles', 'Bacon', 'Pickles', 'Onions', 'Cheese' ]
     // take the first item off toppings with shift()
     // add it back in with unshift()
     // Do the last four,but immutable (with spreads and new variables)
