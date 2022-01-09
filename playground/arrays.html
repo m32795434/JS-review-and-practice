@@ -56,6 +56,8 @@
                 ...comments.slice(commentIndex + 1),
             ];
         }
+        // The findIndex() method returns the index of the first element in the array that satisfies the provided testing function. Otherwise, it returns -1
+        // findIndex() take a FUNCTION as an argument. In spite of indexOf() that takes a value. Ex: 'kate'
         // when the condition is true "name === 'kait'" it takes the index of the element that represents "name"
         const kateIndex = names.findIndex((name) => name === 'kate');
         console.log(kateIndex);
