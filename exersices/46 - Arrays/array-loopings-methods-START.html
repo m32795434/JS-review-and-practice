@@ -12,7 +12,19 @@
 
 <body>
   <script>
-    const toppings = ['Mushrooms ', 'Tomatoes', 'Eggs', 'Chili', 'Lettuce', 'Avocado', 'Chiles', 'Bacon', 'Pickles', 'Onions', 'Cheese'];
+    const toppings = [
+      'Mushrooms ',
+      'Tomatoes',
+      'Eggs',
+      'Chili',
+      'Lettuce',
+      'Avocado',
+      'Chiles',
+      'Bacon',
+      'Pickles',
+      'Onions',
+      'Cheese',
+    ];
 
     const students = [
       {
@@ -67,32 +79,31 @@
         birthday: 'April 22, 1993',
         names: {
           first: 'Keith',
-          last: 'Buckley'
-        }
+          last: 'Buckley',
+        },
       },
       {
         birthday: 'January 3, 1975',
         names: {
           first: 'Larry',
-          last: 'Heep'
-        }
+          last: 'Heep',
+        },
       },
       {
         birthday: 'February 12, 1944',
         names: {
           first: 'Linda',
-          last: 'Bermeer'
-        }
-      }
+          last: 'Bermeer',
+        },
+      },
     ];
-
 
     const buns = ['egg', 'wonder', 'brioche'];
 
     const meats = {
       beyond: 10,
       beef: 5,
-      pork: 7
+      pork: 7,
     };
 
     const prices = {
@@ -124,11 +135,44 @@
       { type: 'pants', price: 123 },
     ];
 
-
     /*
       Looping Methods
     */
+    // forEach() doens't return anything
+    function logToppings(topping, index, originalArray) {
+      console.log(topping);
+      // log the prev topp
+      if (index > 0) {
+        console.log(`the prev topp was:${originalArray[index - 1]}`);
+      }
+      // log the next topp if there is one, OTHERWISE log GOOD BYE
+      const nextTopping = originalArray[index + 1];
+      // WITH TERNARIY OPERATOR
+      nextTopping
+        ? console.log(`the next topp is: ${nextTopping}`)
+        : console.log('BOOD BYE!!');
+      /*
+      --- WITH IF STATEMENT ---
+      if (index !== originalArray.length - 1) {
+        console.log(`the next topp:${originalArray[index + 1]}`);
+      }
+      if (index === originalArray.length - 1) {
+        console.log('GOOD BYE!');
+      } 
+      
+      ORRRRR!!
 
+      ---WITH TERNARIY OPERATOR---
+      index === originalArray.length - 1 
+      ? console.log('GOOD BYE!')
+      : console.log(`the next topp is:${originalArray[index + 1]}`);
+
+      --- WITH && OPERATOR (#SHORT CIRCUIT, #ABUSING CONDITIONALS)---
+      index === originalArray.length - 1 && console.log('GOOD BYE!');
+      */
+      console.log('------🍕------');
+    }
+    toppings.forEach(logToppings);
   </script>
 </body>
 
