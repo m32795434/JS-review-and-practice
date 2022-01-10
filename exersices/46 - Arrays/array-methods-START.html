@@ -165,7 +165,7 @@
     */
 
     // find the first rating that talks about a burger with find()
-    // finde() recibe a callback function as an argument.
+    // finde() recibe a callback function as an argument, and return the element that matchs the condition.
     /*
     const findBurgerRating = (singleFeedback) =>
       singleFeedback.comment.includes('burg'); // return true or false
@@ -182,20 +182,49 @@
     console.log(burgRating, SmoothiesRating); // {comment: 'Love the burgs', rating: 4}{comment: 'Smoothies are great, liked the burger too', rating: 5}
 
     // find all ratings that are above 2 with filter()
+    // filter() recibe a callback function as an argument, and return an array with the elements that matchs the condition.
     function filterByRating(rating) {
       return (singleFeedBack) => singleFeedBack.rating > rating;
     }
     const ratingsAbove2 = feedback.filter(filterByRating(2)); // an array
     console.table(ratingsAbove2);
     // find all ratings that talk about a burger with filter()
+
+    const burgFilter = feedback.filter(findByWord('burg'));
+    console.log(burgFilter); // an array
+
     // Remove the one star rating however you like!
+    const filterOneStar = feedback.filter((single) => single.rating !== 1);
+    console.table(filterOneStar);
 
     // check if there is at least 5 of one type of meat with some()
+    // some() recibe a callback function as an argument, and return true or false. If at least one element in the array matches the condition, some() returns true.
+    const isThereEnoughMeat = Object.values(meats).some(
+      (meatValue) => meatValue >= 5
+    );
+    console.log(isThereEnoughMeat);
     // make sure we have at least 3 of every meat with every()
+    // every() recibe a callback function as an argument, and return true or false.
+    const isEveryMeatEnough = Object.values(meats).every(
+      (singleValue) => singleValue >= 3
+    );
+    console.log(isEveryMeatEnough);
     // sort the toppings alphabetically with sort()
+    // sort() recibe a callback function as an argument, and return an array with the elements sorted. It sort alfabetically as default.
+    const toppingsSorted = toppings.sort();
+    console.log(toppingsSorted);
+    // example with numbers
+    const numbers = [1, 2, 700, 4, 200, 6, 7, 100, 9, 10];
+    const sortedNumbers = numbers.sort((a, b) => a - b); // smaller to bigger
+    console.log(sortedNumbers); // [ 1, 2, 4, 6, 7, 9, 10, 100, 200, 700 ]
     // sort the order totals from most expensive to least with .sort()
+    const orderTotalsToCheap = orderTotals.sort((a, b) => b - a);
+    console.table(orderTotalsToCheap);
     // Sort the prices with sort()
-
+    // BIGGER TO SMALLER
+    const pricesSorted = Object.entries(prices).sort((a, b) => b[1] - a[1]); // a y b are the first and second item.
+    console.table(pricesSorted);
+    console.table(Object.fromEntries(pricesSorted)); // display as an Object
     /*
       Looping Methods (next)
     */
