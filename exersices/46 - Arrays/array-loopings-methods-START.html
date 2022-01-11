@@ -173,6 +173,66 @@
       console.log('------🍕------');
     }
     toppings.forEach(logToppings);
+
+    console.clear();
+
+    // .map() returns a new array with the same length. - inmutable method.
+    function addArms(face) {
+      return `🖖${face}🖖`;
+    }
+    const toys = faces.map(addArms);
+    console.log(toys);
+
+    function bosify(name) {
+      return `${name} Bos`;
+    }
+    function capitalize(word) {
+      return `${word[0].toUpperCase()}${word.slice(1)}`;
+    }
+
+    const fullNames = ['kate', 'bob', 'joe', 'sue'].map(capitalize).map(bosify);
+    console.log(fullNames);
+
+    const orderTotalWithTax = orderTotals.map((total) => total * 1.07);
+    console.log(orderTotalWithTax);
+    /*
+            function attachBody(face, body) {
+              return `
+                ${face}
+              ${body.repeat(3)}
+             ${Array(3).fill(body).join(' ')}
+           👇  ${body.repeat(2)}  👇
+              ${Array(2).fill(body).join('   ')}
+              ${Array(2).fill(body).join('     ')}
+              🚗      🚙
+              `;
+            }
+            faces
+              .map((face) => attachBody(face, '🍖'))
+              .forEach((body) => console.log(body));
+              */
+
+    const cleanPeople = people.map((person) => {
+      // get their birthday-timestamp
+      const birthday = new Date(person.birthday).getTime();
+      const now = Date.now();
+      // console.log(birthday, now);
+      // figure out how old they are
+      const age = Math.floor((now - birthday) / 31536000000);
+      console.log(age);
+      // return their full mane and bday in an object
+      return {
+        age,
+        name: `${person.names.first} ${person.names.last}`,
+      };
+    });
+    console.table(cleanPeople);
+
+    const date = new Date();
+    const fecha = [date.getMonth(), date.getDate(), date.getFullYear()];
+    const hora = [date.getHours(), date.getMinutes(), date.getSeconds()];
+    console.table(fecha);
+    console.table(hora);
   </script>
 </body>
 
