@@ -233,6 +233,45 @@
     const hora = [date.getHours(), date.getMinutes(), date.getSeconds()];
     console.table(fecha);
     console.table(hora);
+
+    console.clear();
+
+    // ----------------LITTLE MORE ABOUT .find() and .filter()----------------
+    // BOTH WORKS THE SAME WAY
+    function findeByProp(prop, propPassed) {
+      return (student) => student[prop] === propPassed;
+    }
+
+    const student1 = students.find(findeByProp('first_name', 'Margarete')); // the item that matches (an object)
+    const student2 = students.filter(findeByProp('first_name', 'Dall')); // an array with the items that match (an array with one object)
+    console.log(student1, student2);
+
+    // -------------------------.reduce()-------------------------
+
+    console.clear();
+    // SUM ALL THE NUMBERS IN AN ARRAY
+    function add(total, actualItem) {
+      console.log(total, actualItem);
+      console.log('------------------------');
+      return total + actualItem;
+    } // .reduce(callback funct, "total" initial value )
+    const sumOrderTotals = orderTotals.reduce(add, 0); // start at 0; but it can star at any value, or be an array, an object...
+    console.log(sumOrderTotals);
+
+    function inventoryReducer(inv, item) {
+      console.log(`looping over ${item.type}`);
+      // increment the type by 1
+      // inv[item.type] ? (inv[item.type] += 1) : (inv[item.type] = 1);
+      inv[item.type] = inv[item.type] + 1 || 1;
+      // inv[item.type] ? inv[item.type]++ : (inv[item.type] = 1);
+      console.log('------------------------');
+      return inv;
+    }
+    // .reduce(callback funct, "inv" initial object items)
+    const inventoryCounts = inventory.reduce(inventoryReducer, {});
+    console.log(inventoryCounts);
+    const totalInventoryAmount = inventory.reduce((a, b) => a + b.price, 0);
+    console.log(totalInventoryAmount);
   </script>
 </body>
 
