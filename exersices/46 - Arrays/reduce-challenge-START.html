@@ -13,7 +13,296 @@
     // Grab all the text from a web page
     // Count how many times each letter and number occurs
 
+    const text = `
+Technologies
+References & Guides
+Feedback
+Search MDN
+Site search... (Press "/" to focus)
+Tecnología para desarrolladores web
+JavaScript
+Referencia de JavaScript
+Objetos globales
+Array
+Array.prototype.reduce()
+Change language
+View in English
+Esta página fue traducida del inglés por la comunidad, pero no se mantiene activamente, por lo que puede estar desactualizada. Si desea ayudar a mantenerlo, descubra cómo activar las configuraciones regionales inactivas.
+Table of contents
+Sintaxis
+Descripción
+Polyfill
+Ejemplos
+Especificaciones
+Compatibilidad con navegadores
+Ver también
+Array.prototype.reduce()
+El método reduce() ejecuta una función reductora sobre cada elemento de un array, devolviendo como resultado un único valor.
 
+
+La función reductora recibe cuatro argumentos:
+
+Acumulador (acc)
+Valor Actual (cur)
+Índice Actual (idx)
+Array (src)
+El valor devuelto de la función reductora se asigna al acumulador, cuyo valor se recuerda en cada iteración de la matriz y, en última instancia, se convierte en el valor final, único y resultante.
+
+Sintaxis
+arr.reduce(callback(acumulador, valorActual[, índice[, array]])[, valorInicial])
+Parámetros
+callback
+Función a ejecutar sobre cada elemento del array (excepto para el primero, si no se proporciona valorInicial), que recibe cuatro parámetros:
+acumulador
+El acumulador acumula el valor devuelto por la función callback. Es el valor acumulado devuelto en la última invocación de callback, o el valorInicial, si se proveyó. (Ver a continuación).
+valorActual
+El elemento actual que está siendo procesado en el array.
+índice Optional
+El índice del elemento actual que está siendo procesado en el array. Empieza desde el índice 0 si se provee valorInicial. En caso contrario, comienza desde el índice 1.
+array Optional
+El array sobre el cual se llamó el método reduce().
+valorInicial Optional
+Un valor a usar como primer argumento en la primera llamada de la función callback. Si no se proporciona el valorInicial, el primer elemento del array será utilizado y saltado. Llamando a reduce() sobre un array vacío sin un valorInicial lanzará un TypeError.
+Descripción
+El método reduce() ejecuta callback una vez por cada elemento presente en el array, excluyendo los huecos del mismo, recibe cuatro argumentos:
+
+valorAnterior
+valorActual
+indiceActual
+array
+La primera vez que se llama la función, valorAnterior y valorActual pueden tener uno de dos valores. Si se proveyó un valorInicial al llamar a reduce, entonces valorAnterior será igual al valorInicial y valorActual será igual al primer elemento del array. Si no se proveyó un valorInicial, entonces valorAnterior será igual al primer valor en el array y valorActual será el segundo.
+
+Si el array está vacío y no se proveyó un valorInicial lanzará un TypeError (en-US). Si el array tiene un sólo elemento (sin importar la posición) y no se proveyó un valorInicial, o si se proveyó un valorInicial pero el arreglo está vacío, se retornará ese único valor sin llamar a la función.
+
+Suponga que ocurre el siguiente uso de reduce:
+
+[0,1,2,3,4].reduce(function(valorAnterior, valorActual, indice, vector){
+  return valorAnterior + valorActual;
+});
+
+// Primera llamada
+valorAnterior = 0, valorActual = 1, indice = 1
+
+// Segunda llamada
+valorAnterior = 1, valorActual = 2, indice = 2
+
+// Tercera llamada
+valorAnterior = 3, valorActual = 3, indice = 3
+
+// Cuarta llamada
+valorAnterior = 6, valorActual = 4, indice = 4
+
+// el array sobre el que se llama a reduce siempre es el objeto [0,1,2,3,4]
+
+// Valor Devuelto: 10
+Copy to Clipboard
+Y si proporcionas un valorInicial, el resultado sería como este:
+
+[0,1,2,3,4].reduce(function(valorAnterior, valorActual, indice, vector){
+  return valorAnterior + valorActual;
+}, 10);
+
+// Primera llamada
+valorAnterior = 10, valorActual = 0, indice = 0
+
+// Segunda llamada
+valorAnterior = 10, valorActual = 1, indice = 1
+
+// Tercera llamada
+valorAnterior = 11, valorActual = 2, indice = 2
+
+// Cuarta llamada
+valorAnterior = 13, valorActual = 3, indice = 3
+
+// Quinta llamada
+valorAnterior = 16, valorActual = 4, indice = 4
+
+// el array sobre el que se llama a reduce siempre es el objeto [0,1,2,3,4]
+
+// Valor Devuelto: 20
+Copy to Clipboard
+Polyfill
+Polyfill se refiere a unas líneas de código o un plugin que permite "tener"  (en realidad se simulan de alguna otra manera) las nuevas funcionalidades   de HTML5 en aquellos navegadores que nativamente no lo soportan. Consigue que, en adelante, el código sea transparente para el programador, como si el navegador soportase la funcionalidad nativamente.
+
+reduce es una extensión de JavaScript al estándar ECMA-262; como tal puede que no esté presente en otras implementaciones del estándar. Puedes trabajar con ésto insertando el siguiente código al comienzo de tus scripts, permitiendo el uso de reduce en implementaciones de ECMA-262 que no lo implementan de modo nativo. Este algoritmo es exactamente el mismo usando en Firefox y SpiderMonkey.
+
+if (!Array.prototype.reduce)
+{
+  Array.prototype.reduce = function(fun /*, inicial*/)
+  {
+    var longitud = this.length;
+    if (typeof fun != "function")
+      throw new TypeError();
+
+    // no se devuelve ningún valor si no hay valor inicial y el array está vacío
+    if (longitud == 0 && arguments.length == 1)
+      throw new TypeError();
+
+    var indice = 0;
+    if (arguments.length >= 2)
+    {
+      var rv = arguments[1];
+    }
+    else
+    {
+      do
+      {
+        if (indice in this)
+        {
+          rv = this[indice++];
+          break;
+        }
+
+        // si el array no contiene valores, no existe valor inicial a devolver
+        if (++indice >= longitud)
+          throw new TypeError();
+      }
+      while (true);
+    }
+
+    for (; indice < longitud; indice++)
+    {
+      if (indice in this)
+        rv = fun.call(null, rv, this[indice], indice, this);
+    }
+
+    return rv;
+  };
+}
+Copy to Clipboard
+Ejemplos
+Ejemplo: Sumar todos los valores de un array
+var total = [0, 1, 2, 3].reduce(function(a, b){ return a + b; });
+// total == 6
+Copy to Clipboard
+Ejemplo: Integrar un array a partir de varios arrays
+var integrado = [[0,1], [2,3], [4,5]].reduce(function(a,b) {
+  return a.concat(b);
+});
+// integrado es [0, 1, 2, 3, 4, 5]
+Copy to Clipboard
+Especificaciones
+Especificación
+ECMAScript (ECMA-262)
+La definición de 'Array.prototype.reduce()' en esta especificación.
+Compatibilidad con navegadores
+Report problems with this compatibility data on GitHub
+desktop	mobile	server
+Chrome	Edge	Firefox	Internet Explorer	Opera	Safari	WebView Android	Chrome Android	Firefox for Android	Opera Android	Safari on iOS	Samsung Internet	Deno	Node.js
+reduce
+Full support3	Full support12	Full support3	Full support9	Full support10.5	Full support5	Full support37	Full support18	Full support4	Full support14	Full support4	Full support1.0	Full support1.0	Full support0.10.0
+Legend
+Full supportFull support
+Ver también
+Array.prototype.reduceRight()
+Last modified: 10 ene 2022, by MDN contributors
+
+Change your language
+Select your preferred language
+Español
+ Change language
+Related Topics
+Standard built-in objects
+Array
+Propiedades
+Array.prototype[@@unscopables]
+Array.prototype.length
+Métodos
+Array.prototype[@@iterator]()
+get Array[@@species]
+Array.prototype.at()
+Array.prototype.concat()
+Array.prototype.copyWithin()
+Array.prototype.entries()
+Array.prototype.every()
+Array.prototype.fill()
+Array.prototype.filter()
+Array.prototype.find()
+Array.prototype.findIndex()
+Array.prototype.flat()
+Array.prototype.flatMap()
+Array.prototype.forEach()
+Array.from()
+Array.prototype.includes()
+Array.prototype.indexOf()
+Array.isArray()
+Array.prototype.join()
+Array.prototype.keys()
+Array.prototype.lastIndexOf()
+Array.prototype.map()
+Array.of()
+Array.prototype.pop()
+Array.prototype.push()
+Array.prototype.reduce()
+Array.prototype.reduceRight()
+Array.prototype.reverse()
+Array.prototype.shift()
+Array.prototype.slice()
+Array.prototype.some()
+Array.prototype.sort()
+Array.prototype.splice()
+Array.prototype.toLocaleString()
+Array.prototype.toSource()
+Array.prototype.toString()
+Array.prototype.unshift()
+Array.prototype.values()
+Herencia
+Function
+Propiedades
+Function.arguments
+Function.caller
+Function.displayName
+Function.length
+Function.name
+Métodos
+Function.prototype.apply()
+Function.prototype.bind()
+Function.prototype.call()
+Function.prototype.toSource()
+Function.prototype.toString()
+Object
+Propiedades
+Object.prototype.constructor
+Object.prototype.__proto__
+Métodos
+Object.prototype.__defineGetter__()
+Object.prototype.__defineSetter__()
+Object.prototype.__lookupGetter__()
+Object.prototype.__lookupSetter__()
+Object.prototype.hasOwnProperty()
+Object.prototype.isPrototypeOf()
+Object.prototype.propertyIsEnumerable()
+Object.setPrototypeOf()
+Object.prototype.toLocaleString()
+Object.prototype.toSource()
+Object.prototype.toString()
+Object.prototype.valueO
+`;
+
+    function isValidChar(char) {
+      return char.match(/[a-z0-9]/i);
+    }
+    function lowerCase(char) {
+      return char.toLowerCase();
+    }
+    function instanceCounter(total, char) {
+      total[char] = total[char] + 1 || 1;
+      return total;
+    }
+    // const everything = [...text];
+    const result = text
+      .split('')
+      .filter(isValidChar)
+      .map(lowerCase)
+      .reduce(instanceCounter, {});
+    console.log(result);
+
+    const resultSorted = Object.entries(result).sort((a, b) => b[1] - a[1]);
+    console.log(resultSorted);
+    console.log(`the most used char is "${resultSorted[0][0]}"`);
+    console.log(
+      `the least used char is "${resultSorted[resultSorted.length - 1][0]}"`
+    );
   </script>
 </body>
 

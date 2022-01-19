@@ -155,10 +155,9 @@
       --- WITH IF STATEMENT ---
       if (index !== originalArray.length - 1) {
         console.log(`the next topp:${originalArray[index + 1]}`);
-      }
-      if (index === originalArray.length - 1) {
-        console.log('GOOD BYE!');
-      } 
+      } else {console.log('GOOD BYE!');
+    }
+         
       
       ORRRRR!!
 
@@ -176,7 +175,7 @@
 
     console.clear();
 
-    // .map() returns a new array with the same length. - inmutable method.
+    // .map() return a new array with the same length. - inmutable method.
     function addArms(face) {
       return `🖖${face}🖖`;
     }
@@ -216,7 +215,7 @@
       // get their birthday-timestamp
       const birthday = new Date(person.birthday).getTime();
       const now = Date.now();
-      // console.log(birthday, now);
+      console.log(birthday, now);
       // figure out how old they are
       const age = Math.floor((now - birthday) / 31536000000);
       console.log(age);
@@ -247,15 +246,16 @@
     console.log(student1, student2);
 
     // -------------------------.reduce()-------------------------
-
+    // return a "total". It take a function that takes the previous total and the current item and returns a new total. It will iterate over each item.
+    // the function could be a math function like add, multiply, etc.
     console.clear();
     // SUM ALL THE NUMBERS IN AN ARRAY
     function add(total, actualItem) {
       console.log(total, actualItem);
       console.log('------------------------');
       return total + actualItem;
-    } // .reduce(callback funct, "total" initial value )
-    const sumOrderTotals = orderTotals.reduce(add, 0); // start at 0; but it can star at any value, or be an array, an object...
+    } // .reduce(callback funct, "total" initial value or object )
+    const sumOrderTotals = orderTotals.reduce(add, 0); // the "total" starting value is 0. it could be an empty array or object.
     console.log(sumOrderTotals);
 
     function inventoryReducer(inv, item) {
