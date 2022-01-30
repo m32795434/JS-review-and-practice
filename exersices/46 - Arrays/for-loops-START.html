@@ -12,15 +12,81 @@
   <script>
     const numbers = [2, 34, 3, 23, 42, 3, 1, 65, 364, 5, 645, 6];
 
-    const name = 'Wes Bos';
-
+    const name = 'Wes Bos 👧👦🏽👶🏽👱🏿‍♀️👧🏿👱‍♂️👨‍👨‍👦‍👦';
+    const manuel = {
+      name: 'manuel',
+      age: '23',
+      cool: true,
+    };
     // For
+    /*
+    for (let i = 0; i < numbers.length; i++) {
+      console.log(numbers[i]);
+    }
+    */
+    // -------------------FOR OF------------------
+    // THIS won't show all the characters in the string
+    // console.log([...name]);
+    // console.log(name.split(''));
 
-    // For of
+    // this will show us all the characters in the string
+    /*
+        for (const letter of name) {
+          console.log(letter);
+        }
+        */
+    // for each show us the original array and index. And .map, can return a new array
+    // for of, can only iterate over arrays
 
-    // For in
+    // -------------------FOR IN------------------
 
-    // While Loop
+    for (const letter in name) {
+      console.log(letter); // it will show us the index of the array,
+    }
+    for (prop in manuel) {
+      console.log(prop); // or the keys of an object.
+    }
+    console.clear();
+
+    const baseHumanStats = {
+      feet: 2,
+      arms: 2,
+      legs: 2,
+      head: 1,
+    };
+    function Human(name) {
+      this.name = name;
+    }
+    // -------------------over a prototype------------------
+    Human.prototype = baseHumanStats;
+    const manuel2 = new Human('manuel');
+
+    console.log(Object.entries(manuel2)); // without the prototype entries.
+    for (prop in manuel2) {
+      console.log(prop); // with the prototype keys!
+    }
+
+    // ---------------------WHILE LOOP---------------------
+    /*
+        let cool = true;
+        let i = 1;
+        while (cool === true) {
+          console.log('you are cool'); // will run 9 times.
+          i++;
+          if (i === 10) {
+            cool = false;
+          }
+        }
+    */
+    let cool = true;
+    let i = 1;
+    do {
+      console.log('you are cool'); // IT WILL run once!! and them compare the condition.
+      i++;
+      if (i === 10) {
+        cool = false;
+      }
+    } while (cool === false);
   </script>
 </body>
 
