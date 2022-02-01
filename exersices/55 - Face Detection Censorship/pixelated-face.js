@@ -3,9 +3,9 @@ const video = document.querySelector('.webcam');
 const canvas = document.querySelector('.video'); // I don't like this NAME, becasuse this will paint a rectangle in the canvas, not the video.
 const ctx = canvas.getContext('2d');
 
-const faceCanvas = document.querySelector('.face');
+const faceCanvas = document.querySelector('.face'); // it will store the small face, and then draw it in a normal size
 const faceCtx = faceCanvas.getContext('2d');
-
+const SIZE = 10;
 const faceDetector = new window.FaceDetector();
 console.log(video, canvas, faceCanvas, faceDetector);
 
@@ -44,9 +44,34 @@ function drawFace(face) {
 
 function censor({ boundingBox: face }) {
   // draw the small face
-  faceCtx.drawImage(video, 0, 0);
+  faceCtx.drawImage(
+    // 5 source args
+    video, // source image
+    face.x, // where do we start to pull from
+    face.y,
+    face.width,
+    face.height,
+    // 4 draw args
+    face.x, // where do we start to draw
+    face.y,
+    SIZE,
+    SIZE
+  );
   // take that face back out and draw it back at normal size
+  faceCtx.drawImage(
+    faceCanvas, // source image
+    face.x, // where we start
+    face.y,
+    SIZE, // width and height
+    SIZE,
+    // DRAWING ARGS
+    face.x,
+    face.y,
+    face.width,
+    face.height
+  );
 }
+
 // if we don't have access to the globals variables. We can:
 // window.populateVideo = populateVideo; or
 // console.log(populateVideo); then store in a global variable
