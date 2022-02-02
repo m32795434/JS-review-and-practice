@@ -3,9 +3,25 @@ const video = document.querySelector('.webcam');
 const canvas = document.querySelector('.video'); // I don't like this NAME, becasuse this will paint a rectangle in the canvas, not the video.
 const ctx = canvas.getContext('2d');
 
-const faceCanvas = document.querySelector('.face'); // it will store the small face, and then draw it in a normal size
+const faceCanvas = document.querySelector('.face'); // it will store the DRAW of the small face, and then draw it in a normal size
 const faceCtx = faceCanvas.getContext('2d');
-const SIZE = 10;
+const optionsInputs = document.querySelectorAll(
+  '.controls input[type="range"]'
+);
+function handleOption(event) {
+  const { name, value } = event.currentTarget; // the NAME and the VALUE of the input
+  console.log(name, value);
+  options[name] = parseFloat(value);
+}
+optionsInputs.forEach((input) => {
+  input.addEventListener('input', handleOption);
+});
+
+const options = {
+  SIZE: 10,
+  SCALE: 1.35,
+};
+
 const faceDetector = new window.FaceDetector();
 console.log(video, canvas, faceCanvas, faceDetector);
 
@@ -13,7 +29,7 @@ console.log(video, canvas, faceCanvas, faceDetector);
 
 async function populateVideo() {
   const stream = await navigator.mediaDevices.getUserMedia({
-    video: { width: 1280, height: 720 },
+    video: { width: 640, height: 360 },
   });
   video.srcObject = stream;
   await video.play();
@@ -43,6 +59,9 @@ function drawFace(face) {
 }
 
 function censor({ boundingBox: face }) {
+  // faceCtx.imageSmoothingEnabled = false;
+  faceCtx.clearRect(0, 0, faceCanvas.width, faceCanvas.height);
+
   // draw the small face
   faceCtx.drawImage(
     // 5 source args
@@ -54,21 +73,23 @@ function censor({ boundingBox: face }) {
     // 4 draw args
     face.x, // where do we start to draw
     face.y,
-    SIZE,
-    SIZE
+    options.SIZE,
+    options.SIZE
   );
   // take that face back out and draw it back at normal size
+  const width = face.width * options.SCALE;
+  const height = face.height * options.SCALE;
   faceCtx.drawImage(
     faceCanvas, // source image
     face.x, // where we start
     face.y,
-    SIZE, // width and height
-    SIZE,
+    options.SIZE, // width and height
+    options.SIZE,
     // DRAWING ARGS
-    face.x,
-    face.y,
-    face.width,
-    face.height
+    face.x - (width - face.width) / 2,
+    face.y - (height - face.height) / 2,
+    width,
+    height
   );
 }
 

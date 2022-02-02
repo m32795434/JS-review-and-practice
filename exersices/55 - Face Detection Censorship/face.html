@@ -8,6 +8,16 @@
 </head>
 
 <body>
+  <div class="controls">
+    <label for="SCALE">
+      SCALE:
+      <input value="1.35" type="range" name="SCALE" min="0.3" max="3" step="0.1">
+    </label>
+    <label for="SIZE">
+      SIZE:
+      <input value="10" type="range" name="SIZE" min="1" max="100" step="1">
+    </label>
+  </div>
   <div class="wrap">
     <video class="webcam"></video>
     <canvas class="video"></canvas>
@@ -24,23 +34,26 @@
       margin: 0;
     }
 
-    .wrap {
+    /* .wrap {
       position: relative;
       min-height: 100vh;
       display: grid;
       justify-content: center;
       align-items: center;
-    }
-
+    } */
     .wrap>* {
-      grid-column: 1;
-      grid-row: 1;
-    }
-
-
-    .face {
       position: absolute;
     }
+
+    /* .wrap>* {
+      grid-column: 1;
+      grid-row: 1;
+    } */
+
+
+    /* .face {
+      position: absolute;
+    } */
   </style>
 
 </body>
