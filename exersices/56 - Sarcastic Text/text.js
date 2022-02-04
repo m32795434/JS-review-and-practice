@@ -21,7 +21,13 @@ const filters = {
     // if there ir nothing return the letter
     return funkyLetter || letter;
   },
-  unable() {},
+  unable(letter) {
+    const random = Math.floor(Math.random() * 3);
+    if (random === 2 && letter === ' ') {
+      return '...';
+    }
+    return letter;
+  },
 };
 
 function transformText(text) {
@@ -32,3 +38,6 @@ function transformText(text) {
   result.textContent = mod;
 }
 textArea.addEventListener('input', (e) => transformText(e.target.value));
+filterInputs.forEach((input) =>
+  input.addEventListener('input', () => transformText(textArea.value))
+);
