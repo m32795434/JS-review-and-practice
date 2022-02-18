@@ -6,8 +6,8 @@ const shakeButton = document.querySelector('.shake');
 // Setup our canvas for drawing using distructuring.
 const { width, height } = canvas;
 const MOVE_AMOUNT = 20;
-let hue = 0;
-ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
+// let hue = 0;
+ctx.strokeStyle = `hsl(${Math.random() * 360}, 100%, 50%)`;
 
 // create random x and y starting points on the canvas.
 /* eslint-disable */
@@ -28,8 +28,8 @@ ctx.stroke();
 // write a draw function
 function draw({ key }) {
   // increment the hue
-  hue += 10;
-  ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
+  // hue += 10;
+  ctx.strokeStyle = `hsl(${Math.random() * 360}, 100%, 50%)`;
   console.log(key);
   // start the path
   ctx.beginPath();

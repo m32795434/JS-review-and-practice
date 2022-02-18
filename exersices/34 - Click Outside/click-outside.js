@@ -10,7 +10,7 @@ function handleCardButtonClick(event) {
   const name = card.querySelector('h2').textContent;
   // populate the modal with the new info
   modalInner.innerHTML = `
-<img  width="400" height="400" src="${imgSrc.replace(
+<img width="400" height="400" src="${imgSrc.replace(
     '200',
     '400'
   )}" alt="${name}"/>
@@ -27,6 +27,7 @@ function closeModal() {
 }
 
 modalOuter.addEventListener('click', (event) => {
+  // we ensure, we clicked something else than the modalInner
   const isOutside = !event.target.closest('.modal-inner');
   if (isOutside) {
     closeModal();
