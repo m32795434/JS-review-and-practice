@@ -1,10 +1,12 @@
 const video = document.querySelector('.webcam');
+//  we will use the canvas objects to getContext, set their width and height the same as the video element, and clear the canvas with its measures.
+// we will use the respective contexts to draw the image and clear the canvas.
 
 const canvas = document.querySelector('.video'); // I don't like this NAME, becasuse this will paint a rectangle in the canvas, not the video.
 const ctx = canvas.getContext('2d');
-
 const faceCanvas = document.querySelector('.face'); // it will store the DRAW of the small face, and then draw it in a normal size
 const faceCtx = faceCanvas.getContext('2d');
+
 const optionsInputs = document.querySelectorAll(
   '.controls input[type="range"]'
 );
@@ -46,7 +48,7 @@ async function detect() {
   faces.forEach(drawFace);
   faces.forEach(censor);
   // ask the browser when the next animation frame is, and tell it to run "detect" for us.
-  requestAnimationFrame(detect); // it could be just "detect();"
+  requestAnimationFrame(detect); // this performs better, but it could be just "detect();"
 }
 function drawFace(face) {
   const { width, height, top, left } = face.boundingBox;
@@ -76,11 +78,11 @@ function censor({ boundingBox: face }) {
     options.SIZE,
     options.SIZE
   );
-  // take that face back out and draw it back at normal size
   const width = face.width * options.SCALE;
   const height = face.height * options.SCALE;
+  // take that face back out and draw it back at normal size
   faceCtx.drawImage(
-    faceCanvas, // source image
+    faceCanvas, // the source image is in the canvas, not in the context
     face.x, // where we start
     face.y,
     options.SIZE, // width and height

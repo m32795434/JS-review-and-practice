@@ -144,6 +144,7 @@
     // find the index of Avocado with indexOf() / lastIndexOf()
     // The indexOf() method returns the first index at which a given element can be found in the array
     // lastIndexOf() the last index.
+    // .findIndex() method is the correct way to find the index of an object inside an array.
     // we can pass as an argument: a string, number, boolean, undefined, null, or symbol, inclusive a reference to an object, but NOT AN OBJECT.
     console.log(newToppings.indexOf('Avocado')); // 2
     // Check if hot sauce is in the toppings with includes()
@@ -165,7 +166,7 @@
     */
 
     // find the first rating that talks about a burger with find()
-    // finde() recibe a callback function as an argument, and return the element that matchs the condition.
+    // .find() recibe a callback function as an argument (and an index and an array, optionally), and return the element that matchs the condition.
     /*
     const findBurgerRating = (singleFeedback) =>
       singleFeedback.comment.includes('burg'); // return true or false
