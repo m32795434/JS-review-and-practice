@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New, This, Prototypes and Classes</title>
+</head>
+
+<body>
+    <button class="one">
+        button one
+    </button>
+    <button class="two">
+        button two
+    </button>
+    <script>
+        const myDate = new Date('novenber 10, 1995');
+        console.dir(myDate); // >Fri Nov 10 1995 00:00:00 GMT-0300 (Uruguay Standard Time)
+        console.log(myDate.getFullYear()); // 1995
+        console.log(typeof myDate); // 'object'
+        console.log(myDate instanceof Date); // true
+        const names = ['jhon', 'dominic']; // this is the same as const names = new Array('jhon', 'dominic');
+        console.log(typeof names); // 'object'
+        console.log(names instanceof Array); // true
+        const myNumber = new Number(100);
+        console.log(myNumber); // >Number {100}
+        console.log(typeof myNumber); // 'object'
+        console.log(myNumber instanceof Number); // true
+        const myNumber1 = 100;
+        console.log(typeof myNumber1); // 'number' // IS NOT AN OBJECT
+        console.log(myNumber1 instanceof Number); // false
+
+        function Pizza(value) {
+            console.log(`making a pizza of ${value}`);
+            console.log(this); // Window or "Pizza"
+        }
+
+        const pizzaPeperoni = Pizza('pepperoni');
+        console.log(pizzaPeperoni); // undefined
+        const pizzaPrimavera = new Pizza('palmitos');
+        console.log(pizzaPrimavera); // >Pizza {}
+        console.log(pizzaPrimavera.constructor); // ƒ Pizza() {console.log('making a pizza');}
+        console.log(pizzaPrimavera instanceof Pizza); // true
+        /*
+                const button1 = document.querySelector('.one');
+                const button2 = document.querySelector('.two');
+              
+                function tellMeAboutTheButton() {
+                    console.log(this); // button
+                    setTimeout(() => {
+                        // rader than using "this" in an arroy function, is better to use "target" and"currentTarget"
+                        this.textContent = 'I was clicked'; // with arrow function "this" refers to the object that is refered or bound, in the upper scope.
+                    }, 2000);
+                }
+        
+                button1.addEventListener('click', tellMeAboutTheButton);
+                button2.addEventListener('click', tellMeAboutTheButton); */
+
+        console.clear();
+        // with "this" we will be adding data and functionallity to the object (the instance of Pizza2)
+        function Pizza2(toppings = [], customer) {
+            // save the toppings that were passed in, to this instance of pizza
+            this.toppings = toppings;
+            this.customer = customer;
+            this.id = Math.floor(Math.random() * 16777215).toString(16);
+        }
+        const pizzaCalabresa = new Pizza2(['calabresa', 'queso', 'aceitunas'], 'jhon');
+        console.log(pizzaCalabresa.constructor);
+        console.log(pizzaCalabresa);
+        console.log(pizzaCalabresa instanceof Pizza2); // true, pizzaCalabresa is an instance.
+    </script>
+</body>
+
+</html>
