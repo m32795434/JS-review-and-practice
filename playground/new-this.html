@@ -31,6 +31,7 @@
         const myNumber1 = 100;
         console.log(typeof myNumber1); // 'number' // IS NOT AN OBJECT
         console.log(myNumber1 instanceof Number); // false
+        const name = 'jhon';
 
         function Pizza(value) {
             console.log(`making a pizza of ${value}`);
@@ -50,7 +51,7 @@
                 function tellMeAboutTheButton() {
                     console.log(this); // button
                     setTimeout(() => {
-                        // rader than using "this" in an arroy function, is better to use "target" and"currentTarget"
+                        // rader than using "this", is better to use "e.target" and"e.currentTarget" in this case.
                         this.textContent = 'I was clicked'; // with arrow function "this" refers to the object that is refered or bound, in the upper scope.
                     }, 2000);
                 }
@@ -59,17 +60,63 @@
                 button2.addEventListener('click', tellMeAboutTheButton); */
 
         console.clear();
-        // with "this" we will be adding data and functionallity to the object (the instance of Pizza2)
+
+        // with "this" we will be adding data and functionallity (properties) to the object (the instance of Pizza2)
         function Pizza2(toppings = [], customer) {
             // save the toppings that were passed in, to this instance of pizza
             this.toppings = toppings;
             this.customer = customer;
             this.id = Math.floor(Math.random() * 16777215).toString(16);
+            this.slices = 10;
+            this.size = 'large';
+            // this.eat = function () {
+            //     if (this.slices > 1) {
+            //         this.slices -= 1;
+            //         console.log(`you already have ${this.slices} slices to eat`);
+            //     } else if (this.slices === 1) {
+            //         this.slices -= 1;
+            //         console.log('you eat the last! You have no slices left');
+            //     }
+            //     return this.slices;
+            // };
         }
+
+        // PROTOTYPES!
+
+        Pizza2.prototype.size = 'medium'; // the propertie in the instance has priority
+        Pizza2.prototype.eat = function () {
+            if (this.slices > 1) {
+                this.slices -= 1;
+                console.log(`you already have ${this.slices} slices to eat`);
+            } else if (this.slices === 1) {
+                this.slices -= 1;
+                console.log('you eat the last! You have no slices left');
+            }
+            return this.slices;
+        };
+        Pizza2.prototype.describe = function () {
+            console.log(
+                `${this.customer}! you have a ${this.size} pizza with ${this.toppings.join(
+                    ', '
+                )} and there are ${this.slices} slices left!. Enjoy!`
+            );
+        };
+
+        // THIS IS NOT A GOOD IDEA!..ONLY FOR PRACTICE
+        String.prototype.sarcastic = function () {
+            const sarcasticed = this.split('').map((char, i) => {
+                if (i % 2 === 0) {
+                    return char.toUpperCase();
+                }
+                return char.toLowerCase();
+            });
+            return sarcasticed.join('');
+        };
+        console.log('MAKE ME SARCASTIC'.sarcastic()); // MaKe mE SaRcAsTiC
         const pizzaCalabresa = new Pizza2(['calabresa', 'queso', 'aceitunas'], 'jhon');
-        console.log(pizzaCalabresa.constructor);
+        const pizzaPeperoni2 = new Pizza2(['pepperoni', 'pimientos'], 'dominic');
+        console.log(pizzaPeperoni2.eat === pizzaCalabresa.eat); // true
         console.log(pizzaCalabresa);
-        console.log(pizzaCalabresa instanceof Pizza2); // true, pizzaCalabresa is an instance.
     </script>
 </body>
 
