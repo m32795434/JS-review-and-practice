@@ -5,8 +5,9 @@ function Slider(slider) {
   // set properties to the instance to access them later
   this.slider = slider;
   this.slides = slider.querySelector('.slides');
-  this.prevButton = slider.querySelector('.goToPrev');
-  this.nextButton = slider.querySelector('.goToNext');
+  // this two are not accessed from outside
+  const prevButton = slider.querySelector('.goToPrev');
+  const nextButton = slider.querySelector('.goToNext');
 
   // bind our methods to the instance if we need them
   this.move = this.move.bind(this);
@@ -15,8 +16,16 @@ function Slider(slider) {
   this.applyClasses();
   // console.log({ current, prev, next });
   // EVENT LISTENERS
-  this.prevButton.addEventListener('click', () => this.move('back'));
-  this.nextButton.addEventListener('click', this.move);
+  prevButton.addEventListener('click', () => this.move('back'));
+  nextButton.addEventListener('click', this.move);
+  window.addEventListener('keyup', (e) => {
+    if (e.key === 'ArrowRight') {
+      this.move();
+    }
+    if (e.key === 'ArrowLeft') {
+      this.move('back');
+    }
+  });
 }
 
 Slider.prototype.startSlider = function () {
@@ -62,3 +71,17 @@ Slider.prototype.move = function (direction) {
 const mySlider = new Slider(document.querySelector('.slider'));
 const dogSlider = new Slider(document.querySelector('.dog-slider'));
 console.log(mySlider, dogSlider);
+
+window.dogSlider = dogSlider; // so we can access it from the console, because we are using PARCEL
+/*
+// we can give others in the team the job to code the window.eventListeners
+// or we can do this for every instance individually
+window.addEventListener('keyup', (e) => {
+  if (e.key === 'ArrowRight') {
+    dogSlider.move();
+  }
+  if (e.key === 'ArrowLeft') {
+    dogSlider.move('back');
+  }
+});
+*/

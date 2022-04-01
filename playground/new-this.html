@@ -16,6 +16,7 @@
         button two
     </button>
     <script>
+        // this = local, closure or global(window)
         const myDate = new Date('novenber 10, 1995');
         console.dir(myDate); // >Fri Nov 10 1995 00:00:00 GMT-0300 (Uruguay Standard Time)
         console.log(myDate.getFullYear()); // 1995
@@ -41,7 +42,7 @@
         const pizzaPeperoni = Pizza('pepperoni');
         console.log(pizzaPeperoni); // undefined
         const pizzaPrimavera = new Pizza('palmitos');
-        console.log(pizzaPrimavera); // >Pizza {}
+        console.log(pizzaPrimavera); // >Pizza {} -- THIS IS THE CONSTRUCTOR
         console.log(pizzaPrimavera.constructor); // ƒ Pizza() {console.log('making a pizza');}
         console.log(pizzaPrimavera instanceof Pizza); // true
         /*
