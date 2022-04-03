@@ -9,15 +9,80 @@
 </head>
 
 <body>
+    <p>Hey</p>
+    <button>Click Me!</button>
+    <div class="wrapper">
+        <p>Hey I am in a wrapper</p>
+    </div>
     <script>
+        // IN THIS EXAMPLES WE ARE LOADING AND CALLING AN INDIVIVUAL, AND INTERNAL METHOD
+        // FROM AN OBJECT
+        // OBJECT ORIENTED PROGRAMMING
         const person = {
             name: 'Manuel',
             sayHi() {
-                console.log(`Hi ${this.name}!`);
-                // return `Hi ${this.name}!`;
+                console.log(this);
+                return `Hi ${this.name}!`;
             },
         };
-        const { sayHi } = person;
+        // Javascript is a lexical scope lenguaje, but the "this" keyword is defined where the function is called.
+        // it's bounded to the object that is at the left of the dot.
+        // with "bind" we change where "this" is definded.
+        const sayHi = person.sayHi.bind(person); // this = person.
+        // we can call the function with another object.
+        /*
+        const jenna = {
+            name: 'Jenna',
+        }; */
+        const sayHiJenna = person.sayHi.bind({ name: 'Jenna' }); // this = {}
+
+        // QUERY SELECTOR EXAMPLE
+        const $ = document.querySelector.bind(document); // we need to bind $ to the document, because when we RUN it: $('tag'), there's nothing to the left, we are applying the querySelector to nothing.
+        const lookEverything = document.querySelectorAll.bind(document);
+        console.log($('p'), lookEverything('p'));
+
+        // ANOTHER EXAMPLE SORT OF "PRE-LOADED" FUNCTIONS
+        const bill = {
+            total: 1000,
+            calculate(tax, tip = 0.1) {
+                return this.total + this.total * tax + this.total * tip;
+            },
+            describe(mealType, drinkType, tax) {
+                return `Your ${mealType} accompanied with ${drinkType}, cost $${this.calculate(
+                    tax,
+                    0.2
+                )}`;
+            },
+        };
+        const total = bill.calculate(0.13);
+        console.log(total); // 1230
+        // const calc = bill.calculate.bind(bill);
+        // .bind(what's "this", 1st, 2nd, 3rd...argumets)
+        const calc = bill.calculate.bind({ total: 550 }, 0.13, 0.2);
+        console.log(calc); // ƒ calculate(tax, tip = 0.1) {........}
+        console.log(calc()); // WE CAN CALL IT LATER WITHOUT ARGUMENTS!
+        const calc2 = bill.calculate.call({ total: 700 }, 0.13, 0.2); // WE CALL IT!
+        console.log(calc2); // 931
+        const calc3 = bill.calculate.apply({ total: 700 }, [0.13, 0.2]); // WE CALL IT!
+        console.log(calc3); // 931
+        const totalPizzaCoca = bill.describe.apply(bill, ['pizza', 'coca', 0.13]);
+        console.log(totalPizzaCoca); // Your pizza accompanied with coca, cost $1330
+
+        /* or we can do this TOO: (WITHOUT THE TIP)
+        const calc = bill.calculate.bind({ total: 550 });
+        console.log(calc(0.13)); */
+
+        // WITH A FUNCTION IT WILL BE SOMETHING LIKE THIS:
+        function calcTax(total, tax) {
+            return (total * tax) / 100;
+        }
+        const tax30 = calcTax(1000, 30);
+        console.log(tax30); // 330
+        // OR!
+        const tax20 = function (total) {
+            return total * 0.2;
+        };
+        console.log(tax20(1000)); // 200
     </script>
 </body>
 
