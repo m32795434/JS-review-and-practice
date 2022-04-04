@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../base.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        .go {
+            margin: 5rem;
+            background: white;
+            padding: 5rem;
+            width: 25rem;
+            height: 25rem;
+            transition: all 0.2s;
+        }
+
+        .go.circle {
+            border-radius: 50%;
+        }
+
+        .go.red {
+            background: red;
+        }
+
+        .go.purple {
+            background: purple;
+            color: white;
+        }
+
+        .go.fadeOut {
+            opacity: 0;
+        }
+    </style>
+    <div tabindex=0 class="go">CLICK ME!</div>
+    <script>
+        /*
+        console.log('starting!');
+        setTimeout(() => {
+            console.log('running!');
+        }, 2000);
+        console.log('ending!'); */
+
+        // CALLBACK HELL - CHRISTMAS TREE CODE
+
+        const go = document.querySelector('.go');
+        // 1. Change the text to GO when clicked
+        go.addEventListener('click', (e) => {
+            const el = e.currentTarget;
+            el.textContent = 'GO!';
+            setTimeout(() => {
+                // Make it a circle after 2 seconds.
+                el.classList.add('circle');
+                // make ir red after 0.5s
+                setTimeout(() => {
+                    el.classList.add('red');
+                    // make ir square after 0.25s
+                    setTimeout(() => {
+                        el.classList.remove('circle');
+                        // make ir purple after 0.3s
+                        setTimeout(() => {
+                            el.classList.remove('red');
+                            el.classList.add('purple');
+                            // fade out after 0.5s
+                            setTimeout(() => {
+                                el.classList.add('fadeOut');
+                            }, 500);
+                        }, 300);
+                    }, 250);
+                }, 500);
+            }, 2000);
+        });
+    </script>
+</body>
+
+</html>
