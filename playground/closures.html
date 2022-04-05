@@ -69,12 +69,13 @@
                 return `your ${name} score is ${score}`;
             }
         }
-        const football = createGame('football');
+        const football = createGame('football');// running createGame.
         // the inner function update "score" by 1, eache time it's called.
-        // score continues alive after the outer function is done.
+        // SCORE continues alive after the outer function is done, I think because
+        // the inner function, (the return of the outer), is stored in a variable and have access to it.
         // but score is private, so it's not accessible from outside.
         // unless we call the function again, and again.
-        const basketball = createGame('basketball');
+        const basketball = createGame('basketball');// running createGame.
         football();
         basketball();
     </script>

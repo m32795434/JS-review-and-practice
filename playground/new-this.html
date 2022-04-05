@@ -16,7 +16,7 @@
         button two
     </button>
     <script>
-        // this = local, closure or global(window)
+        // this = local(variable), closure or global(window)
         const myDate = new Date('novenber 10, 1995');
         console.dir(myDate); // >Fri Nov 10 1995 00:00:00 GMT-0300 (Uruguay Standard Time)
         console.log(myDate.getFullYear()); // 1995
@@ -35,6 +35,7 @@
         const name = 'jhon';
 
         function Pizza(value) {
+            // return `${value} pizza`;
             console.log(`making a pizza of ${value}`);
             console.log(this); // Window or "Pizza"
         }
