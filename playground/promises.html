@@ -6,11 +6,81 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../base.css">
-    <title>Document</title>
+    <title>Promises</title>
 </head>
 
 <body>
     <script>
+        // return is inmediatly. Resolve is alter in time.
+        function makePizza(toppings = []) {
+            // other way: return new Promise((resolve, reject) => {
+            const pizzaPromise = new Promise((resolve, reject) => {
+                // base bake time 500ms, and 200ms for each topping
+                const bakeTime = 500 + toppings.length * 200;
+                setTimeout(() => {
+                    // when you are ready, you can resolve this promise
+                    resolve(`here is your 🍕 with ${toppings.join(', ')}`);
+                }, bakeTime);
+                // is something went wrong, we can reject this
+            });
+            return pizzaPromise;
+        }
+        /*
+        const peperoniPromise = makePizza(['pepperoni']);
+        const canadianPromise = makePizza(['pepperoni', 'onions', 'eggs']);
+
+        console.log(peperoniPromise, canadianPromise);
+
+        //ONE PIZZA AT A TIME
+                console.log('starting!');
+                peperoniPromise.then((pizza) => {
+                    console.log('pizza ready!');
+                    console.log(pizza);
+                });
+                console.log('ending!'); */
+
+        // VARIOUS PIZZAS secuencially - NOT CALLBACK HELL
+        makePizza(['pepperoni']).then((pizza) => {
+            console.log(pizza);
+            return makePizza().then((pizza) => {
+                console.log(pizza);
+                return makePizza(['onions', 'jam', 'eggs', 'tomatoes']).then((pizza) => {
+                    console.log(pizza);
+                    /*eslint-disable*/
+                    return makePizza(['one', 'two', 'one', 'two', 'one', 'two', 'one', 'two', 'one', 'two', 'one', 'two', 'one', 'two']).then((pizza) => {
+                        /* eslint-enable */
+                        console.log(pizza);
+                    });
+                });
+            });
+        });
+        console.clear(); // DOENS'T WORK BECASUSE OF THE PROMISE. THIS PROMISES RESOLVE LATER THAN THE .clear()
+        /*eslint-disable*/
+
+        //RUNNING CONCURRENTLY
+        const pizzaFugaceta = makePizza(['onion', 'tomato', 'mozzarella', 'oregano']);
+        const pizzaMozarella = makePizza(['mozzarella']);
+        const pizzaPalmitos = makePizza(['Palm', 'olives', 'mozzarella', 'oregano', 'golf sauce']);
+        const pizzaTropical = makePizza(['onion', 'tomato', 'mozzarella', 'oregano', 'pineapple']);
+        const pizzaLarga = makePizza(['onion', 'tomato', 'mozzarella', 'oregano', 'Palm', 'olives', 'mozzarella', 'oregano', 'golf sauce']);
+        /* eslint-enable */
+        const dinnerPromise = Promise.all([
+            pizzaFugaceta,
+            pizzaMozarella,
+            pizzaPalmitos,
+            pizzaTropical,
+            pizzaLarga,
+        ]);
+        // this resolve before the ['onions', 'jam', 'eggs', 'tomatoes'], because this last, is waiting others to resolve before.
+        dinnerPromise.then((pizzaQueue) => {
+            console.log(pizzaQueue);
+        });
+        // destructuring the result
+        /*eslint-disable*/
+        dinnerPromise.then(function ([pizzaFugaceta, pizzaMozarella, pizzaPalmitos, pizzaTropical, pizzaLarga]) {
+            console.log(`👌${pizzaFugaceta}, 👌${pizzaMozarella}, 👌${pizzaPalmitos}, 👌${pizzaTropical}, 👌${pizzaLarga}`);
+        });
+/* eslint-enable */
     </script>
 
 </body>
