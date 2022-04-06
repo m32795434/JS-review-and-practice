@@ -71,7 +71,7 @@
             pizzaTropical,
             pizzaLarga,
         ]);
-        // this resolve before the ['onions', 'jam', 'eggs', 'tomatoes'], because this last, is waiting others to resolve before.
+        // this resolve before the ['onions', 'jam', 'eggs', 'tomatoes'], because this last, is waiting others to resolve before.And! the event loop is waiting the Call Stack to be empty.
         dinnerPromise.then((pizzaQueue) => {
             console.log(pizzaQueue);
         });
@@ -80,7 +80,19 @@
         dinnerPromise.then(function ([pizzaFugaceta, pizzaMozarella, pizzaPalmitos, pizzaTropical, pizzaLarga]) {
             console.log(`👌${pizzaFugaceta}, 👌${pizzaMozarella}, 👌${pizzaPalmitos}, 👌${pizzaTropical}, 👌${pizzaLarga}`);
         });
-/* eslint-enable */
+        /* eslint-enable */
+        const lunchPromise = Promise.all([
+            pizzaFugaceta,
+            pizzaMozarella,
+            pizzaPalmitos,
+            pizzaTropical,
+            pizzaLarga,
+        ]);
+        console.log(lunchPromise);
+
+        lunchPromise.then((result) => {
+            console.log(result);
+        });
     </script>
 
 </body>
