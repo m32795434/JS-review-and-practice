@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../base.css">
+    <title>Promise Chain</title>
+</head>
+
+<body>
+    <style>
+        .go {
+            margin: 5rem;
+            background: white;
+            padding: 5rem;
+            width: 25rem;
+            height: 25rem;
+            transition: all 0.2s;
+        }
+
+        .go.circle {
+            border-radius: 50%;
+        }
+
+        .go.red {
+            background: red;
+        }
+
+        .go.purple {
+            background: purple;
+            color: white;
+        }
+
+        .go.fadeOut {
+            opacity: 0;
+        }
+    </style>
+    <div tabindex=0 class="go">CLICK ME!</div>.
+    <script>
+        const wait = (ms = 0) =>
+            new Promise((resolve) => {
+                setTimeout(() => {
+                    resolve('done');
+                }, ms);
+            });
+        wait(2000).then(() => {
+            console.log('ready!');
+        });
+
+        const go = document.querySelector('.go');
+
+        function animate(e) {
+            let wait1 = 0;
+            let wait2 = 0;
+            let wait3 = 0;
+            let wait4 = 0;
+            let wait5 = 0;
+            // 1. Change the text to GO when clicked
+            const el = e.currentTarget;
+            el.textContent = 'GO!';
+            // after 2 seconds.
+            wait1 = wait(2000);
+            wait1
+                .then(() => {
+                    // Make it a circle
+                    el.classList.add('circle');
+                    // after 0.5s
+                    wait2 = wait(500);
+                    return wait2;
+                })
+                .then(() => {
+                    // make ir red
+                    el.classList.add('red');
+                    // after0.25s
+                    wait3 = wait(250);
+                    return wait3;
+                })
+                .then(() => {
+                    // make it square
+                    el.classList.remove('circle');
+                    wait4 = wait(300);
+                    return wait4;
+                })
+                .then(() => {
+                    el.classList.remove('red');
+                    el.classList.add('purple');
+                    wait5 = wait(500);
+                    return wait5;
+                })
+                .then(() => {
+                    el.classList.add('fadeOut');
+                    const controlAllWaits = Promise.allSettled([
+                        wait1,
+                        wait2,
+                        wait3,
+                        wait4,
+                        wait5,
+                    ]);
+                    console.log(controlAllWaits);
+                });
+        }
+
+        go.addEventListener('click', animate);
+/*
+                                                                                                                                                                                // 1. Change the text to GO when clicked
+                                                                                                                                                                                go.addEventListener('clickxxx', (e) => {
+                                                                                                                                                                                    const el = e.currentTarget;
+                                                                                                                                                                                    el.textContent = 'GO!';
+                                                                                                                                                                                    setTimeout(() => {
+                                                                                                                                                                                        // Make it a circle after 2 seconds.
+                                                                                                                                                                                        el.classList.add('circle');
+                                                                                                                                                                                        // make ir red after 0.5s
+                                                                                                                                                                                        setTimeout(() => {
+                                                                                                                                                                                            el.classList.add('red');
+                                                                                                                                                                                            // make ir square after 0.25s
+                                                                                                                                                                                            setTimeout(() => {
+                                                                                                                                                                                                el.classList.remove('circle');
+                                                                                                                                                                                                // make ir purple after 0.3s
+                                                                                                                                                                                                setTimeout(() => {
+                                                                                                                                                                                                    el.classList.remove('red');
+                                                                                                                                                                                                    el.classList.add('purple');
+                                                                                                                                                                                                    // fade out after 0.5s
+                                                                                                                                                                                                    setTimeout(() => {
+                                                                                                                                                                                                        el.classList.add('fadeOut');
+                                                                                                                                                                                                    }, 500);
+                                                                                                                                                                                                }, 300);
+                                                                                                                                                                                            }, 250);
+                                                                                                                                                                                        }, 500);
+                                                                                                                                                                                    }, 2000);
+                                                                                                                                                                                });
+                                                                                                                                                                                */
+    </script>
+</body>
+
+</html>

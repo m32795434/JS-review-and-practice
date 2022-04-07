@@ -12,6 +12,7 @@
 <body>
     <script>
         // return is inmediatly. Resolve is alter in time.
+        // the condition to reject is chequed inmediatly, and then if it's false, it is called the resolve.
         function makePizza(toppings = []) {
             // other way: return new Promise((resolve, reject) => {
             const pizzaPromise = new Promise((resolve, reject) => {
