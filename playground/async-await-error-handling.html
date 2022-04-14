@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../base.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function makePizza(toppings = []) {
+            // other way: return new Promise((resolve, reject) => {
+            const pizzaPromise = new Promise((resolve, reject) => {
+                // if someone is trying to order with pineaple, reject
+                if (toppings.includes('pineapple')) {
+                    reject(new Error("Don't put pineapple on pizza"));
+                }
+                // base bake time 500ms, and 200ms for each topping
+                const bakeTime = 500 + toppings.length * 200;
+                setTimeout(() => {
+                    // when you are ready, you can resolve this promise
+                    resolve(`here is your 🍕 with ${toppings.join(', ')}`);
+                }, bakeTime);
+            });
+            return pizzaPromise;
+        }
+        const wait = (ms = 0) =>
+            new Promise((resolve) => {
+                setTimeout(() => {
+                    resolve('done');
+                }, ms);
+            });
+
+        // ERROR HANDLING
+
+        // 1 - try catch
+        /*
+        async function go() {
+            try {
+                // IF SOMETHING OF THIS WENT WRONG, CATCH THE ERROR.
+                // THE BEFEFIT, THE CURLIE BRACKETS. BUT THIS KILL THE BEAUTY OF ASYNC AWAIT
+                const pizza = await makePizza(['pinepple']);
+                console.log(pizza);
+            } catch (err) {
+                console.log(err);
+            }
+        } */
+        // 2 - sort of MIX AND MATCHING of both worlds. async/await + .then() + .catch()
+        function handleError(err) {
+            console.log('ohhh noooo');
+            console.log(err);
+        }
+        async function go() {
+            // window.dowstnExist(); // handling the errors if we .catch() these when we call the funct.
+            // handling the err when we define the function. Using await insted of .then(), but using .catch() if something went wrong.
+            // const pizza = await makePizza(['pineapple']).catch(handleError);
+            const pizza = await makePizza(['pineapple']);
+            console.log(pizza);
+        }
+        // handling the error when we call the func.
+        // we can handle other errors like: window.dowstnExist()
+        const result = go().catch(handleError); // catching the errors asociated to go()
+        console.log(result); // it's a promise. Because the async functions return a promise.
+
+        // SO WE CAN DO SOMETHING LIKE THIS:
+        /* go().then((result)=>{
+            console.log(result)
+        }).catch(handleError); */ // because go is an async function.
+
+        // OR SOMETHING LIKE THIS TOO:
+        /* async function goGo() {
+            const result = await go();
+        }
+        goGo().catch(handleError); */
+
+        // SO IF WE WANT TO CATCH THE ERRORS LATER, when we call the functions, we can do this:
+
+        // CATCH IN RUN TIME
+        go().catch(handleError);
+
+        // MAKE A SAFE FUNCTION WITH A HOF(HIGH ORDER FUNCTION)
+        // usefull for Node.js, so all the pages can use the same error handling.
+        function makeSafe(fn, handleError) {
+            return function () {
+                fn().catch(handleError);
+            };
+        }
+        const safeGo = makeSafe(go, handleError);
+        safeGo();
+    </script>
+</body>
+
+</html>

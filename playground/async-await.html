@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>async-await</title>
+</head>
+
+<body>
+    <script>
+        function wait(ms) {
+            return new Promise((resolve) => {
+                setTimeout(resolve, ms);
+            });
+        }
+        async function go() {
+            console.log('starting');
+            await wait(1000);
+            console.log('ending');
+        }
+        function makePizza(toppings = []) {
+            // other way: return new Promise((resolve, reject) => {
+            const pizzaPromise = new Promise((resolve, reject) => {
+                // if someone is trying to order with pineaple, reject
+                if (toppings.includes('pineapple')) {
+                    reject(new Error('No pineapple on pizza'));
+                }
+                // base bake time 500ms, and 200ms for each topping
+                const bakeTime = 500 + toppings.length * 200;
+                setTimeout(() => {
+                    // when you are ready, you can resolve this promise
+                    resolve(`here is your 🍕 with ${toppings.join(', ')}`);
+                }, bakeTime);
+            });
+            return pizzaPromise;
+        }
+
+        // it could become a footgun.
+        // sinchronously - slow - not what we want
+        async function makeDinnerSynchro() {
+            const pizza1 = makePizza(['pepperoni', 'onions']); // makePizza "return" a promise;
+            console.log(pizza1); // Promise
+            const pizza2 = await makePizza([
+                'onions',
+                'jam',
+                'onions',
+                'jam',
+                'onions',
+                'jam',
+                'onions',
+                'jam',
+            ]); // grab and store the result(like .then())
+            // wait for pizza2 and continue
+            const pizza3 = await makePizza(['onions', 'jam']); // grab and store the result(like .then())
+            console.log(pizza2); // the result
+            console.log(pizza3); // the result
+        }
+        makeDinnerSynchro();
+
+        // making pizzas concurrently - faster
+        async function makeDinnerAsync() {
+            const pizza1Promise = makePizza([
+                'pepperoni',
+                'onions',
+                'onions',
+                'jam',
+                'onions',
+                'jam',
+                'onions',
+                'jam',
+            ]);
+            const pizza2Promise = makePizza(['onions', 'jam']);
+            const pizzas1 = Promise.all([pizza1Promise, pizza2Promise]);
+            const [pizza1result, pizza2result] = await Promise.all([
+                pizza1Promise,
+                pizza2Promise,
+            ]); // distructering
+            console.log(pizzas1); // Promise with data.
+            console.log(`pizza1: ${pizza1result}, 
+            pizza 2:${pizza2result}`); // the results
+        }
+        makeDinnerAsync();
+        // go();
+        /*
+                // TYPES OF ASYNC FUNCTIONS
+                // Function Declaration
+                async function asF() { }
+                // Arrow Function
+                const arrowF = async () => { };
+                // Call Back
+                window.addEventListener('load', async () => { });
+        */
+        // Methods
+        /*eslint-disable */
+        /*
+        const person = {
+            // method shorthand
+            async sayHi() { },
+            // method
+            sayHello: async function () { },
+            sayHey: async () => { },
+        };*/
+        /* eslint-enable */
+
+        // TOP LEVEL AWAIT - NOT ALLOWED except on top level bodies modules. yes on console.
+        // console.log('starting');
+        // await wait(1000);
+        // console.log('ending');
+    </script>
+
+</body>
+
+</html>

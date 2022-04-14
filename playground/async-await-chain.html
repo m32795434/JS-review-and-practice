@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../base.css">
+    <title>async-await-chain</title>
+</head>
+
+<body>
+    <style>
+        .go {
+            margin: 5rem;
+            background: white;
+            padding: 5rem;
+            width: 25rem;
+            height: 25rem;
+            transition: all 0.2s;
+        }
+
+        .go.circle {
+            border-radius: 50%;
+        }
+
+        .go.red {
+            background: red;
+        }
+
+        .go.purple {
+            background: purple;
+            color: white;
+        }
+
+        .go.fadeOut {
+            opacity: 0;
+        }
+    </style>
+    <div tabindex=0 class="go">CLICK ME!</div>.
+    <script>
+        const wait = (ms = 0) =>
+            new Promise((resolve) => {
+                setTimeout(() => {
+                    resolve('done');
+                }, ms);
+            });
+        wait(2000).then(() => {
+            console.log('ready!');
+        });
+        console.log('SYNCHRONOUS!!!');
+        const go = document.querySelector('.go');
+
+        async function animate(e) {
+            // 1. Change the text to GO when clicked
+            const el = e.currentTarget;
+            el.textContent = 'GO!';
+            // after 2 seconds.
+            await wait(2000);
+            // Make it a circle
+            el.classList.add('circle');
+            // after 0.5s
+            await wait(500);
+            // make ir red
+            el.classList.add('red');
+            // after0.25s
+            await wait(250);
+            // make it square
+            el.classList.remove('circle');
+            await wait(300);
+            el.classList.remove('red');
+            el.classList.add('purple');
+            await wait(500);
+            el.classList.add('fadeOut');
+        }
+
+        go.addEventListener('click', animate);
+    </script>
+</body>
+
+</html>

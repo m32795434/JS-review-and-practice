@@ -18,7 +18,7 @@
             const pizzaPromise = new Promise((resolve, reject) => {
                 // if someone is trying to order with pineaple, reject
                 if (toppings.includes('pineapple')) {
-                    reject(new Error('No pineapple on pizza'));
+                    reject(new Error('DO NOT PUT pineapple on pizza'));
                 }
                 // base bake time 500ms, and 200ms for each topping
                 const bakeTime = 500 + toppings.length * 200;
