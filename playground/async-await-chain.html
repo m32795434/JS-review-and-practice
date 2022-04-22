@@ -42,11 +42,11 @@
         const wait = (ms = 0) =>
             new Promise((resolve) => {
                 setTimeout(() => {
-                    resolve('done');
+                    resolve('done!');
                 }, ms);
             });
-        wait(2000).then(() => {
-            console.log('ready!');
+        wait(2000).then((result) => {
+            console.log(`${result} in 2s`);
         });
         console.log('SYNCHRONOUS!!!');
         const go = document.querySelector('.go');
