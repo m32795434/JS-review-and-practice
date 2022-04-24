@@ -26,13 +26,21 @@ function ask(options) {
       </fildset>`
     );
     console.log(popUp);
-    // check if they want a cancel button
+    // check if we need a cancel button
     if (options.cancel) {
       const skipButton = document.createElement('button');
       skipButton.type = 'button';
       skipButton.textContent = 'Cancel';
       popUp.firstElementChild.appendChild(skipButton);
-      // TODO: listen for a click on the button
+      // TODO: listen for a click on the cancel button
+      skipButton.addEventListener(
+        'click',
+        () => {
+          resolve(null);
+          destroyPopUp(popUp);
+        },
+        { once: true }
+      );
     }
     // listen for the submit event on the inputs
     popUp.addEventListener(
@@ -65,8 +73,57 @@ async function askQuestion(e) {
   console.log(answer);
 }
 
-// select all buttons that haver questions
+// select all buttons that have questions
 const buttons = document.querySelectorAll('[data-question]');
 buttons.forEach((button) => {
   button.addEventListener('click', askQuestion);
 });
+
+const questions = [
+  { title: '¿whats your name?' },
+  { title: '¿whats your age?', cancel: true },
+  { title: '¿whats your dog name?' },
+];
+/* //we have here all the popUps at the same time, so "dogs name" appears first
+// ask run for each question, because of .map() 
+Promise.all(questions.map(ask)).then((answers) => {
+  answers.forEach((answer) => console.log(answer));
+}); */
+/*
+// for each question, we run the async function(we create the 3 popUps at "same" time).
+questions.forEach(async (question) => {
+  console.log(question);
+  const answer = await ask(question);
+  console.log(answer);
+}); */
+
+// if we want to question one by one we need the "for of loop"
+/*
+async function askMany() {
+  for (const question of questions) {
+    const answer = await ask(question);
+    console.log(answer);
+  }
+}
+askMany(); */
+
+// A GENERIC TOOL - ASINCHRONOUS .MAP()
+async function asyncMap(array, callBack) {
+  const results = [];
+  for (const item of array) {
+    results.push(await callBack(item));
+  }
+  return results;
+}
+/*
+const questionsResults = asyncMap(questions, ask);
+questionsResults.then((result) => {
+  console.log(result);
+}); */
+
+// OR, ION ORDER TO RUN THAT FUNCTION:
+async function go() {
+  const questionsResults = await asyncMap(questions, ask);
+  console.log(questionsResults);
+}
+go();
