@@ -3,7 +3,7 @@ const canvas = document.querySelector('#etch-a-sketch');
 const ctx = canvas.getContext('2d');
 const shakeButton = document.querySelector('.shake');
 
-// Setup our canvas for drawing using distructuring.
+// Setup our canvas for drawing using destructuring.
 const { width, height } = canvas;
 const MOVE_AMOUNT = 20;
 // let hue = 0;

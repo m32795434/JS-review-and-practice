@@ -29,7 +29,7 @@ function Slider(slider) {
     });
     // then add the new classes depending on the direction
     if (direction === 'back') {
-      // using distructuring, we ensure first, is done the array at the left, and them, we
+      // using destructuring, we ensure first, is done the array at the left, and them, we
       // update the value of the variables that we make reference with the variables inside the array.
       // this is SWAPPING the values of the variables. WE don't need to assign the values to temporaly variables
       [prev, current, next] = [
