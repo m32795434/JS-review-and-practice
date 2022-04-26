@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apis-Ajax</title>
+</head>
+
+<body>
+    <script>
+        // JSON IS A STRING FORMAT. iT'S THE WAY TO TRANSPORT JS OBJECTS.
+        const endPoint = 'https://api.github.com/users/wesbos';
+        const wesPromise = fetch(endPoint); // get data from an api
+        console.log(wesPromise);
+        wesPromise
+            .then((response) => {
+                console.log(response); // ...body: ReadableStream, and is "Locked".
+                // The json() method of the Response interface takes a Response stream👆 and reads it to completion. It returns a promise which resolves with the result of parsing the body text as JSON.
+                return response.json(); // .json() return another promise
+            })
+            .then((responseObject) => {
+                console.log(responseObject); // OUR OBJECT!!
+            });
+    </script>
+</body>
+
+</html>
