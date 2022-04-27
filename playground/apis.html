@@ -9,20 +9,58 @@
 </head>
 
 <body>
+    <p class="user"></p>
     <script>
         // JSON IS A STRING FORMAT. iT'S THE WAY TO TRANSPORT JS OBJECTS.
-        const endPoint = 'https://api.github.com/users/wesbos';
-        const wesPromise = fetch(endPoint); // get data from an api
-        console.log(wesPromise);
-        wesPromise
-            .then((response) => {
-                console.log(response); // ...body: ReadableStream, and is "Locked".
-                // The json() method of the Response interface takes a Response stream👆 and reads it to completion. It returns a promise which resolves with the result of parsing the body text as JSON.
-                return response.json(); // .json() return another promise
-            })
-            .then((responseObject) => {
-                console.log(responseObject); // OUR OBJECT!!
-            });
+        const baseEndPoint = 'https://api.gitttttthub.com'; // ERROR!
+        const usersEndPoint = `${baseEndPoint}/users`;
+
+        const userEl = document.querySelector('.user');
+
+        function wait(ms) {
+            return new Promise((resolve) => setTimeout(resolve, ms));
+        }
+
+        async function displayUser(username) {
+            const fetchResponse = await fetch(`${usersEndPoint}/${username}`); // get data from an api
+            console.log(fetchResponse);
+            const responseObject = await fetchResponse.json();
+            userEl.textContent = `Loading...`;
+            await wait(1000);
+            userEl.textContent = `
+                    ---${username}---
+                    Name: ${responseObject.name}
+                    Site: ${responseObject.blog}`;
+        }
+
+        function handleError(err) {
+            console.error('HO NOOOO');
+            console.error(err);
+            userEl.textContent = `Something went wrong: ${err}`;
+        }
+
+        displayUser('stolinski').catch(handleError);
+
+        // ANOTHER, LARGER, AND MORE EXPLICIT WAY
+        /* async function displayUser(username) {
+            const wesPromise = fetch(endPoint); // get data from an api
+            console.log(wesPromise);
+            userEl.textContent = `Loading...`;
+            await wait(1000);
+            wesPromise
+                .then((response) => {
+                    console.log(response); // ...body: ReadableStream, and is "Locked".
+                    // The json() method of the Response interface takes a Response stream👆 and reads it to completion. It returns a promise which resolves with the result of parsing the body text as JSON.
+                    return response.json(); // .json() return another promise
+                })
+                .then((responseObject) => {
+                    console.log(responseObject); // OUR OBJECT!!
+                    userEl.textContent = `
+                    ---${username}---
+                    Name: ${responseObject.name}
+                    Site: ${responseObject.blog}`;
+                })
+                .catch(handleError); */
     </script>
 </body>
 
