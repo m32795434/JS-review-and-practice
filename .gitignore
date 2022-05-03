@@ -15,5 +15,8 @@
 /exersices/59 - Slider/node_modules
 /playground/.cache
 /playground/dist
-
-
+/exersices/75 - CORS and Recipes/.cache
+/exersices/75 - CORS and Recipes/dist
+/exersices/75 - CORS and Recipes/.parcel-cache
+.parcel-cache/lock.mdb
+.parcel-cache/data.mdb

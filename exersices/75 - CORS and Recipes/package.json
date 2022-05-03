@@ -1,0 +1,12 @@
+{
+  "name": "cors-and-recipes",
+  "version": "1.0.0",
+  "description": "Cors",
+  "main": "scripts.js",
+  "scripts": {
+    "start": "parcel index.html"
+  },
+  "author": "Manuel Sam",
+  "license": "ISC",
+  "browserslist": "last 1 chrome versions"
+}
