@@ -1,7 +1,17 @@
-const fromSelect = document.querySelector('[name="from_currency"]');
-const toSelect = document.querySelector('[name="to_currency"]');
+// JSON.stringify(): converts a JavaScript object or value to a JSON string
+// JSON.parse(): parses a JSON string, constructing the JavaScript value or
+// object described by the string.
+// Response.json(): method of the Response interface takes a Response stream and reads it to completion.
+// It returns a promise which resolves with the result of parsing the body text as JSON.
+const fromCurrecy = document.querySelector('[name="from_currency"]');
+const toCurrency = document.querySelector('[name="to_currency"]');
+const form = document.querySelector('.app form');
+const fromAmount = document.querySelector('[name="from_amount"]');
+const toAmount = document.querySelector('.to_amount');
+const refresh = document.querySelector('[name="refresh_rates"]');
+
 const endPoint = 'https://api.apilayer.com/exchangerates_data';
-const ratesByBase = {};
+let ratesByBase = {};
 
 const currencies = {
   USD: 'United States Dollar',
@@ -45,29 +55,59 @@ function generateOptions(options) {
     )
     .join('');
 }
+function mirrorToLocalStorage(object) {
+  localStorage.setItem('exchangeRates', JSON.stringify(object));
+}
 async function fetchRates(base = 'USD') {
   const res = await fetch(`${endPoint}/latest?base=${base}`, {
-    headers: { apikey: 'DOYOUBELIVEIWILLGIVEYOMYAPIKEY?🤣' },
+    headers: { apikey: 'YOUR API KEY👌' },
   });
-  const rates = await res.json();
-  return rates;
+  ratesByBase = (await res.json()).rates;
+  mirrorToLocalStorage(ratesByBase);
 }
+function restoreFromLocalStorage() {
+  const exchangeRates = localStorage.getItem('exchangeRates');
+  if (exchangeRates) {
+    ratesByBase = JSON.parse(exchangeRates);
+    return;
+  }
+  fetchRates();
+}
+function formatCurrency(amount, currency) {
+  return Intl.NumberFormat('es-ar', { style: 'currency', currency }).format(
+    amount
+  );
+}
+function convert() {
+  const amount = fromAmount.value;
+  const from = fromCurrecy.value;
+  const to = toCurrency.value;
+  const calcAmount = (amount * ratesByBase[to]) / ratesByBase[from];
+  toAmount.textContent = formatCurrency(calcAmount, to);
+}
+refresh.addEventListener('click', (e) => {
+  fetchRates();
+});
+form.addEventListener('input', convert);
+/*
 async function convert(amount, from, to) {
   if (!ratesByBase[from]) {
     console.log(
       `we don't have ${from} rate to convert to ${to}, so lets go and get it!`
     );
     ratesByBase[from] = (await fetchRates(from)).rates;
+    mirrorToLocalStorage(ratesByBase);
   }
-}
+} */
 const optionsHTML = generateOptions(currencies);
-// fetchRates();
 
 // populate the options elements
-fromSelect.innerHTML = optionsHTML;
-toSelect.innerHTML = optionsHTML;
+fromCurrecy.innerHTML = optionsHTML;
+toCurrency.innerHTML = optionsHTML;
 
-/* alternative of code taken from the documentation:
+restoreFromLocalStorage();
+
+/* alternative of code taken from the documentation, to fech the rates:
 var myHeaders = new Headers();
 myHeaders.append("apikey", "w9wIbPShWqGzYav4UqqKDPAKJV9nI7u9");
 
