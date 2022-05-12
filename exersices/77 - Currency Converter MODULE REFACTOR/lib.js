@@ -1,23 +1,29 @@
-import {
-  formatCurrency,
-  ratesByBase,
-  mirrorToLocalStorage,
-  restoreFromLocalStorage,
-} from './utils.js';
-import { fromCurrecy, toCurrency } from './money.js';
+import { fromAmount, toAmount, fromCurrecy, toCurrency } from './elements.js';
+import { formatCurrency } from './utils.js';
 
+let ratesByBase = {};
 const endPoint = 'https://api.apilayer.com/exchangerates_data';
-const fromAmount = document.querySelector('[name="from_amount"]');
-const toAmount = document.querySelector('.to_amount');
+
+function mirrorToLocalStorage(object) {
+  localStorage.setItem('exchangeRates', JSON.stringify(object));
+}
 
 export async function fetchRates(base = 'USD') {
   const res = await fetch(`${endPoint}/latest?base=${base}`, {
-    headers: { apikey: 'YOUR API KEY👌' },
+    headers: { apikey: 'w9wIbPShWqGzYav4UqqKDPAKJV9nI7u9' },
   });
-  const ratesByBaseLib = (await res.json()).rates;
-  mirrorToLocalStorage(ratesByBaseLib);
-  restoreFromLocalStorage();
+  ratesByBase = (await res.json()).rates;
+  mirrorToLocalStorage(ratesByBase);
 }
+export function restoreFromLocalStorage() {
+  const exchangeRates = localStorage.getItem('exchangeRates');
+  if (exchangeRates) {
+    ratesByBase = JSON.parse(exchangeRates);
+    return;
+  }
+  fetchRates();
+}
+
 export function convert() {
   const amount = fromAmount.value;
   const from = fromCurrecy.value;
