@@ -1,4 +1,5 @@
 import { init } from './init.js';
-import { form } from './elements.js';
+
+const form = document.querySelector('.app form');
 
 form.addEventListener('mouseenter', init, { once: true });

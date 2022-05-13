@@ -10,7 +10,7 @@ function mirrorToLocalStorage(object) {
 
 export async function fetchRates(base = 'USD') {
   const res = await fetch(`${endPoint}/latest?base=${base}`, {
-    headers: { apikey: 'w9wIbPShWqGzYav4UqqKDPAKJV9nI7u9' },
+    headers: { apikey: 'your api key😁' },
   });
   ratesByBase = (await res.json()).rates;
   mirrorToLocalStorage(ratesByBase);
