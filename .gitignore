@@ -22,3 +22,5 @@
 .parcel-cache/data.mdb
 /exersices/76 - Dad Jokes MODULE REFACTOR/node_modules
 /exersices/80 - npm modules/node_modules
+/exersices/80 - npm modules/dist
+/exersices/80 - npm modules/.parcel-cache

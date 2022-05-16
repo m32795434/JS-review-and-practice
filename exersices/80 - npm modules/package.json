@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "parcel index.html",
+    "build": "parcel build index.js"
   },
   "author": "",
   "license": "ISC",
@@ -11,10 +12,11 @@
     "parcel": "^2.5.0"
   },
   "dependencies": {
+    "@faker-js/faker": "^6.3.1",
     "await-to-js": "^3.0.0",
     "axios": "^0.27.2",
     "date-fns": "^2.28.0",
-    "faker": "^5.5.3",
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.21",
+    "waait": "^1.0.5"
   }
 }
