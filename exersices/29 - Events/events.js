@@ -58,17 +58,19 @@ phase, the next won't work */
 window.addEventListener(
   'click',
   (event) => {
-    // event.stopPropagation(); // STOP IN THIS PHASE.
+    // event.stopPropagation(); // STOP BUBBLING OR CAPTURING HERE.
     console.log('window clicked!');
     console.log(event.target);
     console.log(event.type); // click
     console.log(event.bubbles); // if it allowed to bubble up the event.
   },
-  { capture: true } // will start in the capture order!, in the capture phase! Without this, we start in the bubbling phase.
+  { capture: true } // will CAPTURE, AND BUBBLE UP THE EVENT.
 );
 /* eslint-disable*/
 const photoEl = document.querySelector('.photo');
+/*
 photoEl.addEventListener('mouseenter', function(e) {
   console.log(e.currentTarget);
   console.log(this); // this is the element on which the event handler has been attached, if we are in a "regular" function.
 });
+*/

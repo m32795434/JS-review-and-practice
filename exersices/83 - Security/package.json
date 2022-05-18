@@ -1,0 +1,16 @@
+{
+  "name": "83---security",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "parcel index.html"
+  },
+  "author": "MAnuel B",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel": "^2.5.0"
+  },
+  "dependencies": {
+    "dompurify": "^2.3.8"
+  }
+}
