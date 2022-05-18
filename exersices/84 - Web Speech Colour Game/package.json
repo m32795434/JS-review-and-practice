@@ -1,0 +1,14 @@
+{
+  "name": "84---web-speech-colour-game",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build speech.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel": "^2.5.0"
+  }
+}
