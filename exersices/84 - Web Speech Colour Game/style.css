@@ -20,7 +20,7 @@ h1 {
 
 .colors span {
   color: rgba(0, 0, 0, 0.4);
-  flex:1;
+  flex: 1;
   padding: 1rem;
   font-weight: 900;
 }
@@ -34,6 +34,7 @@ h1 {
     transform: scale(2.5) rotate(-3deg);
     box-shadow: var(--box-shadow);
   }
+
   to {
     transform: scale(1) rotate(0);
   }

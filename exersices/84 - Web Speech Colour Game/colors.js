@@ -157,4 +157,7 @@ export function isDark(colorName) {
   const b = parseInt(hex.substring(4, 6), 16);
   return r * 0.299 + g * 0.587 + b * 0.114 < 120; // if lower than 120, is a dark color
 }
-window.isDark = isDark;
+export const colorsByLength = Object.keys(colors).sort(
+  (a, b) => a.length - b.length
+);
+console.log(colorsByLength);
