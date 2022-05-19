@@ -44,3 +44,7 @@ h1 {
   text-decoration: line-through;
   animation: jump 0.2s ease-in-out 2 alternate-reverse;
 }
+
+.animate {
+  animation: jump 0.2s ease-in-out 2 alternate-reverse;
+}
