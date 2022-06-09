@@ -60,6 +60,9 @@ String.prototype.repeat(numberOfTimes)// 'x'.repeat(3) = 'xxx'
 Number.parseFloat(string)// returns a floating point number
 parseInt(string, radix)// part of the JavaScript's standard, built-in objects
 String.prototype.includes()// same as for Arrays
+Math.floor(Math.random())
+imgSrc.replace('200','400');
+
 
 //working with Arrays
 Array.isArray(value) //method determines whether the passed value is an Array.
@@ -100,3 +103,5 @@ console.groupEnd(`name: ${person.name}`);
 window.location = event.currentTarget.href;
 const { width, height } = canvas; // ES6 destructuring
 function draw({ key }){}//destructuring all the properties of an object as parameters
+const desc = card.dataset.description;//getting dataset attributes
+const isOutside = !event.target.closest('.modal-inner');

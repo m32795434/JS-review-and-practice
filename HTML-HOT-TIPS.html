@@ -19,11 +19,28 @@
     <input type="email" id="email" value="wesbos@gmail.com">
     <!-- the screen reader will read "button"/ tab flow-->
     <div role="button" tabindex="0">DIV SIN CLASE</div>
-    <!-- listening over the photo, a key || click event -->
+    <!-- listening over the photo, the Enter key || click event -->
     <img class="photo" tabindex="0" src="https://picsum.photos/200" alt="Nice, click me!">
-
+    <!-- disabled: disable the element. autocomplete="off"adresses an issue with firefox-->
+    <button class="accept" disabled autocomplete="off">Accept</button>
 
 </body>
+<style>
+    button {
+        background: #ffc600;
+        color: white;
+        font-size: 1rem;
+        padding: 20px;
+        transition: all 0.3s;
+        border-radius: 5px;
+    }
+
+    /* disabled atribute */
+    button[disabled] {
+        opacity: 0.1;
+        transform: translateX(-200%) scale(0.5);
+    }
+</style>
 <script>
 
 </script>

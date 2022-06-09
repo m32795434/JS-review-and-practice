@@ -17,6 +17,15 @@
 
 </body>
 <style>
+    .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        grid-gap: 20px;
+        padding: 2rem;
+        /* disable mouse events. We will hide it, until we need it*/
+        pointer-events: none;
+    }
+
     img {
         /* all: all the efects/properties over my img */
         transition: border-radius 2s, transform 1s, box-shadow 3s;
@@ -41,21 +50,25 @@
     /* more control than a transition / javaScript: use the CSSKeyframesRule object, and listen to animationend, start, and iteration*/
     @keyframes slidein {
         from {
-            margin-left: 100%;
+            transform: translateX(100%);
             width: 300%;
         }
 
         75% {
             /* This tells the browser that 75% of the way through the animation sequence, the header should have its left margin at 25% and the width should be 150%. */
             font-size: 300%;
-            margin-left: 25%;
+            transform: translateX(25%);
             width: 150%;
         }
 
         to {
-            margin-left: 0%;
+            transform: translateX(0);
             width: 100%;
         }
+    }
+
+    .terms-and-conditions {
+        overflow: scroll;
     }
 </style>
 <script>
