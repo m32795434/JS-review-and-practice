@@ -10,17 +10,52 @@
 
 <body>
     <img class="round" src="https://source.unsplash.com/random/300x300" />
+    <canvas width="1600" height="1000" id="etch-a-sketch"></canvas>
+    <p>ANIMATE ME!! Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut, saepe! Nostrum voluptatum doloremque
+        aspernatur inventore
+    </p>
+
 </body>
 <style>
     img {
-        /* all: all the efects over my img */
-        transition: all 0.5s;
+        /* all: all the efects/properties over my img */
+        transition: border-radius 2s, transform 1s, box-shadow 3s;
     }
 
     .round {
         border-radius: 50%;
         transform: rotate(1turn) scale(0.5);
         box-shadow: 0 0 40px black;
+    }
+
+    canvas {
+        /* Set the width and height to half the actual size so it doesn't look pixelated */
+        width: 800px;
+        height: 500px;
+    }
+
+    p {
+        animation: 3s infinite alternate slidein;
+    }
+
+    /* more control than a transition / javaScript: use the CSSKeyframesRule object, and listen to animationend, start, and iteration*/
+    @keyframes slidein {
+        from {
+            margin-left: 100%;
+            width: 300%;
+        }
+
+        75% {
+            /* This tells the browser that 75% of the way through the animation sequence, the header should have its left margin at 25% and the width should be 150%. */
+            font-size: 300%;
+            margin-left: 25%;
+            width: 150%;
+        }
+
+        to {
+            margin-left: 0%;
+            width: 100%;
+        }
     }
 </style>
 <script>

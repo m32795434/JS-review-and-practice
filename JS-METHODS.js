@@ -49,7 +49,7 @@ pic.removeAttribute('alt');
 
 //Event Listeners
 itemImg.addEventListener('click', toggleRound, { capture: true, once: true })//capture this first!and continue
-event.type //load, click, mouseover, mouseout, mousemove, mouseenter, mouseleave, mousedown, mouseup, keydown, keyup, keypress, focus, blur, change, input, submit, reset, scroll, resize,
+event.type //load, click, mouseover, mouseout, mousemove, mouseenter, mouseleave, mousedown, mouseup, keydown, keyup, keypress, focus, blur, change, input, submit, reset, scroll, resize,animationstart, animationend, animationiteration
 coolButts.removeEventListener('click', horray)
 event.stopPropagation(); // STOP IN THIS Element.
 event.preventDefault();
@@ -98,3 +98,5 @@ console.groupEnd(`name: ${person.name}`);
 
 // HOT-TIPS
 window.location = event.currentTarget.href;
+const { width, height } = canvas; // ES6 destructuring
+function draw({ key }){}//destructuring all the properties of an object as parameters
