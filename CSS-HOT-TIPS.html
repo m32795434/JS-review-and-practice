@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <img class="round" src="https://source.unsplash.com/random/300x300" />
+</body>
+<style>
+    img {
+        /* all: all the efects over my img */
+        transition: all 0.5s;
+    }
+
+    .round {
+        border-radius: 50%;
+        transform: rotate(1turn) scale(0.5);
+        box-shadow: 0 0 40px black;
+    }
+</style>
+<script>
+    const myImg = document.querySelector('img');
+    myImg.addEventListener('click', () => {
+        myImg.classList.toggle('round');
+    })
+</script>
+
+</html>

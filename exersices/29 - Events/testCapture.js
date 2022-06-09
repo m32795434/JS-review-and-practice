@@ -13,25 +13,22 @@ div1.addEventListener('click', (e) => {
 });
 div2.addEventListener('click', (e) => {
   console.log(e.currentTarget);
-});
+}, {capture: true}); //capture this first
 div3.addEventListener(
   'click',
   (e) => {
-    // e.stopPropagation();
     console.log(e.currentTarget);
-  },
-  { capture: true }
+  }
 );
-window.addEventListener('click', (e) => {
-  console.log(e);
-  console.log('window');
+window.addEventListener('click', function() {
+  console.log(this);
 });
-html.addEventListener('click', () => {
-  console.log('html');
+html.addEventListener('click', function() {
+  console.log(this);
 });
-document.addEventListener('click', () => {
-  console.log('document');
+document.addEventListener('click', function() {
+  console.log(this);
 });
-body.addEventListener('click', () => {
-  console.log('body');
+body.addEventListener('click', function() {
+  console.log(this);
 });

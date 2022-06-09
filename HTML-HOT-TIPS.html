@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- Tip: Always specify the type attribute for the <button> // HTML-Encoded ej: &times-->
+    <button class="delete" type="button">&times DELETE</button>
+    <!-- script: parseFloat(event.target.dataset.price) -->
+    <button data-price="100" class="buy">Buy Item <strong>1</strong></button>
+    <!-- script: e.currentTarget.agree.checked: true or false -->
+    <input type="checkbox" id="agree">
+    <!-- script: e.currentTarget.email.value (using the "id" to call the input)-->
+    <input type="email" id="email" value="wesbos@gmail.com">
+    <!-- the screen reader will read "button"/ tab flow-->
+    <div role="button" tabindex="0">DIV SIN CLASE</div>
+    <!-- listening over the photo, a key || click event -->
+    <img class="photo" tabindex="0" src="https://picsum.photos/200" alt="Nice, click me!">
+
+
+</body>
+<script>
+
+</script>
+
+</html>

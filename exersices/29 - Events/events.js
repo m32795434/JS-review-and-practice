@@ -46,15 +46,13 @@ function handleBuyButtonClick(event) {
   // console.log(button.textContent);
   // console.log(parseFloat(event.target.dataset.price));
   // STOP BUBBLING UP - STOP PROPAGATION!
-  // event.stopPropagation(); // STOP IN THIS PHASE.
+  event.stopPropagation(); // STOP IN THIS Element.
 }
 
 buyButtons.forEach((buyButton) => {
   buyButton.addEventListener('click', handleBuyButtonClick);
 });
 
-/* if we have .stopPropagation() in other function, in the bubbling 
-phase, the next won't work */
 window.addEventListener(
   'click',
   (event) => {
@@ -64,7 +62,7 @@ window.addEventListener(
     console.log(event.type); // click
     console.log(event.bubbles); // if it allowed to bubble up the event.
   },
-  { capture: true } // will CAPTURE, AND BUBBLE UP THE EVENT.
+  { capture: true } // will capture the event in this element first
 );
 /* eslint-disable*/
 const photoEl = document.querySelector('.photo');

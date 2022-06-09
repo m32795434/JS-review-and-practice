@@ -22,17 +22,17 @@ wes.addEventListener('click', (event) => {
 
 const signUpForm = document.querySelector('[name = "signup"]');
 signUpForm.addEventListener('submit', (e) => {
-  /*
+//getting the inputs values using their "id"
   console.log(e.currentTarget.name.value);
   console.log(e.currentTarget.email.value);
   console.log(e.currentTarget.agree.checked);
-*/
   const nameF = e.currentTarget.name.value;
   if (nameF.includes('hang')) {
     // NOW IS case sensitive!!
     alert('Hang is not allowed');
     e.preventDefault();
   }
+  e.preventDefault();
 });
 
 function logEvent(event) {
