@@ -46,6 +46,7 @@ myImage.src = 'https://source.unsplash.com/random/400x400';// setting attributes
 pic.setAttribute('alt', 'random2'); // onother way. Even for non-standard attributes.
 pic.getAttribute('alt')
 pic.removeAttribute('alt');
+tab.ariaSelected = false; //Camel case method for "aria-selected". I prefer setAttribute();
 
 //Event Listeners
 itemImg.addEventListener('click', toggleRound, { capture: true, once: true })//capture this first!and continue
@@ -62,17 +63,24 @@ parseInt(string, radix)// part of the JavaScript's standard, built-in objects
 String.prototype.includes()// same as for Arrays
 Math.floor(Math.random())
 imgSrc.replace('200','400');
+String.prototype.toUpperCase()
 
 
 //working with Arrays
 Array.isArray(value) //method determines whether the passed value is an Array.
 Array.prototype.fill() // The fill() method changes all elements in an array to a static value, from a start index (default 0) to an end index (default array.length). It returns the modified array.
 Array(number) // creates an array of the specified length.
-Array.prototype.join('separator') //method creates and returns a new string by concatenating all of the elements
+Array.prototype.join('a separator') //method creates and returns a new string by concatenating all of the elements
 Array.prototype.push() // adds one or more elements to the end of an array and returns the new length of the array.
+Array.prototype.slice(start, end) //start, end are optional. Shallow copy. for strings too
+Array.prototype.splice(start, deleteCount, item1, item2, itemN)
 Array.prototype.map() // The map() method creates a new array populated with the results of calling a provided function on every element in the calling array.
 Array.prototype.forEach() // same as for Map and NodeList
-.includes()
+Array.prototype.includes()
+Array.from("a nodeList for example");
+Array.prototype.find(callback(element[, index[, array]])[, thisArg]);
+Array.prototype.findIndex(callback( element[, index[, array]] )[, thisArg])
+Array.prototype.indexOf(searchElement[, fromIndex])
 
 
 //working with Objects

@@ -23,6 +23,15 @@
     <img class="photo" tabindex="0" src="https://picsum.photos/200" alt="Nice, click me!">
     <!-- disabled: disable the element. autocomplete="off"adresses an issue with firefox-->
     <button class="accept" disabled autocomplete="off">Accept</button>
+    <!-- tab, tablist, id, tabpanel, aria-labelledby, give information to the screen reader and SEO -->
+    <!-- and we can use this atributtes to set style. See it below -->
+    <div role="tablist" aria-label="Programming Languages">
+        <button role="tab" aria-selected="true" id="ruby">Ruby</button>
+    </div>
+    <!-- the "hidden" attribute is used to hide the element. -->
+    <div role="tabpanel" aria-labelledby="ruby" hidden>
+        <p>Ruby is great!</p>
+    </div>
 
 </body>
 <style>
@@ -33,12 +42,20 @@
         padding: 20px;
         transition: all 0.3s;
         border-radius: 5px;
+        cursor: pointer;
     }
 
     /* disabled atribute */
     button[disabled] {
         opacity: 0.1;
         transform: translateX(-200%) scale(0.5);
+    }
+
+    /* see more style at tabs-style.css */
+    [role="tablist"] {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        grid-gap: 10px;
     }
 </style>
 <script>

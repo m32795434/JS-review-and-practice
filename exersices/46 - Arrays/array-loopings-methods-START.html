@@ -173,7 +173,7 @@
     }
     toppings.forEach(logToppings);
 
-    console.clear();
+    // console.clear();
 
     // .map() return a new array with the same length. - inmutable method.
     // .map() run a function over each item
@@ -191,7 +191,7 @@
     }
 
     const fullNames = ['kate', 'bob', 'joe', 'sue'].map(capitalize).map(bosify);
-    console.log(fullNames);
+    console.table(fullNames);
 
     const orderTotalWithTax = orderTotals.map((total) => total * 1.07);
     console.log(orderTotalWithTax);
@@ -234,7 +234,7 @@
     console.table(fecha);
     console.table(hora);
 
-    console.clear();
+    // console.clear();
 
     // ----------------LITTLE MORE ABOUT .find() and .filter()----------------
     // BOTH WORKS THE SAME WAY
@@ -249,7 +249,7 @@
     // -------------------------.reduce()-------------------------
     // return a "total". It take a function that takes the previous total and the current item and returns a new total. It will iterate over each item.
     // the function could be a math function like add, multiply, etc.
-    console.clear();
+    // console.clear();
     // SUM ALL THE NUMBERS IN AN ARRAY
     function add(total, actualItem) {
       console.log(total, actualItem);
