@@ -20,9 +20,11 @@ function getRandomBetween(min = 20, max = 150, randomNumber = Math.random()) {
 async function draw(el) {
   const text = el.textContent;
   let soFar = '';
+  console.dir(el)
   for (const letter of text) {
     soFar += letter;
     el.textContent = soFar;
+
     const { typeMin, typeMax } = el.dataset;
     await wait(getRandomBetween(typeMin, typeMax));
   }

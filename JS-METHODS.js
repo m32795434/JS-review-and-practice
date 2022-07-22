@@ -1,16 +1,13 @@
 /* eslint-disable */
-//Math
-Math.floor()
 
 // Checking type of Elements
 typeof myHtml; // STRING
 
 
 // DOM Manipulation
+Element.closest('h1');//the h1 ancestor if it exists
 document.querySelector('') // AND document.querySelectorAll('')
 document.createElement('span');
-const myFragment = document.createRange().createContextualFragment(myHtml); // from a string
-let myfragment1 = new DocumentFragment();// empty document fragment
 Element.children //children[index] too
 Element.firstElementChild
 Element.lastElementChild
@@ -23,11 +20,12 @@ Element.nextSibling
 Element.previousSibling
 Element.firstChild
 Element.lastChild
+const myFragment = document.createRange().createContextualFragment(myHtml); // from a string
+let myfragment1 = new DocumentFragment();// empty document fragment
 myFragment.firstElementChild.insertAdjacentElement('afterbegin', spa)
 document.body.appendChild(myFragment)//Node.appendChild()
 myUl.append(myLi4, myLi5, myLi3)//append more than one element and DOMstring
 myDiv.firstElementChild.remove();
-buttonClicked.closest('.playerCard').remove();
 div.insertAdjacentHTML('beforebegin', myHTML); // myHTML is a string
 Element.outerHTML //includes the own tag
 item.innerHTML = myHtml //myHtml is a string
@@ -58,13 +56,15 @@ event.preventDefault();
 
 //working with Strings and Integers
 String.prototype.repeat(numberOfTimes)// 'x'.repeat(3) = 'xxx'
-Number.parseFloat(string)// returns a floating point number
-parseInt(string, radix)// part of the JavaScript's standard, built-in objects
 String.prototype.includes()// same as for Arrays
-Math.floor(Math.random())
 imgSrc.replace('200','400');
 String.prototype.toUpperCase()
-
+Element.replaceWith()
+Number.parseFloat(string)// returns a floating point number
+parseInt(string, radix)// part of the JavaScript's standard, built-in objects
+//Math
+Math.floor(Math.random());
+Math.abs();Math.ceil();Math.round();Math.max();Math.pow();
 
 //working with Arrays
 Array.isArray(value) //method determines whether the passed value is an Array.
@@ -77,13 +77,17 @@ Array.prototype.splice(start, deleteCount, item1, item2, itemN)
 Array.prototype.map() // The map() method creates a new array populated with the results of calling a provided function on every element in the calling array.
 Array.prototype.forEach() // same as for Map and NodeList
 Array.prototype.includes()
-Array.from("a nodeList for example");
-Array.prototype.find(callback(element[, index[, array]])[, thisArg]);
-Array.prototype.findIndex(callback( element[, index[, array]] )[, thisArg])
-Array.prototype.indexOf(searchElement[, fromIndex])
-
+Array.of(1, 2, 3); // [1, 2, 3]
+Array.from("an iterable object");
+array.find(function(element, index, array) { /* ... */ }, thisArg)//the first that satisfies the function
+array.filter(function(element, index, array) { /* ... */ }, thisArg)
+array.findIndex(function(element, index, array) { /* ... */ }, thisArg)//the index of the first that satisfies the function
+array.indexOf(searchElement, fromIndex)//returns the first index at which a given element can be found in the array, or -1 if it is not present.
 
 //working with Objects
+"propertyNN" in Object;//returns true if the specified property is in the specified object or its prototype chain.
+Object.hasOwn(object1, 'prop')//true if isn't inherited
+
 
 
 //working with Dates
@@ -110,6 +114,8 @@ console.groupEnd(`name: ${person.name}`);
 // HOT-TIPS
 window.location = event.currentTarget.href;
 const { width, height } = canvas; // ES6 destructuring
-function draw({ key }){}//destructuring all the properties of an object as parameters
+function draw({ key }){}//destructuring "key" property as parameter
+//data-type-min --> dataset.typeMin
 const desc = card.dataset.description;//getting dataset attributes
 const isOutside = !event.target.closest('.modal-inner');
+buttonClicked.closest('.playerCard').remove();

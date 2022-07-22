@@ -64,7 +64,7 @@ function draw({ key }) {
 function handleKey(e) {
   if (e.key.includes('Arrow')) {
     e.preventDefault(); // stop scrolling
-    draw({ key: e.key });
+    draw(e);
   }
 }
 

@@ -16,7 +16,7 @@ wes.addEventListener('click', (event) => {
   const shouldChangePage = confirm('do you want to proceed??');
   if (shouldChangePage) {
     // if true
-    window.location = event.currentTarget.href;
+    window.location.href = event.currentTarget.href;
   }
 });
 
