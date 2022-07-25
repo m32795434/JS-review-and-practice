@@ -16,5 +16,21 @@ const myHtml = `
 const myFragment = document.createRange().createContextualFragment(myHtml);
 document.body.appendChild(myFragment);
 const p = document.querySelector('p');
+const par = document.querySelector('.par');
 const h1 = p.closest('h1');
 console.log(h1); // null
+
+function isEven(value){
+return value % 2 === 0;
+}
+par.addEventListener('keydown', (e)=>{
+if(e.key==="Enter"){
+    const value = parseFloat(e.currentTarget.value);
+    if (isEven(value)){
+        par.insertAdjacentText('afterend',`  ${value} is even!`);
+    } else {
+        par.insertAdjacentText('afterend',`  ${value} is odd!`);
+    }
+}
+})
+

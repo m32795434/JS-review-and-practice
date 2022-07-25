@@ -9,22 +9,24 @@
 </head>
 
 <body>
-    <!-- Tip: Always specify the type attribute for the <button> // HTML-Encoded ej: &times-->
+    <!-- Tip: Always specify the type attribute for the <button>. Different browsers may use different default types for the <button> element. 
+    // HTML-Encoded ej: &times-->
     <button class="delete" type="button">&times DELETE</button>
     <!-- script: parseFloat(event.target.dataset.price) -->
-    <button data-price="100" class="buy">Buy Item <strong>1</strong></button>
+    <button data-price="100" type="button" class="buy">Buy Item <strong>1</strong></button>
+    <!-- script: e.currentTarget.email.value (using the "id" to call the input WHEN WE LISTEN TO A FORM'S SUBMIT)-->
+    <input type="email" id="email" value="wesbos@gmail.com">
     <!-- script: e.currentTarget.agree.checked: true or false -->
     <input type="checkbox" id="agree">
-    <!-- script: e.currentTarget.email.value (using the "id" to call the input)-->
-    <input type="email" id="email" value="wesbos@gmail.com">
     <!-- the screen reader will read "button"/ tab flow-->
     <div role="button" tabindex="0">DIV SIN CLASE</div>
     <!-- listening over the photo, the Enter key || click event -->
     <img class="photo" tabindex="0" src="https://picsum.photos/200" alt="Nice, click me!">
-    <!-- disabled: disable the element. autocomplete="off"adresses an issue with firefox-->
+    <!-- disabled: disable the element. autocomplete="off" to avoid adress an issue with firefox
+    "off": The browser is not permitted to automatically enter or select a value for this field-->
     <button class="accept" disabled autocomplete="off">Accept</button>
     <!-- tab, tablist, id, tabpanel, aria-labelledby, give information to the screen reader and SEO -->
-    <!-- and we can use this atributtes to set style. See it below -->
+    <!-- and we can use this atributtes to set style too. See it below -->
     <div role="tablist" aria-label="Programming Languages">
         <button role="tab" aria-selected="true" id="ruby">Ruby</button>
     </div>
@@ -40,9 +42,9 @@
         color: white;
         font-size: 1rem;
         padding: 20px;
-        transition: all 0.3s;
         border-radius: 5px;
         cursor: pointer;
+        transition: all 0.3s;
     }
 
     /* disabled atribute */

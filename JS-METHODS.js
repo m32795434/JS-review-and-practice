@@ -77,8 +77,8 @@ Array.prototype.splice(start, deleteCount, item1, item2, itemN)
 Array.prototype.map() // The map() method creates a new array populated with the results of calling a provided function on every element in the calling array.
 Array.prototype.forEach() // same as for Map and NodeList
 Array.prototype.includes()
-Array.of(1, 2, 3); // [1, 2, 3]
-Array.from("an iterable object");
+Array.of(1, 2, 3); // [1, 2, 3]//...OR SPREAD AN ITERABLE
+Array.from([1, 2, 3], x => x + x)// Array.from({ length: 10},(item, index) => index + 1)
 array.find(function(element, index, array) { /* ... */ }, thisArg)//the first that satisfies the function
 array.filter(function(element, index, array) { /* ... */ }, thisArg)
 array.findIndex(function(element, index, array) { /* ... */ }, thisArg)//the index of the first that satisfies the function
@@ -119,3 +119,6 @@ function draw({ key }){}//destructuring "key" property as parameter
 const desc = card.dataset.description;//getting dataset attributes
 const isOutside = !event.target.closest('.modal-inner');
 buttonClicked.closest('.playerCard').remove();
+
+
+//video 46
