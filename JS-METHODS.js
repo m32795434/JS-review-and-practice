@@ -55,6 +55,7 @@ event.preventDefault();
 
 
 //working with Strings and Integers
+String.prototype.split('separator');//returns an array
 String.prototype.repeat(numberOfTimes)// 'x'.repeat(3) = 'xxx'
 String.prototype.includes()// same as for Arrays
 imgSrc.replace('200','400');
@@ -62,6 +63,7 @@ String.prototype.toUpperCase()
 Element.replaceWith()
 Number.parseFloat(string)// returns a floating point number
 parseInt(string, radix)// part of the JavaScript's standard, built-in objects
+string.sort()//sort alfabetically
 //Math
 Math.floor(Math.random());
 Math.abs();Math.ceil();Math.round();Math.max();Math.pow();
@@ -72,21 +74,30 @@ Array.prototype.fill() // The fill() method changes all elements in an array to 
 Array(number) // creates an array of the specified length.
 Array.prototype.join('a separator') //method creates and returns a new string by concatenating all of the elements
 Array.prototype.push() // adds one or more elements to the end of an array and returns the new length of the array.
+Array.prototype.pop()//delete the last element
+Array.prototype.shift()//delete the first element
+Array.prototype.unshift()
 Array.prototype.slice(start, end) //start, end are optional. Shallow copy. for strings too
 Array.prototype.splice(start, deleteCount, item1, item2, itemN)
 Array.prototype.map() // The map() method creates a new array populated with the results of calling a provided function on every element in the calling array.
 Array.prototype.forEach() // same as for Map and NodeList
-Array.prototype.includes()
+Array.prototype.includes()//we have some() and every() too
 Array.of(1, 2, 3); // [1, 2, 3]//...OR SPREAD AN ITERABLE
 Array.from([1, 2, 3], x => x + x)// Array.from({ length: 10},(item, index) => index + 1)
 array.find(function(element, index, array) { /* ... */ }, thisArg)//the first that satisfies the function
 array.filter(function(element, index, array) { /* ... */ }, thisArg)
 array.findIndex(function(element, index, array) { /* ... */ }, thisArg)//the index of the first that satisfies the function
 array.indexOf(searchElement, fromIndex)//returns the first index at which a given element can be found in the array, or -1 if it is not present.
+array.lastIndexOf()
+array.reverse()//reverses the order of the elements in the array
+array.sort((a,b)=>{return a-b})//sort by number
 
 //working with Objects
 "propertyNN" in Object;//returns true if the specified property is in the specified object or its prototype chain.
 Object.hasOwn(object1, 'prop')//true if isn't inherited
+Object.entries(meats)// returns an array. we have .keys() and .values() too
+Object.fromEntries()//creates an object from an array of [key, value] pairs.
+
 
 
 
@@ -115,10 +126,11 @@ console.groupEnd(`name: ${person.name}`);
 window.location = event.currentTarget.href;
 const { width, height } = canvas; // ES6 destructuring
 function draw({ key }){}//destructuring "key" property as parameter
+Object.entries(meats).forEach(([item, qty]) => console.log(item, qty));s
 //data-type-min --> dataset.typeMin
 const desc = card.dataset.description;//getting dataset attributes
 const isOutside = !event.target.closest('.modal-inner');
 buttonClicked.closest('.playerCard').remove();
 
 
-//video 46
+//video 48
