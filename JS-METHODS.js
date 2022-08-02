@@ -91,6 +91,7 @@ array.indexOf(searchElement, fromIndex)//returns the first index at which a give
 array.lastIndexOf()
 array.reverse()//reverses the order of the elements in the array
 array.sort((a,b)=>{return a-b})//sort by number
+array.forEach()//forEach is a method that executes a provided function once for each array element.
 
 //working with Objects
 "propertyNN" in Object;//returns true if the specified property is in the specified object or its prototype chain.
