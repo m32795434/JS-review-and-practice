@@ -108,8 +108,11 @@ Object.fromEntries()//creates an object from an array of [key, value] pairs.
 new Date(dateString)// These formats are IETF-compliant RFC 2822 timestamps, and also strings in a version of ISO8601
 new Date(year, month, day, hours, minutes, seconds, milliseconds)
 new Date().getTime() // returns the number of milliseconds since 1 January 1970 00:00:00 UTC.
-//the same as above
-Date.now()
+//getFullYear(), getMonth() too
+new Date().toLocaleDateString('es-AR', options)//returns the date in a string with a "regional" format.
+//When formatting large numbers of dates, it is better to create an Intl.DateTimeFormat object and use its format() method.
+new Intl.DateTimeFormat('es-AR', options).format(new Date());
+
 
 
 // Alerts, console. and more

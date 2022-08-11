@@ -22,7 +22,7 @@ console.log(first, second, third); // look up scope
 var hairRed = `red`;
 return hair;
 }
-// console.log(hairRed);// undefined even been a "var". 
+console.log(hairRed);// undefined even been a "var". 
 // console.log(hair);// undefined
 
 // -------------------------BLOCK SCOPE -------------------
