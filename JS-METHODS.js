@@ -92,6 +92,7 @@ array.lastIndexOf()
 array.reverse()//reverses the order of the elements in the array
 array.sort((a,b)=>{return a-b})//sort by number
 array.forEach()//forEach is a method that executes a provided function once for each array element.
+array.reduce(callbackFn, initialValue)
 
 //working with Objects
 "propertyNN" in Object;//returns true if the specified property is in the specified object or its prototype chain.
@@ -109,9 +110,12 @@ new Date(dateString)// These formats are IETF-compliant RFC 2822 timestamps, and
 new Date(year, month, day, hours, minutes, seconds, milliseconds)
 new Date().getTime() // returns the number of milliseconds since 1 January 1970 00:00:00 UTC.
 //getFullYear(), getMonth() too
-new Date().toLocaleDateString('es-AR', options)//returns the date in a string with a "regional" format.
+
+//date have to be a Date object
+date.toLocaleDateString('es-AR', options)//returns the date in a string with a "regional" format.
 //When formatting large numbers of dates, it is better to create an Intl.DateTimeFormat object and use its format() method.
-new Intl.DateTimeFormat('es-AR', options).format(new Date());
+// date can be a timeStamp or date Object
+new Intl.DateTimeFormat('es-AR', options).format(date);
 
 
 

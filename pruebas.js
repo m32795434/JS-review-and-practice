@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 const myHtml = `
 <div>
     <h1>Hola mundo</h1>
@@ -19,37 +20,22 @@ const par = document.querySelector('.par');
 const h1 = p.closest('h1');
 const myDate = document.querySelector('.date');
 console.log(h1); // null
+console.log(p);
 
-const toppings = [
-  'Mushrooms ',
-  'Tomatoes',
-  'Eggs',
-  'Chili',
-  'ettuce',
-  'Avocado',
-  'Chiles',
-  'acon',
-  'Pickles',
-  'nions',
-  'Cheese',
-  'vocado',
-];
-const buns = ['egg', 'wonder', 'brioche'];
-
-const meats = {
-  beyond: 10,
-  beef: 5,
-  pork: 7,
-};
-
-const prices = {
-  hotDog: 453,
-  burger: 765,
-  sausage: 634,
-  corn: 234,
-};
-const faces = ['😃', '🤠', '🤡', '🤑', '😵', '🌞', '🐶', '😺'];
-const orderTotals = [342, 1002, 523, 34, 634, 854, 1644, 2222];
+// --------------------------------------
+function isEven(value) {
+  return value % 2 === 0;
+}
+par.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    const value = parseFloat(e.currentTarget.value);
+    if (isEven(value)) {
+      par.insertAdjacentText('afterend', `  ${value} is even!`);
+    } else {
+      par.insertAdjacentText('afterend', `  ${value} is odd!`);
+    }
+  }
+});
 
 const feedback = [
   { comment: 'Love the burgs', rating: 4 },
@@ -67,35 +53,36 @@ const people = [
     },
   },
   {
-    birthday: 'January 3, 1975',
-    names: {
-      first: 'Larry',
-      last: 'Heep',
-    },
-  },
-  {
     birthday: 'February 12, 1944',
     names: {
       first: 'Linda',
       last: 'Bermeer',
     },
   },
+  {
+    birthday: 'January 3, 1975',
+    names: {
+      first: 'Larry',
+      last: 'Heep',
+    },
+  },
 ];
-// --------------------------------------
-function isEven(value) {
-  return value % 2 === 0;
-}
-par.addEventListener('keydown', (e) => {
-  if (e.key === 'Enter') {
-    const value = parseFloat(e.currentTarget.value);
-    if (isEven(value)) {
-      par.insertAdjacentText('afterend', `  ${value} is even!`);
-    } else {
-      par.insertAdjacentText('afterend', `  ${value} is odd!`);
-    }
-  }
-});
+
 //-----------------------------------------
+const toppings = [
+  'Mushrooms ',
+  'Tomatoes',
+  'Eggs',
+  'Chili',
+  'lettuce',
+  'Avocado',
+  'Chiles',
+  'acon',
+  'Pickles',
+  'nions',
+  'Cheese',
+  'vocado',
+];
 function cheqAndAddAnItemToList(lista, newItem) {
   let myList = [...lista];
   const toLowerTopping = lista.map((top) => top.toLowerCase());
@@ -112,35 +99,148 @@ const dateOptions = {
   month: 'long',
   day: 'numeric',
 };
-const myDateTextContent = new Date().toLocaleDateString('es-AR', dateOptions);
+const dateObject = new Intl.DateTimeFormat('es-AR', dateOptions);
+const myDateTextContent = dateObject.format(new Date());
 myDate.textContent = myDateTextContent;
 
 //-----------------------------------------
-const filteredPeople = people.map((single) => {
-  const nowTimeStamp = Date.now();
-  const bday = new Date(single.birthday);
-  const ageTimeSt = bday.getTime();
-  const options = {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  };
-  const bdayTimeFormat = new Intl.DateTimeFormat('es-AR', options).format(bday);
-  return {
-    age: Math.floor((nowTimeStamp - ageTimeSt) / 31536000000),
-    fullName: `${single.names.first} ${single.names.last}`,
-    description: `${single.names.first} nació el ${bdayTimeFormat}`,
-  };
-});
-console.table(filteredPeople);
-//-----------------
-const options = {
-  weekday: 'long',
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric',
-};
+function replacePropertyNameAndReturnCopy(array, property, newName) {
+  const newArray = _.cloneDeep(array);
+  for (const item of newArray) {
+    item[newName] = item[property];
+    delete item[property];
+  }
+  return newArray;
+}
+//-----------------------------------
+const response = [
+  {
+    id: 3,
+    lista_id: 1,
+    dep_id: 1,
+    precio: 700,
+    nombre: 'Art A',
+    stock: 10,
+  },
+  {
+    id: 3,
+    lista_id: 1,
+    dep_id: 2,
+    precio: 700,
+    nombre: 'Art C',
+    stock: 15,
+  },
+  {
+    id: 3,
+    lista_id: 2,
+    dep_id: 1,
+    precio: 200,
+    nombre: 'Art C',
+    stock: 10,
+  },
+  {
+    id: 3,
+    lista_id: 2,
+    dep_id: 2,
+    precio: 200,
+    nombre: 'Art C',
+    stock: 15,
+  },
+  {
+    id: 1,
+    lista_id: 1,
+    dep_id: 1,
+    precio: 500,
+    nombre: 'Art A',
+    stock: 10,
+  },
+  {
+    id: 1,
+    lista_id: 1,
+    dep_id: 2,
+    precio: 500,
+    nombre: 'Art A',
+    stock: 15,
+  },
+  {
+    id: 1,
+    lista_id: 2,
+    dep_id: 1,
+    precio: 300,
+    nombre: 'Art A',
+    stock: 10,
+  },
+  {
+    id: 1,
+    lista_id: 2,
+    dep_id: 2,
+    precio: 300,
+    nombre: 'Art A',
+    stock: 15,
+  },
+  {
+    id: 2,
+    lista_id: 1,
+    dep_id: 2,
+    precio: 200,
+    nombre: 'Art B',
+    stock: 15,
+  },
+  {
+    id: 2,
+    lista_id: 1,
+    dep_id: 1,
+    precio: 200,
+    nombre: 'Art B',
+    stock: 15,
+  },
+];
 
-const dateTimeObject = new Intl.DateTimeFormat('es-AR', options);
-const date1 = dateTimeObject.format(new Date());
+// RESOLUCION 1--------------------
+const responseSortedByList = [...response].sort(
+  (a, b) => b.lista_id - a.lista_id
+);
+console.log(responseSortedByList);
+
+/*
+function reducerSortedResponse(inv, item) {
+  if (!(item.nombre in inv)) {
+    inv[item.nombre] = {
+      stock: item.stock,
+      price: item.precio,
+      it: 1,
+    };
+  } else if (inv[item.nombre].it === 1) {
+    inv[item.nombre].stock += item.stock;
+    inv[item.nombre].it += 1;
+  }
+  return inv;
+}
+const reducedSortedResponse = responseSortedByList.reduce(
+  reducerSortedResponse,
+  {}
+);
+console.log(reducedSortedResponse);
+*/
+
+// RESOLUCION 2--------------------
+function reducerSortedResponse2(inv, item) {
+  const index = inv.findIndex((invItem) => invItem.name === item.nombre);
+  if (index === -1) {
+    const tempItem = {
+      name: item.nombre,
+      stock: item.stock,
+      price: item.precio,
+      it: 1,
+    };
+    inv.push(tempItem);
+  } else if (inv[index].it === 1) {
+    inv[index].stock += item.stock;
+    inv[index].it += 1;
+  }
+  return inv;
+}
+const reducedSortedResponse2 = responseSortedByList.reduce(
+  reducerSortedResponse2,
+  []
+);
