@@ -6,7 +6,7 @@ typeof myHtml; // STRING
 
 // DOM Manipulation
 Element.closest('h1');//the h1 ancestor if it exists
-document.querySelector('') // AND document.querySelectorAll('')
+document.querySelector('[name:"filter"]:checked') // AND document.querySelectorAll('')
 document.createElement('span');
 Element.children //children[index] too
 Element.firstElementChild
@@ -83,6 +83,8 @@ Array.prototype.map() // The map() method creates a new array populated with the
 Array.prototype.forEach() // same as for Map and NodeList
 Array.prototype.includes()//we have some() and every() too
 Array.of(1, 2, 3); // [1, 2, 3]//...OR SPREAD AN ITERABLE
+// Array.from() an ITERABLE like a NodeList, or a string!
+//Will allow us to select one or more tags, with a callbackFn
 Array.from([1, 2, 3], x => x + x)// Array.from({ length: 10},(item, index) => index + 1)
 array.find(function(element, index, array) { /* ... */ }, thisArg)//the first that satisfies the function
 array.filter(function(element, index, array) { /* ... */ }, thisArg)

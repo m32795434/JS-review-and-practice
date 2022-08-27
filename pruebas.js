@@ -244,3 +244,9 @@ const reducedSortedResponse2 = responseSortedByList.reduce(
   reducerSortedResponse2,
   []
 );
+// video 56
+// probar una callbackFn sobre un Array.from(NodeList)
+/* eslint-disable */
+
+var dia;
+console.log(dia);
