@@ -3,11 +3,6 @@
   "version": "1.0.0",
   "description": "Practicing Js with Wes Bos",
   "main": "index.js",
-  "eslintConfig": {
-    "extends": [
-      "wesbos"
-    ]
-  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -45,5 +40,10 @@
   },
   "dependencies": {
     "lodash": "^4.17.21"
+  },
+  "eslintConfig": {
+    "extends": [
+      "wesbos"
+    ]
   }
 }

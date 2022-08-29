@@ -14,24 +14,24 @@
         // return is inmediatly. Resolve is alter in time.
         // the condition to reject is chequed inmediatly, and then if it's false, it is called the resolve.
         function makePizza(toppings = []) {
-            // other way: return new Promise((resolve, reject) => {
-            const pizzaPromise = new Promise((resolve, reject) => {
-                // if someone is trying to order with pineaple, reject
-                if (toppings.includes('pineapple')) {
-                    reject(new Error('DO NOT PUT pineapple on pizza'));
-                }
-                // base bake time 500ms, and 200ms for each topping
-                const bakeTime = 500 + toppings.length * 200;
-                setTimeout(() => {
-                    // when you are ready, you can resolve this promise
-                    resolve(`here is your 🍕 with ${toppings.join(', ')}`);
-                }, bakeTime);
-            });
-            return pizzaPromise;
+          // other way: return new Promise((resolve, reject) => {
+          const pizzaPromise = new Promise((resolve, reject) => {
+            // if someone is trying to order with pineaple, reject
+            if (toppings.includes('pineapple')) {
+              reject(new Error('DO NOT PUT pineapple on pizza'));
+            }
+            // base bake time 500ms, and 200ms for each topping
+            const bakeTime = 500 + toppings.length * 200;
+            setTimeout(() => {
+              // when you are ready, you can resolve this promise
+              resolve(`here is your 🍕 with ${toppings.join(', ')}`);
+            }, bakeTime);
+          });
+          return pizzaPromise;
         }
 
         function handleError(error) {
-            console.error(error);
+          console.error(error);
         }
         /*
         const peperoniPromise = makePizza(['pepperoni']);
@@ -81,11 +81,11 @@
         // STATIC METHODS
         // Promise.race() WILL INFO WHEN IT'S READY THE FIRST PIZZA. AND THEN AL THE OTHERS AT ONCE.
         const dinnerPromise = Promise.all([
-            pizzaFugaceta,
-            pizzaMozarella,
-            pizzaPalmitos,
-            pizzaTropical,
-            pizzaLarga,
+          pizzaFugaceta,
+          pizzaMozarella,
+          pizzaPalmitos,
+          pizzaTropical,
+          pizzaLarga,
         ]);
 
         // this resolve before the //101, because this last, is waiting others to resolve before.And! the event loop is waiting the Call Stack to be empty.
@@ -96,19 +96,19 @@
         }).catch(handleError);
         /* eslint-enable */
         const lunchPromise = Promise.all([
-            pizzaFugaceta,
-            pizzaMozarella,
-            pizzaPalmitos,
-            pizzaTropical,
-            pizzaLarga,
+          pizzaFugaceta,
+          pizzaMozarella,
+          pizzaPalmitos,
+          pizzaTropical,
+          pizzaLarga,
         ]);
         console.log(lunchPromise);
 
         lunchPromise
-            .then((result) => {
-                console.log(result);
-            })
-            .catch(handleError);
+          .then((result) => {
+            console.log(result);
+          })
+          .catch(handleError);
 
         // MORE PIZZAS!
         const pizzaCaballo = makePizza(['eggs', 'mozarella', 'chips', 'tomato']);
@@ -117,7 +117,7 @@
         // THIS STATICK METHOD WILL GIVE US MUCH MORE INFO, INDIVIDUALLY FOR EVERY FULLFILED OR REJECTED PROMISE
         const dinnerPromise2 = Promise.allSettled([pizzaCaballo, pizzaPollo]);
         dinnerPromise2.then((results) => {
-            console.log(results);
+          console.log(results);
         });
     </script>
 

@@ -64,6 +64,8 @@ Element.replaceWith()
 Number.parseFloat(string)// returns a floating point number
 parseInt(string, radix)// part of the JavaScript's standard, built-in objects
 string.sort()//sort alfabetically
+'string'.substring(0,5);//'strin'
+
 //Math
 Math.floor(Math.random());
 Math.abs();Math.ceil();Math.round();Math.max();Math.pow();
