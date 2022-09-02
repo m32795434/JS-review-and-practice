@@ -15,11 +15,6 @@
   "bugs": {
     "url": "https://github.com/m32795434/JS-review-and-practice/issues"
   },
-  "eslintConfig": {
-    "extends": [
-      "wesbos"
-    ]
-  },
   "homepage": "https://github.com/m32795434/JS-review-and-practice#readme",
   "devDependencies": {
     "@babel/core": "^7.16.0",
@@ -39,7 +34,6 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.27.1",
     "eslint-plugin-react-hooks": "^4.3.0",
-    "parcel": "^2.5.0",
     "prettier": "^2.5.1",
     "typescript": "^4.5.2"
   },

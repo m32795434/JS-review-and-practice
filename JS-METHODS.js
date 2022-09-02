@@ -136,7 +136,7 @@ console.groupEnd(`name: ${person.name}`);
 
 // HOT-TIPS
 window.location = event.currentTarget.href;
-const { width, height } = canvas; // ES6 destructuring
+const { width, height } = canvas; // Declaring 2 variables at once.ES6 destructuring
 function draw({ key }){}//destructuring "key" property as parameter
 Object.entries(meats).forEach(([item, qty]) => console.log(item, qty));s
 //data-type-min --> dataset.typeMin
@@ -144,5 +144,3 @@ const desc = card.dataset.description;//getting dataset attributes
 const isOutside = !event.target.closest('.modal-inner');
 buttonClicked.closest('.playerCard').remove();
 
-
-//video 48

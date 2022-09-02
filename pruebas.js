@@ -244,6 +244,3 @@ const reducedSortedResponse2 = responseSortedByList.reduce(
   []
 );
 // video 56
-// probar una callbackFn sobre un Array.from(NodeList)
-
-const variable1 = 1;
