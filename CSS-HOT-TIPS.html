@@ -73,12 +73,16 @@
         overflow: scroll;
     }
 
+    .shopping-item input[type="checkbox"]:checked+.itemName {
+        opacity: 0.5;
+    }
+
     /*TO SEE HOW TO MANAGE CSS VARIABLES ON JAVASCRIPT SEE playground\switch-statements.html*/
 </style>
 <script>
     const myImg = document.querySelector('img');
     myImg.addEventListener('click', () => {
-      myImg.classList.toggle('round');
+        myImg.classList.toggle('round');
     });
 </script>
 
