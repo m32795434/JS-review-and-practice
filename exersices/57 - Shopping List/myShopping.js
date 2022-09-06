@@ -73,4 +73,4 @@ list.addEventListener('click', (e) => {
   }
 });
 
-// restoreFromLocalStorage();
+restoreFromLocalStorage();
