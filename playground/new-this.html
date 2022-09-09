@@ -15,53 +15,63 @@
     <button class="two">
         button two
     </button>
-    <script>
-        // this = local(variable), closure or global(window)
+    <script>// this = local(variable), closure or global(window)
+        // https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
+        /* While anonymous (and all traditional JavaScript functions) create their own "this" bindings, 
+        arrow functions inherit the "this" binding of the containing function. Ex: inside addEventListener(), or a Class */
+        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this
+        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions
         const myDate = new Date('novenber 10, 1995');
-        console.dir(myDate); // >Fri Nov 10 1995 00:00:00 GMT-0300 (Uruguay Standard Time)
-        console.log(myDate.getFullYear()); // 1995
         console.log(typeof myDate); // 'object'
         console.log(myDate instanceof Date); // true
         const names = ['jhon', 'dominic']; // this is the same as const names = new Array('jhon', 'dominic');
         console.log(typeof names); // 'object'
         console.log(names instanceof Array); // true
-        const myNumber = new Number(100);
-        console.log(myNumber); // >Number {100}
-        console.log(typeof myNumber); // 'object'
-        console.log(myNumber instanceof Number); // true
-        const myNumber1 = 100;
-        console.log(typeof myNumber1); // 'number' // IS NOT AN OBJECT
-        console.log(myNumber1 instanceof Number); // false
-        const name = 'jhon';
-
+        /*eslint-disable*/
         function Pizza(value) {
-            // return `${value} pizza`;
             console.log(`making a pizza of ${value}`);
-            console.log(this); // Window or "Pizza"
+            function imprimir() {
+                'use strict';//this = undefinded in stric mode (have to use apply, bind or call)
+                console.log(this); // Window // in non-strict mode(Window or Global Object is binded as default when function is created)
+            }
+            imprimir();
+        }
+        /*eslint-enaable*/
+        function Pizza1(value) {
+            console.log(`making a pizza of ${value}`);
+            const imprimir = () => {
+                // 'use strict';  //this = inherit the "this" binding of the containing function. stric or non strict
+                console.log(this);//Pizza1
+            }
+            imprimir();
         }
 
-        const pizzaPeperoni = Pizza('pepperoni');
-        console.log(pizzaPeperoni); // undefined
         const pizzaPrimavera = new Pizza('palmitos');
         console.log(pizzaPrimavera); // >Pizza {} -- THIS IS THE CONSTRUCTOR
         console.log(pizzaPrimavera.constructor); // ƒ Pizza() {console.log('making a pizza');}
         console.log(pizzaPrimavera instanceof Pizza); // true
-        /*
-                const button1 = document.querySelector('.one');
-                const button2 = document.querySelector('.two');
-              
-                function tellMeAboutTheButton() {
-                    console.log(this); // button
-                    setTimeout(() => {
-                        // rader than using "this", is better to use "e.target" and"e.currentTarget" in this case.
-                        this.textContent = 'I was clicked'; // with arrow function "this" refers to the object that is refered or bound, in the upper scope.
-                    }, 2000);
-                }
-        
-                button1.addEventListener('click', tellMeAboutTheButton);
-                button2.addEventListener('click', tellMeAboutTheButton); */
+        const pizzaMuzza = new Pizza1('muzza');
 
-        console.clear();
+        //-----------------------------------------------------------
+        // An object can be passed as the first argument to call
+        // or apply, and this will be bound to it.
+        const obj = { a: 'Custom' };
+
+        // Variables declared with var become properties of the global object.
+        /*eslint-disable*/
+        var a = 'Global';
+
+        function whatsThis() {
+            return this.a; // The value of "this" is dependent on how the function is called
+        }
+
+        whatsThis(); // 'Global' as "this" in the function isn't set, so it defaults to the global/window object in non–strict mode
+        whatsThis.call(obj); // 'Custom' as this in the function is set to obj
+        whatsThis.apply(obj); // 'Custom' as this in the function is set to obj
+        //The call, apply and bind methods are NOT suitable as arrow functions
+        //-----------------------------------------------------------
+
+        // console.clear();
 
         // with "this" we will be adding data and functionallity (properties) to the object (the instance of Pizza2)
         function Pizza2(toppings = [], customer) {
@@ -119,6 +129,8 @@
         const pizzaPeperoni2 = new Pizza2(['pepperoni', 'pimientos'], 'dominic');
         console.log(pizzaPeperoni2.eat === pizzaCalabresa.eat); // true
         console.log(pizzaCalabresa);
+
+
     </script>
 </body>
 
