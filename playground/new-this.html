@@ -71,8 +71,8 @@
         //The call, apply and bind methods are NOT suitable as arrow functions
         //-----------------------------------------------------------
 
-        // console.clear();
-
+        console.clear();
+        /*eslint-disable*/
         // with "this" we will be adding data and functionallity (properties) to the object (the instance of Pizza2)
         function Pizza2(toppings = [], customer) {
             // save the toppings that were passed in, to this instance of pizza
@@ -81,31 +81,22 @@
             this.id = Math.floor(Math.random() * 16777215).toString(16);
             this.slices = 10;
             this.size = 'large';
-            // this.eat = function () {
-            //     if (this.slices > 1) {
-            //         this.slices -= 1;
-            //         console.log(`you already have ${this.slices} slices to eat`);
-            //     } else if (this.slices === 1) {
-            //         this.slices -= 1;
-            //         console.log('you eat the last! You have no slices left');
-            //     }
-            //     return this.slices;
-            // };
+            this.eat = function () {
+                // 'use strict';//no matters if it's stric, or not, or traditional or arrow function. Because it's declarated with "this."
+                if (this.slices > 1) {
+                    this.slices -= 1;
+                    console.log(`you already have ${this.slices} slices to eat`);
+                } else if (this.slices === 1) {
+                    this.slices -= 1;
+                    console.log('you eat the last! You have no slices left');
+                }
+                return this.slices;
+            };
         }
 
         // PROTOTYPES!
 
         Pizza2.prototype.size = 'medium'; // the propertie in the instance has priority
-        Pizza2.prototype.eat = function () {
-            if (this.slices > 1) {
-                this.slices -= 1;
-                console.log(`you already have ${this.slices} slices to eat`);
-            } else if (this.slices === 1) {
-                this.slices -= 1;
-                console.log('you eat the last! You have no slices left');
-            }
-            return this.slices;
-        };
         Pizza2.prototype.describe = function () {
             console.log(
                 `${this.customer}! you have a ${this.size} pizza with ${this.toppings.join(
@@ -127,8 +118,9 @@
         console.log('MAKE ME SARCASTIC'.sarcastic()); // MaKe mE SaRcAsTiC
         const pizzaCalabresa = new Pizza2(['calabresa', 'queso', 'aceitunas'], 'jhon');
         const pizzaPeperoni2 = new Pizza2(['pepperoni', 'pimientos'], 'dominic');
-        console.log(pizzaPeperoni2.eat === pizzaCalabresa.eat); // true
+        console.log(pizzaPeperoni2.eat === pizzaCalabresa.eat);
         console.log(pizzaCalabresa);
+        console.log(Pizza2)
 
 
     </script>
