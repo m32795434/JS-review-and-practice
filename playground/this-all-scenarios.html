@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button class="boton1">boton1</button>
+    <button class="boton2">boton2</button>
+    <script>// atention to the apply()!!
+        function utilsFunction() {
+            console.log(this); // utilsObject because the apply; else = window
+            const i = 20;
+            function holaThis1() {
+                console.log(this); // window as default, inside a function or global scope. No matters the "this" binding from the upper scope.
+            }
+            const holathis2 = () => console.log(this); // utilsObject because the inheritance from the containing scope
+            holaThis1();
+            holathis2();
+        }
+
+        const utilsObject = {
+            this: this, // window. it's an object from window scope.
+            i: 25,
+            holaThis1() {
+                console.log(this); // utilsObject because we are inside an object. For properties use traditional functions, unless we need to bind an upper scope.
+            },
+            holaThis2: () => console.log(this), // window, because the inheritance
+        };
+
+        utilsObject.holaThis1();
+        utilsObject.holaThis2();
+        console.log(utilsObject.this); // window
+        utilsFunction.apply(utilsObject);
+
+        function Persona() {
+            console.log(this); // Persona{}. Because it's a Class!
+            this.obj = {
+                imprimir: () => console.log(this), // Persona{}
+            };
+            function holaThis1() {
+                console.log(this); // window as default. function inside a function
+            }
+            const holaThis2 = () => console.log(this); // Persona{}
+            this.holaThis3 = function () {
+                console.log(this); // Persona{}, because the "this"declaration
+            };
+            this.holaThis4 = () => console.log(this); // Persona, because inheritance and the "this" declaration
+            holaThis2();
+            holaThis1();
+            this.holaThis3();
+            this.holaThis4();
+            this.obj.imprimir();
+        }
+        Persona.prototype.utils = {
+            thisPrototypeUtilsScope: this, // window. object, from an object, from a traditional function.
+            holaThis1() {
+                console.log(this); // utils, because it's an object property!
+            },
+            holaThis2: () => console.log(this), // window becasuse inheritance
+        };
+        console.log(Persona.prototype.utils.thisPrototypeUtilsScope); // window
+        Persona.prototype.utils.holaThis1();
+        Persona.prototype.utils.holaThis2();
+
+        // use traditional functions as properties!
+        Persona.prototype.imprimir = function () {
+            console.log(this); // prototype, because imprimir is a property of the prototype-
+            function holaThis1() {
+                console.log(this); // window as default. function inside a function.
+            }
+            const holaThis2 = () => console.log(this); // prototype becasuse inheritance
+            holaThis1();
+            holaThis2();
+        };
+        Persona.prototype.imprimir2 = () => {
+            console.log(this); // window. we are inside an object, that lives inside a function.
+            function holaThis1() {
+                console.log(this); // window as default. function inside a function.
+            }
+            const holaThis2 = () => console.log(this); // window. from inheritance
+            holaThis1();
+            holaThis2();
+        };
+        Persona.prototype.imprimir();
+        Persona.prototype.imprimir2();
+        const Manuel = new Persona();
+    </script>
+</body>
+
+</html>
