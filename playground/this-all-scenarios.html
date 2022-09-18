@@ -24,12 +24,12 @@
         }
 
         const utilsObject = {
-            this: this, // window. it's an object from window scope.
+            this: this, // window. it's an object from Global scope.
             i: 25,
             holaThis1() {
                 console.log(this); // utilsObject because we are inside an object. For properties use traditional functions, unless we need to bind an upper scope.
             },
-            holaThis2: () => console.log(this), // window, because the inheritance
+            holaThis2: () => console.log(this), // window, because the inheritance from the containing scope
         };
 
         utilsObject.holaThis1();
@@ -78,7 +78,7 @@
             holaThis2();
         };
         Persona.prototype.imprimir2 = () => {
-            console.log(this); // window. we are inside an object, that lives inside a function.
+            console.log(this); // window. we are inside an object, that lives inside a function. We are not inside the Class definition.
             function holaThis1() {
                 console.log(this); // window as default. function inside a function.
             }

@@ -243,4 +243,3 @@ const reducedSortedResponse2 = responseSortedByList.reduce(
   reducerSortedResponse2,
   []
 );
-// video 56

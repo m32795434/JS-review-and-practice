@@ -98,6 +98,9 @@ array.sort((a,b)=>{return a-b})//sort by number
 array.forEach()//forEach is a method that executes a provided function once for each array element.
 array.reduce(callbackFn, initialValue)
 
+// DOMTokenList(a classLsit for example)
+classList.contains('modal');
+
 //working with Objects
 "propertyNN" in Object;//returns true if the specified property is in the specified object or its prototype chain.
 Object.hasOwn(object1, 'prop')//true if isn't inherited
@@ -138,7 +141,7 @@ console.groupEnd(`name: ${person.name}`);
 window.location = event.currentTarget.href;
 const { width, height } = canvas; // Declaring 2 variables at once.ES6 destructuring
 function draw({ key }){}//destructuring "key" property as parameter
-Object.entries(meats).forEach(([item, qty]) => console.log(item, qty));s
+Object.entries(meats).forEach(([item, qty]) => console.log(item, qty));
 //data-type-min --> dataset.typeMin
 const desc = card.dataset.description;//getting dataset attributes
 const isOutside = !event.target.closest('.modal-inner');
