@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>This scenarios</title>
 </head>
 
 <body>
@@ -89,6 +89,20 @@
         Persona.prototype.imprimir();
         Persona.prototype.imprimir2();
         const Manuel = new Persona();
+
+        // es6 class
+        class Auto {
+            constructor(marca) {
+                this.marca = marca;
+            }
+
+            // helloThis lives in the prototype
+            helloThis() {
+                console.log(this); // (Auto). NIEITHER WINDOW OR PROTOTYPE! BECAUSE WE ARE INTO A ES6 CLASS
+            }
+        }
+        const autoChevy = new Auto('chevrolet');
+        autoChevy.helloThis(); // Auto
     </script>
 </body>
 

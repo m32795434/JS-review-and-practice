@@ -243,3 +243,42 @@ const reducedSortedResponse2 = responseSortedByList.reduce(
   reducerSortedResponse2,
   []
 );
+
+/// ///////////////////
+/*
+class Automovil {
+  constructor(marca, modelo, km) {
+    this.marca = marca;
+    this.modelo = modelo;
+    this.km = km;
+    this.gasolina = 0;
+  }
+
+  doblarIzquierda() {
+    console.log('doblando izquierda');
+  }
+
+  viajar(kmRecorridos) {
+    this.km += kmRecorridos;
+    return this.km;
+  }
+
+  cargarGasolina(lt) {
+    this.gasolina += lt;
+    this.pasajeros = 0;
+    return this.gasolina;
+  }
+}
+
+class Auto extends Automovil {
+  constructor(marca, modelo, km, pasajeros) {
+    super(marca, modelo, km);
+    this.pasajeros = pasajeros;
+  }
+
+  derrapar() {
+    console.log('freno de mano activado..derrapando');
+  }
+}
+const auto1 = new Auto('chevrolet', 2015, 70000, 20);
+*/
