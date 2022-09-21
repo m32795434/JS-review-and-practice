@@ -48,6 +48,11 @@
         animation: 3s infinite alternate slidein;
     }
 
+    /* the first .slide element that is placed immediately after .slide.next element */
+    .slide.next+.slide {
+        transform: translateX(200%);
+    }
+
     /* more control than a transition / javaScript: use the CSSKeyframesRule object, and listen to animationend, start, and iteration*/
     @keyframes slidein {
         from {
