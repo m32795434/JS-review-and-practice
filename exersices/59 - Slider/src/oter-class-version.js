@@ -1,58 +1,55 @@
-function Slider(slider) {
-  if (!slider || !(slider instanceof Element)) {
-    throw new Error('Sldier not found or not an Element');
-  }
-  let current;
-  let next;
-  let prev;
-  const slides = slider.querySelector('.slides');
-  console.log(slides);
-  const prevButton = slider.querySelector('.goToPrev');
-  const nextButton = slider.querySelector('.goToNext');
+class Slider {
+  constructor(slider) {
+    if (!slider || !(slider instanceof Element)) {
+      throw new Error('Sldier not found or not an Element');
+    }
+    /*eslint-disable*/
+    this.slider = slider;
+    this.slides = this.slider.querySelector('.slides');
+    this.current =
+      (this.slider.querySelector('.current') || this.slides.firstElementChild);
+    this.next =
+    (this.current.nextElementSibling || this.slides.firstElementChild);
+    this.prev =
+    (this.current.previousElementSibling || this.slides.lastElementChild);
+      /* eslint-enable */
+    const prevButton = this.slider.querySelector('.goToPrev');
+    const nextButton = this.slider.querySelector('.goToNext');
+    // bindings
+    this.move = this.move.bind(this);
 
-  function startSlider() {
-    current = slider.querySelector('.current') || slides.firstElementChild;
-    prev = current.previousElementSibling || slides.lastElementChild;
-    next = current.nextElementSibling || slides.firstElementChild;
-    // console.log({ current, prev, next });
+    prevButton.addEventListener('click', () => this.move('back'));
+    nextButton.addEventListener('click', this.move);
+
+    this.applyClasses();
   }
-  function applyClasses() {
-    current.classList.add('current');
-    prev.classList.add('prev');
-    next.classList.add('next');
+
+  applyClasses() {
+    this.current.classList.add('current');
+    this.prev.classList.add('prev');
+    this.next.classList.add('next');
   }
-  function move(direction) {
-    // first strip all the classes off from the currennt slides
+
+  move(direction) {
     const classesToRemove = ['current', 'prev', 'next'];
-    [current, prev, next].forEach((el) => {
+    [this.current, this.prev, this.next].forEach((el) => {
       el.classList.remove(...classesToRemove);
     });
-    // then add the new classes depending on the direction
     if (direction === 'back') {
-      // using destructuring, we ensure first, is done the array at the left, and them, we
-      // update the value of the variables that we make reference with the variables inside the array.
-      // this is SWAPPING the values of the variables. WE don't need to assign the values to temporaly variables
-      [prev, current, next] = [
-        prev.previousElementSibling || slides.lastElementChild,
-        prev,
-        current,
+      [this.prev, this.current, this.next] = [
+        this.prev.previousElementSibling || this.slides.lastElementChild,
+        this.prev,
+        this.current,
       ];
     } else {
-      [prev, current, next] = [
-        current,
-        next,
-        next.nextElementSibling || slides.firstElementChild,
+      [this.prev, this.current, this.next] = [
+        this.current,
+        this.next,
+        this.next.nextElementSibling || this.slides.firstElementChild,
       ];
     }
-    applyClasses();
+    this.applyClasses();
   }
-
-  startSlider();
-  applyClasses();
-  // console.log({ current, prev, next });
-  // EVENT LISTENERS
-  prevButton.addEventListener('click', () => move('back'));
-  nextButton.addEventListener('click', move);
 }
-const mySlider = Slider(document.querySelector('.slider'));
-const dogSlider = Slider(document.querySelector('.dog-slider'));
+const mySlider = new Slider(document.querySelector('.slider'));
+const dogSlider = new Slider(document.querySelector('.dog-slider'));

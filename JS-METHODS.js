@@ -144,7 +144,7 @@ window.location = event.currentTarget.href;
 const { width, height } = canvas; // Declaring 2 variables at once.ES6 destructuring
 function draw({ key }){}//destructuring "key" property as parameter from an {}
 Object.entries(meats).forEach(([item, qty]) => console.log(item, qty));//destructuring from an []
-[prev, current, next] = [current, next, current];//[1 2 3]=[2 3 2]!!don't run individually
+[prev, current, next] = [current, next, current];//[1 2 3]=[2 3 2]!!don't run individually-SWAPPING VARIABLES CONTENT
 //data-type-min --> dataset.typeMin
 const desc = card.dataset.description;//getting dataset attributes
 const isOutside = !event.target.closest('.modal-inner');
