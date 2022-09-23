@@ -5,6 +5,7 @@ typeof myHtml; // STRING
 
 
 // DOM Manipulation
+Element.matches('.clase')
 Element.closest('h1');//the h1 ancestor if it exists
 document.querySelector('[name:"filter"]:checked') // AND document.querySelectorAll('')
 document.createElement('span');
@@ -38,13 +39,16 @@ const myLi4 = myLi3.cloneNode(true)//clone deep true
 
 
 //Adding  and Removing Classes / Attributes
-element.classList.add('class');// or .remove()
+Element.classList.replace('una', 'otra');
+[itemsToRemoveClasses].forEach((item)=>item.classList.remove(...arraysWithClasses))// or .remove()
 itemImg.classList.toggle('round');
 myImage.src = 'https://source.unsplash.com/random/400x400';// setting attributes
 pic.setAttribute('alt', 'random2'); // onother way. Even for non-standard attributes.
 pic.getAttribute('alt')
 pic.removeAttribute('alt');
 tab.ariaSelected = false; //Camel case method for "aria-selected". I prefer setAttribute();
+// DOMTokenList(a classLsit for example)
+classList.contains('modal');
 
 //Event Listeners
 itemImg.addEventListener('click', toggleRound, { capture: true, once: true })//capture this first!and continue
@@ -98,8 +102,6 @@ array.sort((a,b)=>{return a-b})//sort by number
 array.forEach()//forEach is a method that executes a provided function once for each array element.
 array.reduce(callbackFn, initialValue)
 
-// DOMTokenList(a classLsit for example)
-classList.contains('modal');
 
 //working with Objects
 "propertyNN" in Object;//returns true if the specified property is in the specified object or its prototype chain.
@@ -140,10 +142,12 @@ console.groupEnd(`name: ${person.name}`);
 // HOT-TIPS
 window.location = event.currentTarget.href;
 const { width, height } = canvas; // Declaring 2 variables at once.ES6 destructuring
-function draw({ key }){}//destructuring "key" property as parameter
-Object.entries(meats).forEach(([item, qty]) => console.log(item, qty));
+function draw({ key }){}//destructuring "key" property as parameter from an {}
+Object.entries(meats).forEach(([item, qty]) => console.log(item, qty));//destructuring from an []
+[prev, current, next] = [current, next, current];//[1 2 3]=[2 3 2]!!don't run individually
 //data-type-min --> dataset.typeMin
 const desc = card.dataset.description;//getting dataset attributes
 const isOutside = !event.target.closest('.modal-inner');
 buttonClicked.closest('.playerCard').remove();
+
 
