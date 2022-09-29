@@ -149,5 +149,6 @@ Object.entries(meats).forEach(([item, qty]) => console.log(item, qty));//destruc
 const desc = card.dataset.description;//getting dataset attributes
 const isOutside = !event.target.closest('.modal-inner');
 buttonClicked.closest('.playerCard').remove();
+const calculator = utilities.calc.call(localTaxes, 0.15, 21)//localTaxes:the object binded. bind and apply too. bind needs an array as an argument
 
 

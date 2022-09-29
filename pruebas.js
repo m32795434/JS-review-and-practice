@@ -1,3 +1,5 @@
+/* eslint-disable max-classes-per-file */
+
 const myHtml = `
 <div>
     <h1>Hola mundo</h1>

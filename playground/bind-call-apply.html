@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="">
     <title>bind-call-apply</title>
 </head>
 
@@ -25,8 +26,7 @@
                 return `Hi ${this.name}!`;
             },
         };
-        // Javascript is a lexical scope lenguaje, but the "this" keyword is defined where the function is called.
-        // it's bounded to the object that is at the left of the dot.
+        // Javascript is a lexical scope lenguaje, but the "this" keyword is defined where the function is called, if we use call, apply or bind;
         // with "bind" we change where "this" is definded.
         const sayHi = person.sayHi.bind(person); // this = person.
         // we can call the function with another object.
@@ -61,28 +61,12 @@
         const calc = bill.calculate.bind({ total: 550 }, 0.13, 0.2);
         console.log(calc); // ƒ calculate(tax, tip = 0.1) {........}
         console.log(calc()); // WE CAN CALL IT LATER WITHOUT ARGUMENTS!
-        const calc2 = bill.calculate.call({ total: 700 }, 0.13, 0.2); // WE CALL IT!
+        const calc2 = bill.calculate.call({ total: 700 }, 0.13, 0.2); // WE BIND AND CALL IT at same time!
         console.log(calc2); // 931
-        const calc3 = bill.calculate.apply({ total: 700 }, [0.13, 0.2]); // WE CALL IT!
+        const calc3 = bill.calculate.apply({ total: 700 }, [0.13, 0.2]); // the same as above but uses an array!
         console.log(calc3); // 931
         const totalPizzaCoca = bill.describe.apply(bill, ['pizza', 'coca', 0.13]);
         console.log(totalPizzaCoca); // Your pizza accompanied with coca, cost $1330
-
-        /* or we can do this TOO: (WITHOUT THE TIP)
-        const calc = bill.calculate.bind({ total: 550 });
-        console.log(calc(0.13)); */
-
-        // WITH A FUNCTION IT WILL BE SOMETHING LIKE THIS:
-        function calcTax(total, tax) {
-            return (total * tax) / 100;
-        }
-        const tax30 = calcTax(1000, 30);
-        console.log(tax30); // 330
-        // OR!
-        const tax20 = function (total) {
-            return total * 0.2;
-        };
-        console.log(tax20(1000)); // 200
     </script>
 </body>
 
