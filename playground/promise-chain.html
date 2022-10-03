@@ -39,15 +39,8 @@
     </style>
     <div tabindex=0 class="go">CLICK ME!</div>.
     <script>
-        const wait = (ms = 0) =>
-            new Promise((resolve) => {
-                setTimeout(() => {
-                    resolve('done');
-                }, ms);
-            });
-        wait(2000).then(() => {
-            console.log('ready!');
-        });
+        // here doesn't matters the resolve(value). We await it to make a timer!
+        const wait = (ms = 0) => new Promise((resolve) => setTimeout(resolve, ms));
 
         const go = document.querySelector('.go');
 
@@ -57,30 +50,23 @@
             let wait3 = 0;
             let wait4 = 0;
             let wait5 = 0;
-            // 1. Change the text to GO when clicked
             const el = e.currentTarget;
             el.textContent = 'GO!';
-            // after 2 seconds.
             wait1 = wait(2000);
             wait1
                 .then(() => {
-                    // Make it a circle
                     el.classList.add('circle');
-                    // after 0.5s
                     wait2 = wait(500);
                     return wait2;
                 })
                 .then(() => {
-                    // make ir red
                     el.classList.add('red');
-                    // after0.25s
                     wait3 = wait(250);
                     return wait3;
                 })
                 .then(() => {
-                    // make it square
                     el.classList.remove('circle');
-                    wait4 = wait(300);
+                    wait4 = wait(1000);
                     return wait4;
                 })
                 .then(() => {
@@ -91,6 +77,7 @@
                 })
                 .then(() => {
                     el.classList.add('fadeOut');
+                    // here we check all the Promises status
                     const controlAllWaits = Promise.allSettled([
                         wait1,
                         wait2,
@@ -101,36 +88,7 @@
                     console.log(controlAllWaits);
                 });
         }
-
         go.addEventListener('click', animate);
-/*
-                                                                                                                                                                                // 1. Change the text to GO when clicked
-                                                                                                                                                                                go.addEventListener('clickxxx', (e) => {
-                                                                                                                                                                                    const el = e.currentTarget;
-                                                                                                                                                                                    el.textContent = 'GO!';
-                                                                                                                                                                                    setTimeout(() => {
-                                                                                                                                                                                        // Make it a circle after 2 seconds.
-                                                                                                                                                                                        el.classList.add('circle');
-                                                                                                                                                                                        // make ir red after 0.5s
-                                                                                                                                                                                        setTimeout(() => {
-                                                                                                                                                                                            el.classList.add('red');
-                                                                                                                                                                                            // make ir square after 0.25s
-                                                                                                                                                                                            setTimeout(() => {
-                                                                                                                                                                                                el.classList.remove('circle');
-                                                                                                                                                                                                // make ir purple after 0.3s
-                                                                                                                                                                                                setTimeout(() => {
-                                                                                                                                                                                                    el.classList.remove('red');
-                                                                                                                                                                                                    el.classList.add('purple');
-                                                                                                                                                                                                    // fade out after 0.5s
-                                                                                                                                                                                                    setTimeout(() => {
-                                                                                                                                                                                                        el.classList.add('fadeOut');
-                                                                                                                                                                                                    }, 500);
-                                                                                                                                                                                                }, 300);
-                                                                                                                                                                                            }, 250);
-                                                                                                                                                                                        }, 500);
-                                                                                                                                                                                    }, 2000);
-                                                                                                                                                                                });
-                                                                                                                                                                                */
     </script>
 </body>
 
