@@ -129,7 +129,7 @@ new Intl.DateTimeFormat('es-AR', options).format(date);
 
 
 // Alerts, console. and more
-alert(), console.log, table, dir, count
+alert(), console.log, table, dir, count, error
 confirm('this website might be malicious!. Proced?')//true or false
 
 console.groupCollapsed(`name: ${person.name}`);
@@ -138,6 +138,10 @@ console.log(`cool: ${person.cool}`);
 console.log(`DONE!`);
 console.groupEnd(`name: ${person.name}`);
 
+// Promise
+Promise.allSettled([])//more info individually for every result(resolve or reject)
+Promise.all([])
+Promise.race([])
 
 // HOT-TIPS
 window.location = event.currentTarget.href;
@@ -149,6 +153,4 @@ Object.entries(meats).forEach(([item, qty]) => console.log(item, qty));//destruc
 const desc = card.dataset.description;//getting dataset attributes
 const isOutside = !event.target.closest('.modal-inner');
 buttonClicked.closest('.playerCard').remove();
-const calculator = utilities.calc.call(localTaxes, 0.15, 21)//localTaxes:the object binded. bind and apply too. bind needs an array as an argument
-
-
+const calculator = utilities.calc.call(localTaxes, 0.15, 21)//localTaxes:the object binded. bind and apply too. bind needs an array as an argument;

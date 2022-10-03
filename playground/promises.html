@@ -2,124 +2,121 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../base.css">
-    <title>Promises</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../base.css">
+  <title>Promises</title>
 </head>
 
 <body>
-    <script>
-        // return is inmediatly. Resolve is alter in time.
-        // the condition to reject is chequed inmediatly, and then if it's false, it is called the resolve.
-        function makePizza(toppings = []) {
-          // other way: return new Promise((resolve, reject) => {
-          const pizzaPromise = new Promise((resolve, reject) => {
-            // if someone is trying to order with pineaple, reject
-            if (toppings.includes('pineapple')) {
-              reject(new Error('DO NOT PUT pineapple on pizza'));
-            }
-            // base bake time 500ms, and 200ms for each topping
-            const bakeTime = 500 + toppings.length * 200;
-            setTimeout(() => {
-              // when you are ready, you can resolve this promise
-              resolve(`here is your 🍕 with ${toppings.join(', ')}`);
-            }, bakeTime);
-          });
-          return pizzaPromise;
+  <script>
+    function makePizza(toppings = []) {
+      return new Promise((resolve, reject) => {
+        if (toppings.includes('pineapple')) {
+          // rejected "reason"
+          reject(new Error('DO NOT PUT pineapple on pizza'));
         }
+        // base bake time 500ms, and 200ms for each topping
+        const bakeTime = 500 + toppings.length * 200;
+        setTimeout(() => {
+          // resolve "value"
+          resolve(`here is your 🍕 with ${toppings.join(', ')}`);
+        }, bakeTime);
+      });
+    }
 
-        function handleError(error) {
-          console.error(error);
-        }
-        /*
-        const peperoniPromise = makePizza(['pepperoni']);
-        const canadianPromise = makePizza(['pepperoni', 'onions', 'eggs']);
-        
-        console.log(peperoniPromise, canadianPromise);
+    function handleError(error) {
+      console.error(error);
+    }
+    /*
+    const peperoniPromise = makePizza(['pepperoni']);
+    const canadianPromise = makePizza(['pepperoni', 'onions', 'eggs']);
+    
+    console.log(peperoniPromise, canadianPromise);
 
-        //ONE PIZZA AT A TIME
-                console.log('starting!');
-                peperoniPromise.then((pizza) => {
-                    console.log('pizza ready!');
-                    console.log(pizza);
-                });
-                console.log('ending!'); */
-
-        // VARIOUS PIZZAS secuencially - NOT CALLBACK HELL
-        /*eslint-disable*/
-        makePizza(['pepperoni'])
-            .then(function (pizza) {
+    //ONE PIZZA AT A TIME
+            console.log('starting!');
+            peperoniPromise.then((pizza) => {
+                console.log('pizza ready!');
                 console.log(pizza);
-                return makePizza();
-            })
-            .then(function (pizza) {
-                console.log(pizza);
-                return makePizza(['jam', 'eggs', 'tomatoes', 'pineapple']);
-            })
-            .then(function (pizza) {
-                //101
-                console.log(pizza);
-                return makePizza(['two', 'one', 'two', 'one', 'two', 'one', 'two', 'one', 'two', 'one', 'two', 'one', 'two']);
-            })
-            .then(function (pizza) {
-                console.log(pizza);
-            }).catch(handleError);//will show error, and stop the secuense to running.
+            });
+            console.log('ending!'); */
 
-        /* eslint-enable */
-        console.clear(); // DOENS'T WORK BECASUSE OF THE PROMISE. THIS PROMISES RESOLVE LATER THAN THE .clear()
-        /*eslint-disable*/
+    // VARIOUS PIZZAS secuencially - NOT CALLBACK HELL
+    /*eslint-disable*/
+    makePizza(['pepperoni'])
+      .then(function (pizza) {
+        console.log(pizza);
+        return makePizza();
+      })
+      .then(function (pizza) {
+        console.log(pizza);
+        return makePizza(['jam', 'eggs', 'tomatoes', 'pineapple']);
+      })
+      .then(function (pizza) {
+        //101
+        console.log(pizza);
+        return makePizza(['two', 'one', 'two', 'one', 'two', 'one', 'two', 'one', 'two', 'one', 'two', 'one', 'two']);
+      })
+      .then(function (pizza) {
+        console.log(pizza);
+        //uncought: without a handleError function
+      }).catch(handleError);//will show error, and stop the secuense to running.
 
-        //RUNNING CONCURRENTLY
-        const pizzaFugaceta = makePizza(['onion', 'tomato', 'mozzarella', 'oregano']);
-        const pizzaMozarella = makePizza(['mozzarella']);
-        const pizzaPalmitos = makePizza(['Palm', 'olives', 'mozzarella', 'oregano', 'golf sauce']);
-        const pizzaTropical = makePizza(['onion', 'tomato', 'mozzarella', 'oregano']);
-        const pizzaLarga = makePizza(['onion', 'tomato', 'mozzarella', 'oregano', 'Palm', 'olives', 'mozzarella', 'oregano', 'golf sauce']);
-        /* eslint-enable */
-        // STATIC METHODS
-        // Promise.race() WILL INFO WHEN IT'S READY THE FIRST PIZZA. AND THEN AL THE OTHERS AT ONCE.
-        const dinnerPromise = Promise.all([
-          pizzaFugaceta,
-          pizzaMozarella,
-          pizzaPalmitos,
-          pizzaTropical,
-          pizzaLarga,
-        ]);
+    /* eslint-enable */
+    console.clear(); // DOENS'T WORK BECASUSE OF THE PROMISE. THIS PROMISES RESOLVE LATER THAN THE .clear()
+    /*eslint-disable*/
 
-        // this resolve before the //101, because this last, is waiting others to resolve before.And! the event loop is waiting the Call Stack to be empty.
-        // <destructuring the result>
-        /*eslint-disable*/
-        dinnerPromise.then(function ([pizzaFugaceta, pizzaMozarella, pizzaPalmitos, pizzaTropical, pizzaLarga]) {
-            console.log(`👌${pizzaFugaceta}, 👌${pizzaMozarella}, 👌${pizzaPalmitos}, 👌${pizzaTropical}, 👌${pizzaLarga}`);
-        }).catch(handleError);
-        /* eslint-enable */
-        const lunchPromise = Promise.all([
-          pizzaFugaceta,
-          pizzaMozarella,
-          pizzaPalmitos,
-          pizzaTropical,
-          pizzaLarga,
-        ]);
-        console.log(lunchPromise);
+    //RUNNING CONCURRENTLY
+    const pizzaFugaceta = makePizza(['onion', 'tomato', 'mozzarella', 'oregano']);
+    const pizzaMozarella = makePizza(['mozzarella']);
+    const pizzaPalmitos = makePizza(['Palm', 'olives', 'mozzarella', 'oregano', 'golf sauce']);
+    const pizzaTropical = makePizza(['onion', 'tomato', 'mozzarella', 'oregano']);
+    const pizzaLarga = makePizza(['onion', 'tomato', 'mozzarella', 'oregano', 'Palm', 'olives', 'mozzarella', 'oregano', 'golf sauce']);
+    /* eslint-enable */
+    // STATIC METHODS
+    // Promise.race() WILL INFO WHEN IT'S READY THE FIRST PIZZA. AND THEN AL THE OTHERS AT ONCE.
+    const dinnerPromise = Promise.all([
+      pizzaFugaceta,
+      pizzaMozarella,
+      pizzaPalmitos,
+      pizzaTropical,
+      pizzaLarga,
+    ]);
 
-        lunchPromise
-          .then((result) => {
-            console.log(result);
-          })
-          .catch(handleError);
+    // this resolve before the //101, because this last, is waiting others to resolve before.And! the event loop is waiting the Call Stack to be empty.
+    // <destructuring the result>
+    /*eslint-disable*/
+    dinnerPromise.then(function ([pizzaFugaceta, pizzaMozarella, pizzaPalmitos, pizzaTropical, pizzaLarga]) {
+      console.log(`👌${pizzaFugaceta}, 👌${pizzaMozarella}, 👌${pizzaPalmitos}, 👌${pizzaTropical}, 👌${pizzaLarga}`);
+    }).catch(handleError);
+    /* eslint-enable */
+    const lunchPromise = Promise.all([
+      pizzaFugaceta,
+      pizzaMozarella,
+      pizzaPalmitos,
+      pizzaTropical,
+      pizzaLarga,
+    ]);
+    console.log(lunchPromise);
 
-        // MORE PIZZAS!
-        const pizzaCaballo = makePizza(['eggs', 'mozarella', 'chips', 'tomato']);
-        const pizzaPollo = makePizza(['chicken', 'pineapple', 'chips', 'tomato']);
+    lunchPromise
+      .then((result) => {
+        console.log(result);
+      })
+      .catch(handleError);
 
-        // THIS STATICK METHOD WILL GIVE US MUCH MORE INFO, INDIVIDUALLY FOR EVERY FULLFILED OR REJECTED PROMISE
-        const dinnerPromise2 = Promise.allSettled([pizzaCaballo, pizzaPollo]);
-        dinnerPromise2.then((results) => {
-          console.log(results);
-        });
-    </script>
+    // MORE PIZZAS!
+    const pizzaCaballo = makePizza(['eggs', 'mozarella', 'chips', 'tomato']);
+    const pizzaPollo = makePizza(['chicken', 'pineapple', 'chips', 'tomato']);
+
+    // THIS STATICK METHOD WILL GIVE US MUCH MORE INFO, INDIVIDUALLY FOR EVERY FULLFILED OR REJECTED PROMISE
+    const dinnerPromise2 = Promise.allSettled([pizzaCaballo, pizzaPollo]);
+    dinnerPromise2.then((results) => {
+      console.log(results);
+    });
+  </script>
 
 </body>
 
