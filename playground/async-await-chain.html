@@ -48,24 +48,17 @@
         wait(2000).then((result) => {
             console.log(`${result} in 2s`);
         });
-        console.log('SYNCHRONOUS!!!');
+
         const go = document.querySelector('.go');
 
         async function animate(e) {
-            // 1. Change the text to GO when clicked
             const el = e.currentTarget;
             el.textContent = 'GO!';
-            // after 2 seconds.
             await wait(2000);
-            // Make it a circle
             el.classList.add('circle');
-            // after 0.5s
             await wait(500);
-            // make ir red
             el.classList.add('red');
-            // after0.25s
             await wait(250);
-            // make it square
             el.classList.remove('circle');
             await wait(300);
             el.classList.remove('red');

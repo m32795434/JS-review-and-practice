@@ -43,7 +43,7 @@
             });
             console.log('ending!'); */
 
-    // VARIOUS PIZZAS secuencially - NOT CALLBACK HELL
+    // ONE LEVEL DEAP! - secuencially - NOT CALLBACK HELL
     /*eslint-disable*/
     makePizza(['pepperoni'])
       .then(function (pizza) {
@@ -78,6 +78,7 @@
     // STATIC METHODS
     // Promise.race() WILL INFO WHEN IT'S READY THE FIRST PIZZA. AND THEN AL THE OTHERS AT ONCE.
     const dinnerPromise = Promise.all([
+      // a BIG PROMISE
       pizzaFugaceta,
       pizzaMozarella,
       pizzaPalmitos,
@@ -85,9 +86,9 @@
       pizzaLarga,
     ]);
 
-    // this resolve before the //101, because this last, is waiting others to resolve before.And! the event loop is waiting the Call Stack to be empty.
-    // <destructuring the result>
     /*eslint-disable*/
+    //CHECKING THE RESOLVE VALUES OR THE REJECT REASONS
+    // <destructuring the result>
     dinnerPromise.then(function ([pizzaFugaceta, pizzaMozarella, pizzaPalmitos, pizzaTropical, pizzaLarga]) {
       console.log(`👌${pizzaFugaceta}, 👌${pizzaMozarella}, 👌${pizzaPalmitos}, 👌${pizzaTropical}, 👌${pizzaLarga}`);
     }).catch(handleError);
@@ -107,12 +108,13 @@
       })
       .catch(handleError);
 
-    // MORE PIZZAS!
+    // RUNNING MORE PIZZAS!
     const pizzaCaballo = makePizza(['eggs', 'mozarella', 'chips', 'tomato']);
     const pizzaPollo = makePizza(['chicken', 'pineapple', 'chips', 'tomato']);
 
     // THIS STATICK METHOD WILL GIVE US MUCH MORE INFO, INDIVIDUALLY FOR EVERY FULLFILED OR REJECTED PROMISE
     const dinnerPromise2 = Promise.allSettled([pizzaCaballo, pizzaPollo]);
+    // CHECKING THE STATUS OF THE PROMISE
     dinnerPromise2.then((results) => {
       console.log(results);
     });
