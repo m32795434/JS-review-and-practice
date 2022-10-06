@@ -10,12 +10,12 @@
 
 <body>
     <script>
+        // with await WE WAIT, THE MARKED INSTRUCTION(with await), TO BE RESOLVED.
         function wait(ms) {
             return new Promise((resolve) => {
                 setTimeout(resolve, ms);
             });
         }
-
         function makePizza(toppings = []) {
             return new Promise((resolve, reject) => {
                 if (toppings.includes('pineapple')) {
@@ -36,7 +36,6 @@
             // grab and store the result(like .then()), with "await"
             const pizza2 = await makePizza(['onions', 'jam', 'onions', 'jam', 'onions']);
             console.log(pizza2); // the result
-            // wait for pizza2 and continue (inside this function)
             const pizza3 = await makePizza(['onions', 'jam']); // grab and store the result(like .then())
             console.log(pizza3); // the result
         }
