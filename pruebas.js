@@ -284,3 +284,13 @@ class Auto extends Automovil {
 }
 const auto1 = new Auto('chevrolet', 2015, 70000, 20);
 */
+
+// Promises
+/*
+function makeSafe(fn, handleStatus) {
+  return function () {
+      fn().catch(handleStatus);
+  };
+}
+const safeGo = makeSafe(go2, handleStatus);
+safeGo(); */

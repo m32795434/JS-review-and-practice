@@ -11,6 +11,7 @@
 <body>
     <script>
         // with await WE WAIT, THE MARKED INSTRUCTION(with await), TO BE RESOLVED.
+        // if we want to know the RESOLVE, we allways HAVE TO store the await's return;
         function wait(ms) {
             return new Promise((resolve) => {
                 setTimeout(resolve, ms);

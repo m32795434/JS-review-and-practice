@@ -45,9 +45,6 @@
                     resolve('done!');
                 }, ms);
             });
-        wait(2000).then((result) => {
-            console.log(`${result} in 2s`);
-        });
 
         const go = document.querySelector('.go');
 
@@ -56,7 +53,7 @@
             el.textContent = 'GO!';
             await wait(2000);
             el.classList.add('circle');
-            await wait(500);
+            await wait(1000);
             el.classList.add('red');
             await wait(250);
             el.classList.remove('circle');

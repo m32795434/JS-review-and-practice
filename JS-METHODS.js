@@ -142,6 +142,13 @@ console.groupEnd(`name: ${person.name}`);
 Promise.allSettled([])//more info individually for every result(resolve or reject)
 Promise.all([])
 Promise.race([])
+try{}catch(){} // for the async await
+
+//TIMERS
+setTimeout(callbackFn, ms);
+setInterval(callbackFn, ms);
+clearInterval(reference), clearTimeout(reference);
+
 
 // HOT-TIPS
 window.location = event.currentTarget.href;
