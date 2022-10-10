@@ -64,15 +64,31 @@ let { timeZone, locale } = Intl.DateTimeFormat().resolvedOptions(); // eg: Ameri
 if (timeZone === 'America/Montevideo') {
   locale = 'es-AR';
 }
+let indDate = 0;
+const localesTZones = [
+  'pt-BR',
+  'en-US',
+  'es-ES',
+  'en-GB',
+  'pl-PL',
+  'uk-UA',
+  'be-BY',
+  'ja-JP',
+  'zh-Hant-MO',
+  'es-AR',
+];
 // const arEG = new Intl.Locale("ar-EG");//to show the allowed locales
 // console.log(arEG.timeZones); // logs ["Africa/Cairo"]
-/*
-options = {
-  year: 'numeric', month: 'numeric', day: 'numeric',
-  hour: 'numeric', minute: 'numeric', second: 'numeric',
+
+const dateOptions = {
+  year: 'numeric',
+  month: 'short',
+  day: 'numeric',
+  hour: 'numeric',
+  minute: 'numeric',
   hour12: false,
-  timeZone: 'America/Los_Angeles'
-}; */
+  timeZone,
+}; /*
 const dateOptions = {
   weekday: 'long',
   year: 'numeric',
@@ -82,12 +98,28 @@ const dateOptions = {
   minute: 'numeric',
   second: 'numeric',
   timeZone,
-};
+}; */
 
 // dateObject
 const dateObject = new Intl.DateTimeFormat(locale, dateOptions);
-const myDateTextContent = dateObject.format(new Date());
-myDate.textContent = myDateTextContent;
+myDate.textContent = dateObject.format(new Date());
+
+function changeDate() {
+  console.log('clicked!');
+  if (indDate > -1 && indDate < localesTZones.length) {
+    locale = localesTZones[indDate];
+    const text = new Intl.DateTimeFormat(locale, dateOptions).format(
+      new Date()
+    );
+    myDate.textContent = text;
+  }
+  if (indDate === localesTZones.length - 1) {
+    indDate = 0;
+  } else {
+    indDate++;
+  }
+}
+myDate.addEventListener('click', changeDate);
 
 // REPLACING AN OBJECT PROPERTY NAME
 
@@ -331,24 +363,3 @@ class Auto extends Automovil {
 }
 const auto1 = new Auto('chevrolet', 2015, 70000, 20);
 */
-
-const options = {
-  enableHighAccuracy: true,
-  timeout: 5000,
-  maximumAge: 0,
-};
-
-function success(pos) {
-  const crd = pos.coords;
-
-  console.log('Your current position is:');
-  console.log(`Latitude : ${crd.latitude}`);
-  console.log(`Longitude: ${crd.longitude}`);
-  console.log(`More or less ${crd.accuracy} meters.`);
-}
-
-function error(err) {
-  console.warn(`ERROR(${err.code}): ${err.message}`);
-}
-
-navigator.geolocation.getCurrentPosition(success, error, options);
