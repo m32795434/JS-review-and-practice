@@ -1,4 +1,6 @@
 /node_modules
+/.parcel-cache
+/dist
 /exersices/55 - Face Detection Censorship/node_modules
 /exersices/55 - Face Detection Censorship/dist
 /exersices/55 - Face Detection Censorship/.parcel-cache

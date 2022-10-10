@@ -1,5 +1,4 @@
-// import { zonedTimeToUtc, utcToZonedTime, format } from 'date-fns-tz';
-// import { cloneDeep } from 'lodash';
+import { cloneDeep } from 'lodash';
 /* eslint-disable max-classes-per-file */
 
 const myHtml = `
@@ -59,34 +58,39 @@ function cheqAndAddAnItemToList(lista, newItem) {
 }
 
 // DATES
-// dateObject
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat
+
+let { timeZone, locale } = Intl.DateTimeFormat().resolvedOptions(); // eg: America/Montevideo
+if (timeZone === 'America/Montevideo') {
+  locale = 'es-AR';
+}
+// const arEG = new Intl.Locale("ar-EG");//to show the allowed locales
+// console.log(arEG.timeZones); // logs ["Africa/Cairo"]
+/*
+options = {
+  year: 'numeric', month: 'numeric', day: 'numeric',
+  hour: 'numeric', minute: 'numeric', second: 'numeric',
+  hour12: false,
+  timeZone: 'America/Los_Angeles'
+}; */
 const dateOptions = {
   weekday: 'long',
   year: 'numeric',
   month: 'long',
   day: 'numeric',
+  hour: 'numeric',
+  minute: 'numeric',
+  second: 'numeric',
+  timeZone,
 };
-const dateObject = new Intl.DateTimeFormat('es-AR', dateOptions);
+
+// dateObject
+const dateObject = new Intl.DateTimeFormat(locale, dateOptions);
 const myDateTextContent = dateObject.format(new Date());
 myDate.textContent = myDateTextContent;
 
-/*
-const { timeZone } = Intl.DateTimeFormat().resolvedOptions(); // eg: America/Montevideo
-
-// Set the date to "2018-09-01T16:01:36.386Z"
-const utcDate = zonedTimeToUtc('2018-09-01 18:01:36.386', 'Europe/Berlin')
-
-// Obtain a Date instance that will render the equivalent Berlin time for the UTC date
-const date = new Date('2018-09-01T16:01:36.386Z')
-const zonedDate = utcToZonedTime(date, timeZone)
-// zonedDate could be used to initialize a date picker or display the formatted local date/time
-
-// Set the output to "1.9.2018 18:01:36.386 GMT+02:00 (CEST)"
-const pattern = 'd.M.yyyy HH:mm:ss.SSS \'GMT\' XXX (z)'
-const output = format(zonedDate, pattern, { timeZone: 'Europe/Berlin' })
-*/
-
 // REPLACING AN OBJECT PROPERTY NAME
+
 function replacePropertyNameAndReturnCopy(array, property, newName) {
   const newArray = cloneDeep(array);
   for (const item of newArray) {
@@ -115,6 +119,7 @@ const feedback = [
   { comment: 'Ambiance needs work', rating: 3 },
   { comment: 'I DONT LIKE BURGERS', rating: 1 },
 ];
+
 const people = [
   {
     birthday: 'April 22, 1993',

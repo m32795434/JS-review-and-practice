@@ -52,7 +52,7 @@ classList.contains('modal');
 
 //Event Listeners
 itemImg.addEventListener('click', toggleRound, { capture: true, once: true })//capture this first!and continue
-event.type //load, click, mouseover, mouseout, mousemove, mouseenter, mouseleave, mousedown, mouseup, keydown, keyup, keypress, focus, blur, change, input, submit, reset, scroll, resize,animationstart, animationend, animationiteration
+event.type //DOMContentLoaded, load, click, mouseover, mouseout, mousemove, mouseenter, mouseleave, mousedown, mouseup, keydown, keyup, keypress, focus, blur, change, input, submit, reset, scroll, resize,animationstart, animationend, animationiteration
 coolButts.removeEventListener('click', horray)
 event.stopPropagation(); // STOP IN THIS Element.
 event.preventDefault();
@@ -165,7 +165,13 @@ const calculator = utilities.calc.call(localTaxes, 0.15, 21)//localTaxes:the obj
 // MODULES - LIBRARIES
 
 // Servers
-// servers = ["parcel", "live-server","browser-sync" ]
+// servers and bundlers = ["parcel", "live-server","browser-sync", "pika", "webpack", "rollup" ]
 
-// modules
+// modules 
+// CommonJs
+var format = require('date-fns/format')
+// ES 2015
+import format from 'date-fns/format'
+// ESM
+import { format } from 'date-fns'
 import colorDePelo,  {returnHi as sayHi} from './utils.js';//one "default", and one "renamed" (as) import
