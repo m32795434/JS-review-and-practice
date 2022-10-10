@@ -24,7 +24,7 @@
         }
 
         // ERROR HANDLING
-        // ONLY IF WE HAVE AN "await fn().catch()" the rest of the code RUNS" (***)
+        // ONLY IF WE HAVE AN "await fn().catch()" the rest of the code RUNS", unless, you run the rest of your code in the catch(){} scope(***)
         // 1 - try catch
 
         async function go1() {
@@ -35,6 +35,7 @@
                 console.log(result); // it doesn't runs
                 console.log("If is there an error it doesn't runs");
             } catch (err) {
+                // (***)
                 console.log(err);
                 console.log('if it happens an error, this will run later the error login');
             }

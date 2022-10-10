@@ -1,3 +1,5 @@
+// import { zonedTimeToUtc, utcToZonedTime, format } from 'date-fns-tz';
+// import { cloneDeep } from 'lodash';
 /* eslint-disable max-classes-per-file */
 
 const myHtml = `
@@ -24,9 +26,77 @@ console.log(h1); // null
 console.log(p);
 
 // --------------------------------------
+// FUNCTIONS TO CONVERT INTO A MODULE
+
 function isEven(value) {
   return value % 2 === 0;
 }
+
+// Promises
+// async await catching function
+function makeSafeAnAsynchronousFunction(fn, handleStatus) {
+  return function () {
+    fn().catch(handleStatus);
+  };
+}
+
+// FUNCTION parseBoolean FROM JAVA
+// a function to parse a string containing "true" or "false" t its boolean matched type.
+
+function parseBoolean(s) {
+  const sL = s.toLowerCase();
+  return sL === 'true';
+}
+
+// if newItem doesn't exist in the list, add it
+function cheqAndAddAnItemToList(lista, newItem) {
+  let myList = [...lista];
+  const toLowerTopping = lista.map((top) => top.toLowerCase());
+  if (!toLowerTopping.includes(newItem.toLowerCase())) {
+    myList = [...myList, newItem];
+  }
+  return myList;
+}
+
+// DATES
+// dateObject
+const dateOptions = {
+  weekday: 'long',
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+};
+const dateObject = new Intl.DateTimeFormat('es-AR', dateOptions);
+const myDateTextContent = dateObject.format(new Date());
+myDate.textContent = myDateTextContent;
+
+/*
+const { timeZone } = Intl.DateTimeFormat().resolvedOptions(); // eg: America/Montevideo
+
+// Set the date to "2018-09-01T16:01:36.386Z"
+const utcDate = zonedTimeToUtc('2018-09-01 18:01:36.386', 'Europe/Berlin')
+
+// Obtain a Date instance that will render the equivalent Berlin time for the UTC date
+const date = new Date('2018-09-01T16:01:36.386Z')
+const zonedDate = utcToZonedTime(date, timeZone)
+// zonedDate could be used to initialize a date picker or display the formatted local date/time
+
+// Set the output to "1.9.2018 18:01:36.386 GMT+02:00 (CEST)"
+const pattern = 'd.M.yyyy HH:mm:ss.SSS \'GMT\' XXX (z)'
+const output = format(zonedDate, pattern, { timeZone: 'Europe/Berlin' })
+*/
+
+// REPLACING AN OBJECT PROPERTY NAME
+function replacePropertyNameAndReturnCopy(array, property, newName) {
+  const newArray = cloneDeep(array);
+  for (const item of newArray) {
+    item[newName] = item[property];
+    delete item[property];
+  }
+  return newArray;
+}
+
+//----------------------------------------
 par.addEventListener('keydown', (e) => {
   if (e.key === 'Enter') {
     const value = parseFloat(e.currentTarget.value);
@@ -84,35 +154,7 @@ const toppings = [
   'Cheese',
   'vocado',
 ];
-function cheqAndAddAnItemToList(lista, newItem) {
-  let myList = [...lista];
-  const toLowerTopping = lista.map((top) => top.toLowerCase());
-  if (!toLowerTopping.includes(newItem.toLowerCase())) {
-    myList = [...myList, newItem];
-  }
-  return myList;
-}
-const newToppingWtihPineapple = cheqAndAddAnItemToList(toppings, 'Pineapple');
-//-----------------------------------------
-const dateOptions = {
-  weekday: 'long',
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric',
-};
-const dateObject = new Intl.DateTimeFormat('es-AR', dateOptions);
-const myDateTextContent = dateObject.format(new Date());
-myDate.textContent = myDateTextContent;
 
-//-----------------------------------------
-function replacePropertyNameAndReturnCopy(array, property, newName) {
-  const newArray = _.cloneDeep(array);
-  for (const item of newArray) {
-    item[newName] = item[property];
-    delete item[property];
-  }
-  return newArray;
-}
 //-----------------------------------
 const response = [
   {
@@ -285,12 +327,23 @@ class Auto extends Automovil {
 const auto1 = new Auto('chevrolet', 2015, 70000, 20);
 */
 
-// Promises
-/*
-function makeSafe(fn, handleStatus) {
-  return function () {
-      fn().catch(handleStatus);
-  };
+const options = {
+  enableHighAccuracy: true,
+  timeout: 5000,
+  maximumAge: 0,
+};
+
+function success(pos) {
+  const crd = pos.coords;
+
+  console.log('Your current position is:');
+  console.log(`Latitude : ${crd.latitude}`);
+  console.log(`Longitude: ${crd.longitude}`);
+  console.log(`More or less ${crd.accuracy} meters.`);
 }
-const safeGo = makeSafe(go2, handleStatus);
-safeGo(); */
+
+function error(err) {
+  console.warn(`ERROR(${err.code}): ${err.message}`);
+}
+
+navigator.geolocation.getCurrentPosition(success, error, options);

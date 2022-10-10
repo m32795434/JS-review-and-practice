@@ -161,3 +161,11 @@ const desc = card.dataset.description; //getting dataset attributes
 const isOutside = !event.target.closest('.modal-inner');
 buttonClicked.closest('.playerCard').remove();
 const calculator = utilities.calc.call(localTaxes, 0.15, 21)//localTaxes:the object binded. bind and apply too. bind needs an array as an argument;
+
+// MODULES - LIBRARIES
+
+// Servers
+// servers = ["parcel", "live-server","browser-sync" ]
+
+// modules
+import colorDePelo,  {returnHi as sayHi} from './utils.js';//one "default", and one "renamed" (as) import
