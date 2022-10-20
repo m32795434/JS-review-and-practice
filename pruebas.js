@@ -64,7 +64,6 @@ let { timeZone, locale } = Intl.DateTimeFormat().resolvedOptions(); // eg: Ameri
 if (timeZone === 'America/Montevideo') {
   locale = 'es-AR';
 }
-let indDate = 0;
 const localesTZones = [
   'pt-BR',
   'en-US',
@@ -77,9 +76,10 @@ const localesTZones = [
   'zh-Hant-MO',
   'es-AR',
 ];
+const locLength = localesTZones.length;
 // const arEG = new Intl.Locale("ar-EG");//to show the allowed locales
 // console.log(arEG.timeZones); // logs ["Africa/Cairo"]
-
+/*
 const dateOptions = {
   year: 'numeric',
   month: 'short',
@@ -88,7 +88,7 @@ const dateOptions = {
   minute: 'numeric',
   hour12: false,
   timeZone,
-}; /*
+}; */
 const dateOptions = {
   weekday: 'long',
   year: 'numeric',
@@ -98,29 +98,30 @@ const dateOptions = {
   minute: 'numeric',
   second: 'numeric',
   timeZone,
-}; */
+};
 
 // dateObject
 const dateObject = new Intl.DateTimeFormat(locale, dateOptions);
 myDate.textContent = dateObject.format(new Date());
 
+let i = 0;
 function changeDate() {
-  console.log('clicked!');
-  if (indDate > -1 && indDate < localesTZones.length) {
-    locale = localesTZones[indDate];
-    const text = new Intl.DateTimeFormat(locale, dateOptions).format(
-      new Date()
-    );
-    myDate.textContent = text;
-  }
-  if (indDate === localesTZones.length - 1) {
-    indDate = 0;
-  } else {
-    indDate++;
-  }
+  setInterval(() => {
+    if (i >= 0 && i < locLength) {
+      console.log('changing...');
+      locale = localesTZones[i];
+      const text = new Intl.DateTimeFormat(locale, dateOptions).format(
+        new Date()
+      );
+      myDate.textContent = text;
+      i++;
+    } else {
+      i = 0;
+    }
+  }, 2000);
 }
-myDate.addEventListener('click', changeDate);
 
+changeDate();
 // REPLACING AN OBJECT PROPERTY NAME
 
 function replacePropertyNameAndReturnCopy(array, property, newName) {
