@@ -22,7 +22,7 @@
                 if (toppings.includes('pineapple')) {
                     reject(new Error('No pineapple on pizza'));
                 }
-                const bakeTime = 500 + toppings.length * 200;
+                const bakeTime = 500 + toppings.length * 1000;
                 setTimeout(() => {
                     resolve(`here is your 🍕 with ${toppings.join(', ')}`);
                 }, bakeTime);
@@ -32,20 +32,20 @@
         // it could become a footgun.
         // sinchronously - slow - not what we want
         async function makeDinnerSynchro() {
-            const pizza1 = makePizza(['pepperoni', 'onions']); // makePizza "return" a promise;
+            const pizza1 = makePizza(['tomatoes', 'onions']); // makePizza "return" a promise;
             console.log(pizza1); // Promise
             // grab and store the result(like .then()), with "await"
-            const pizza2 = await makePizza(['onions', 'jam', 'onions', 'jam', 'onions']);
+            const pizza2 = await makePizza(['jam', 'onions', 'jam', 'onions']);
             console.log(pizza2); // the result
-            const pizza3 = await makePizza(['onions', 'jam']); // grab and store the result(like .then())
+            const pizza3 = await makePizza(['letuce', 'jam']); // grab and store the result(like .then())
             console.log(pizza3); // the result
         }
         makeDinnerSynchro();
 
         // making pizzas concurrently - faster
         async function makeDinnerAsync() {
+            const pizza2Promise = makePizza(['cheese', 'jam']);
             const pizza1Promise = makePizza(['pepperoni', 'onions', 'onions']);
-            const pizza2Promise = makePizza(['onions', 'jam']);
             const [pizza1result, pizza2result] = await Promise.all([
                 pizza1Promise,
                 pizza2Promise,

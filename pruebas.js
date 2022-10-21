@@ -31,20 +31,22 @@ function isEven(value) {
   return value % 2 === 0;
 }
 
-// Promises
-// async await catching function
-function makeSafeAnAsynchronousFunction(fn, handleStatus) {
-  return function () {
-    fn().catch(handleStatus);
-  };
-}
-
 // FUNCTION parseBoolean FROM JAVA
 // a function to parse a string containing "true" or "false" t its boolean matched type.
 
 function parseBoolean(s) {
   const sL = s.toLowerCase();
   return sL === 'true';
+}
+
+// Promises
+// MAKE A SAFE FUNCTION WITH A HOF(HIGH ORDER FUNCTION)-(THE REST of the FUNCTION WILL STOP RUNNING since the error occurs) (****)
+// for errors related to AWAIT MARKED FUNCTIONS
+// usefull for Node.js, so all the pages can use the same error handling.
+function makeSafeAnAsynchronousFunction(fn, handleStatus) {
+  return function () {
+    fn().catch(handleStatus);
+  };
 }
 
 // if newItem doesn't exist in the list, add it

@@ -24,13 +24,15 @@
         }
 
         // ERROR HANDLING
-        // ONLY IF WE HAVE AN "await fn().catch()" the rest of the code RUNS", unless, you run the rest of your code in the catch(){} scope(***)
-        // 1 - try catch
+        // An Await rejected, will stop the remaining code of the function, unless you catch it.
+        // ONLY IF WE HAVE AN "await fn().catch()"instruction, the rest of the code of our function RUNS"; unless, you have to run the rest of your code inside the catch(){} scope(***)
+
+        // 1 - try catch------------------------------------------------------------
 
         async function go1() {
             try {
                 // we can catch errors like window.doestntExist();
-                // if the await function has an error, it stops there running the code from the block scope
+                // if the await function has an error, it stops there running the block scope code.
                 const result = await makePizza(['pineapple']);
                 console.log(result); // it doesn't runs
                 console.log("If is there an error it doesn't runs");
@@ -42,50 +44,60 @@
         }
         go1();
 
-        // 2 - sort of MIX AND MATCHING of both worlds. async/await + .then() + .catch()
-        function handleStatus(err) {
-            console.log(err);
+        // 2 - sort of MIX AND MATCHING of both worlds. async/await + .then() + .catch()-----------
+        function handleStatus(stat) {
+            console.log(stat);
         }
 
         async function go2() {
-            // Using await + .catch(). The rest of the code inside this block RUNS.
+            // Using await + .catch()., the remaining code under the instruction RUNS.
             const result = await makePizza(['pineapple']).catch(handleStatus); // (***)
             console.log(result); // undefined
             console.log('we have some errors but this runs too');
             return result; // for .then() use;
         }
-        const go2Promise = go2();
+        const go2Promise = go2(); // it is not the result!..for that, use the .then();
 
+        //----
         async function go3() {
+            // 1st mark async
             window.dowstnExist();
             console.log(
-                "THIS WON'T RUN BECAUSE WE ARE CATCHING WHEN WE CALL THE FUNCTION"
+                "THIS will run only if it's inside a try/catch. We can't do window.dowstnExist().catch(). It's not a Promise"
             );
         }
-        // we can handle other errors like: window.dowstnExist()
-        const go3Promise = go3().catch(handleStatus);
-        console.log(go3Promise);
+        // we can handle other errors like: window.dowstnExist(),(THE REST of the FUNCTION WILL STOP RUNNING since the error occurs) (****)
+        const go3Promise = go3().catch(handleStatus); // 2nd, call Promise.catch();
 
-        // SO WE CAN DO SOMETHING LIKE THIS:
-        /* go2().then((result)=>{
-            console.log(result)
-        }).catch(handleError); */
-
-        // OR SOMETHING LIKE THIS TOO:
-        /* async function goGo() {
-            const result = await go2();
+        //---
+        async function go() {
+            const result = await makePizza(['pineapple']);
+            return result; // for .then() use;
         }
-        goGo().catch(handleError); */
 
-        // MAKE A SAFE FUNCTION WITH A HOF(HIGH ORDER FUNCTION)
+        // MAKE A SAFE FUNCTION WITH A HOF(HIGH ORDER FUNCTION)(THE REST of the FUNCTION WILL STOP RUNNING since the error occurs) (****)
+        // for errors related to AWAIT MARKED FUNCTIONS
         // usefull for Node.js, so all the pages can use the same error handling.
         function makeSafe(fn, handleStatus) {
             return function () {
                 fn().catch(handleStatus);
             };
         }
-        const safeGo = makeSafe(go2, handleStatus);
-        safeGo();
+        const safeGo = makeSafe(go, handleStatus);
+        safeGo(); // I have to run this, it's a function!.
+
+        // WE CAN DO THIS TOO:
+        /* go()
+            .then((result) => {
+                console.log(result);
+            })
+            .catch(handleStatus); */
+
+        // OR SOMETHING LIKE THIS TOO:
+        /* async function goGo() {
+            const result = await go();
+        }
+        goGo().catch(handleStatus); */
     </script>
 </body>
 

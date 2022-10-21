@@ -21,6 +21,7 @@ Element.nextSibling
 Element.previousSibling
 Element.firstChild
 Element.lastChild
+Element.replaceWith()
 const myFragment = document.createRange().createContextualFragment(myHtml); // from a string
 let myfragment1 = new DocumentFragment();// empty document fragment
 myFragment.firstElementChild.insertAdjacentElement('afterbegin', spa)
@@ -64,7 +65,6 @@ String.prototype.repeat(numberOfTimes)// 'x'.repeat(3) = 'xxx'
 String.prototype.includes()// same as for Arrays
 imgSrc.replace('200','400');
 String.prototype.toUpperCase()
-Element.replaceWith()
 Number.parseFloat(string)// returns a floating point number
 parseInt(string, radix)// part of the JavaScript's standard, built-in objects
 string.sort()//sort alfabetically

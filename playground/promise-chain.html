@@ -78,15 +78,15 @@
                 .then(() => {
                     el.classList.add('fadeOut');
                     // here we check all the Promises status
-                    const controlAllWaits = Promise.allSettled([
-                        wait1,
-                        wait2,
-                        wait3,
-                        wait4,
-                        wait5,
-                    ]);
-                    console.log(controlAllWaits);
                 });
+            const controlAllWaits = Promise.allSettled([
+                wait1,
+                wait2,
+                wait3,
+                wait4,
+                wait5,
+            ]);
+            console.log(controlAllWaits);
         }
         go.addEventListener('click', animate);
     </script>
