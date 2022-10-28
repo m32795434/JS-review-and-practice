@@ -16,13 +16,14 @@
         if (toppings.includes('pineapple')) {
           // rejected "reason" - doesn't run the resolve instruction if enters here.
           reject(new Error('DO NOT PUT pineapple on pizza'));
+        } else {
+          // base bake time 500ms, and 200ms for each topping
+          const bakeTime = 500 + toppings.length * 200;
+          setTimeout(() => {
+            // resolve "value"
+            resolve(`here is your 🍕 with ${toppings.join(', ')}`);
+          }, bakeTime);
         }
-        // base bake time 500ms, and 200ms for each topping
-        const bakeTime = 500 + toppings.length * 200;
-        setTimeout(() => {
-          // resolve "value"
-          resolve(`here is your 🍕 with ${toppings.join(', ')}`);
-        }, bakeTime);
       });
     }
 

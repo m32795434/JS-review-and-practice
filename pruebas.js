@@ -123,7 +123,6 @@ function changeDate() {
   }, 2000);
 }
 
-changeDate();
 // REPLACING AN OBJECT PROPERTY NAME
 
 function replacePropertyNameAndReturnCopy(array, property, newName) {
