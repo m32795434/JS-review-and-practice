@@ -41,7 +41,6 @@ function parseBoolean(s) {
 
 // Promises
 // MAKE A SAFE FUNCTION WITH A HOF(HIGH ORDER FUNCTION)-(THE REST of the FUNCTION WILL STOP RUNNING since the error occurs) (****)
-// for errors related to AWAIT MARKED FUNCTIONS
 // usefull for Node.js, so all the pages can use the same error handling.
 function makeSafeAnAsynchronousFunction(fn, handleStatus) {
   return function () {
@@ -57,6 +56,26 @@ function cheqAndAddAnItemToList(lista, newItem) {
     myList = [...myList, newItem];
   }
   return myList;
+}
+
+// A GENERIC TOOL - ASINCHRONOUS .MAP()
+async function asyncMap(array, callBack) {
+  const results = [];
+  for (const item of array) {
+    results.push(await callBack(item));
+  }
+  return results;
+}
+
+// REPLACING AN OBJECT PROPERTY NAME
+
+function replacePropertyNameAndReturnCopy(array, property, newName) {
+  const newArray = cloneDeep(array);
+  for (const item of newArray) {
+    item[newName] = item[property];
+    delete item[property];
+  }
+  return newArray;
 }
 
 // DATES
@@ -121,17 +140,6 @@ function changeDate() {
       i = 0;
     }
   }, 2000);
-}
-
-// REPLACING AN OBJECT PROPERTY NAME
-
-function replacePropertyNameAndReturnCopy(array, property, newName) {
-  const newArray = cloneDeep(array);
-  for (const item of newArray) {
-    item[newName] = item[property];
-    delete item[property];
-  }
-  return newArray;
 }
 
 //----------------------------------------

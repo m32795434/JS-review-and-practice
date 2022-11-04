@@ -3,13 +3,12 @@ function wait(ms) {
     setTimeout(resolve, ms);
   });
 }
-// it's not stored the removed item
+
 async function destroyPopUp(popUp) {
-  // document.body.removeChild(popUp); that was before...
   popUp.classList.remove('open');
-  await wait(1000); // so it can fade out
+  await wait(1000); // bring it a litle of time so it can fade out
   popUp.remove();
-  popUp = null;
+  popUp = null; // erase from memory the value
 }
 
 function ask(options) {
@@ -84,30 +83,7 @@ const questions = [
   { title: '¿whats your age?', cancel: true },
   { title: '¿whats your dog name?' },
 ];
-/* //we have here all the popUps at the same time, so "dogs name" appears first
-// ask run for each question, because of .map() 
-Promise.all(questions.map(ask)).then((answers) => {
-  answers.forEach((answer) => console.log(answer));
-}); */
-/*
-// for each question, we run the async function(we create the 3 popUps at "same" time).
-questions.forEach(async (question) => {
-  console.log(question);
-  const answer = await ask(question);
-  console.log(answer);
-}); */
 
-// if we want to question one by one we need the "for of loop"
-/*
-async function askMany() {
-  for (const question of questions) {
-    const answer = await ask(question);
-    console.log(answer);
-  }
-}
-askMany(); */
-
-//
 // A GENERIC TOOL - ASINCHRONOUS .MAP()
 async function asyncMap(array, callBack) {
   const results = [];
@@ -116,13 +92,7 @@ async function asyncMap(array, callBack) {
   }
   return results;
 }
-/*
-const questionsResults = asyncMap(questions, ask);
-questionsResults.then((result) => {
-  console.log(result);
-}); */
 
-// OR, ION ORDER TO RUN THAT FUNCTION:
 async function go() {
   const questionsResults = await asyncMap(questions, ask);
   console.log(questionsResults);

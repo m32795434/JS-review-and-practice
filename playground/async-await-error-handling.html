@@ -76,7 +76,6 @@
         }
 
         // MAKE A SAFE FUNCTION WITH A HOF(HIGH ORDER FUNCTION)(THE REST of the FUNCTION WILL STOP RUNNING since the error occurs) (****)
-        // for errors related to AWAIT MARKED FUNCTIONS
         // usefull for Node.js, so all the pages can use the same error handling.
         function makeSafe(fn, handleStatus) {
             return function () {
