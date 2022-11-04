@@ -143,6 +143,7 @@ Promise.allSettled([])//more info individually for every result(resolve or rejec
 Promise.all([])
 Promise.race([])
 try{}catch(){} // for the async await
+//Use "for of" for asyncrhonoues Maping, or async await. 
 
 //TIMERS
 setTimeout(callbackFn, ms);
