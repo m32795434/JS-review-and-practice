@@ -44,6 +44,7 @@ Element.classList.replace('una', 'otra');
 [itemsToRemoveClasses].forEach((item)=>item.classList.remove(...arraysWithClasses))// or .remove()
 itemImg.classList.toggle('round');
 myImage.src = 'https://source.unsplash.com/random/400x400';// setting attributes
+const cancel = button.hasAttribute('data-cancel')//boolean
 pic.setAttribute('alt', 'random2'); // onother way. Even for non-standard attributes.
 pic.getAttribute('alt')
 pic.removeAttribute('alt');
