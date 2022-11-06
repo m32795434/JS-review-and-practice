@@ -83,7 +83,7 @@ const questions = [
   { title: '¿whats your dog name?' },
 ];
 
-// A GENERIC TOOL - ASINCHRONOUS .MAP()
+// A GENERIC TOOL - ASINCHRONOUS .MAP() - the await it's returning the resolve
 async function asyncMap(array, callBack) {
   const results = [];
   for (const item of array) {

@@ -1,17 +1,7 @@
 function wait(ms = 0) {
-  return new Promise((resolve) =>
-    setTimeout(() => {
-      resolve('Done');
-    }, ms)
-  );
+  return new Promise((res) => setTimeout(res, ms));
 }
-/*
-async function run(ms) {
-  const result = await wait(ms);
-  console.log(result);
-}
-run(3000);
-*/
+// This is the way we can test a function that return a random number
 function getRandomBetween(min = 20, max = 150, randomNumber = Math.random()) {
   return Math.floor(randomNumber * (max - min) + min);
 }
@@ -20,11 +10,10 @@ function getRandomBetween(min = 20, max = 150, randomNumber = Math.random()) {
 async function draw(el) {
   const text = el.textContent;
   let soFar = '';
-  console.dir(el)
+  console.dir(el);
   for (const letter of text) {
     soFar += letter;
     el.textContent = soFar;
-
     const { typeMin, typeMax } = el.dataset;
     await wait(getRandomBetween(typeMin, typeMax));
   }
