@@ -66,8 +66,8 @@ String.prototype.repeat(numberOfTimes)// 'x'.repeat(3) = 'xxx'
 String.prototype.includes()// same as for Arrays
 imgSrc.replace('200','400');
 String.prototype.toUpperCase()
-Number.parseFloat(string)// returns a floating point number
-parseInt(string, radix)// part of the JavaScript's standard, built-in objects
+Number.parseFloat(string)// returns a floating point number/ same as global parseFloat()
+parseInt(string, radix)// part of the JavaScript's standard, built-in objects/ same as Number.parseInt()
 string.sort()//sort alfabetically
 'string'.substring(0,5);//'strin'
 
@@ -144,7 +144,9 @@ Promise.allSettled([])//more info individually for every result(resolve or rejec
 Promise.all([])
 Promise.race([])
 try{}catch(){} // for the async await
-//Use "for of" for asyncrhonoues Maping, or async await. 
+//Use "for of" for asyncrhonoues Maping, or just async await uses.
+JSON.parse("a Json string")//parses a JSON string,/ 
+fetchResponse.json()// when we recibe a "fetchResponse"..we need to reeds it to completion to have the final response.
 
 //TIMERS
 setTimeout(callbackFn, ms);

@@ -1,6 +1,7 @@
 // ERROR - REGENERATORRUNTIME IS NOT DEFINED - BABEL - TRANSPILE ERRORS
 // SOLUTION: on package.json insert a new entry: "browserslist": "last 1 chrome versions"
 const baseEndPoint = 'https://recipes.beginnerjavascript.com/api';
+// Enter to the url and ask for the persmision!
 const corsProxy = 'https://cors-anywhere.herokuapp.com';
 const form = document.querySelector('form.search');
 const recipesGrid = document.querySelector('.recipes');
