@@ -11,8 +11,15 @@ const buttonText = [
   'please stop',
   'that was the worst one',
 ];
+async function wait(ms) {
+  return new Promise((res) => {
+    setTimeout(res, ms);
+  });
+}
 async function fetchJoke() {
   loader.style.display = 'inline-block';
+  jokeHolder.textContent = '';
+  await wait(1000);
   const response = await fetch('https://icanhazdadjoke.com/', {
     headers: { Accept: 'application/json' },
   });
