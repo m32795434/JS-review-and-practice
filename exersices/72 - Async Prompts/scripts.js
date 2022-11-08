@@ -72,11 +72,12 @@ const questions = [
   { question: '¿whats your dog name?' },
 ];
 
-const results = [];
+const results = []; // this is the only way we can take out of the async function the results.
 async function asyncMap(array) {
   for (const item of array) {
     results.push(await ask(item));
   }
   console.log(results);
+  return results; // to have the PromiseResult defined.
 }
 asyncMap(questions);

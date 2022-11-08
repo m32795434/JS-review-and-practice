@@ -146,7 +146,7 @@ Promise.race([])
 try{}catch(){} // for the async await
 //Use "for of" for asyncrhonoues Maping, or just async await uses.
 JSON.parse("a Json string")//parses a JSON string,/ 
-fetchResponse.json()// when we recibe a "fetchResponse"..we need to reeds it to completion to have the final response.
+fetchResponse.json()// when we recibe a "fetchResponse"..we need to reeds it to completion to have the final response. This return a Promise
 
 //TIMERS
 setTimeout(callbackFn, ms);

@@ -17,11 +17,19 @@
 
 </body>
 <style>
+    /* dad jokes-> good examples of css tricks*/
+    /* vars! */
+    html {
+        --size: 20px;
+    }
+
+    /* CSS LOADERS https://loading.io/css/ */
     .cards {
         display: grid;
         /* auto-fit is very good option too */
         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-        grid-gap: 20px;
+        /* calc with diferent types! */
+        grid-gap: calc(90% + var(--size));
         padding: 2rem;
         /* disable mouse events. We will hide it, until we need it*/
         pointer-events: none;
@@ -44,6 +52,7 @@
         height: 500px;
     }
 
+    /* we can apply this cubic-bezier(0, 1, 0, 1) to the animation, or ¿transition too? */
     p {
         animation: 3s infinite alternate slidein;
     }
