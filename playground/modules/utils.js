@@ -1,6 +1,7 @@
 const last = 'Bravard';
 const last2 = 'Gonzalez';
 const hairColor = 'black';
+const name = 'Gonzalo';
 // NAMED-EXPORTS - AS MANY AS YOU WANT
 export function returnHi(name) {
   return `hi ${name} ${last}`;

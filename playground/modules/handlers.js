@@ -1,5 +1,5 @@
 export async function handleButtonClick(event) {
-  // TO IMPORT ON DEMAND. YOU HAVE TO IMPORT ALL THE MODULE(is like an object)
+  // we import all the Module Object. default as "currency"
   const { localCurrency, default: currency } = await import('./currencies.js');
   console.log(localCurrency, currency);
 }

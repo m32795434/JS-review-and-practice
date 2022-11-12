@@ -156,7 +156,7 @@ clearInterval(reference), clearTimeout(reference);
 
 // HOT-TIPS
 window.location = event.currentTarget.href;
-const { width, height } = canvas; // Declaring 2 variables at once.ES6 destructuring
+const { width, height : he } = canvas; // Declaring 2 variables at once.ES6 destructuring / height as he
 function draw({ key }){}//destructuring "key" property as parameter from an {}
 Object.entries(meats).forEach(([item, qty]) => console.log(item, qty));//destructuring from an []
 [prev, current, next] = [current, next, current];//[1 2 3]=[2 3 2]!!don't run individually-SWAPPING VARIABLES CONTENT
@@ -178,4 +178,10 @@ var format = require('date-fns/format')
 import format from 'date-fns/format'
 // ESM
 import { format } from 'date-fns'
+import * as everything from './currencies.js';
 import colorDePelo,  {returnHi as sayHi} from './utils.js';//one "default", and one "renamed" (as) import
+const { localCurrency, default: currency } = await import('./currencies.js');
+
+// NAMED exports
+export { last2 };
+export default hairColor;
