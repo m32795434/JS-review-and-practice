@@ -165,6 +165,17 @@ const desc = card.dataset.description; //getting dataset attributes
 const isOutside = !event.target.closest('.modal-inner');
 buttonClicked.closest('.playerCard').remove();
 const calculator = utilities.calc.call(localTaxes, 0.15, 21)//localTaxes:the object binded. bind and apply too. bind needs an array as an argument;
+// EventListener HotTips
+form.addEventListener('input', convert);//listen to the input event from the inputs, or select tags
+Element.closest(); Element.matches(); //for event delegation 
+    // Event Delegations
+list.addEventListener('click', (event) => {
+    const id = parseInt(event.target.value);
+    if (event.target.matches('button')) {
+      deleteItem(id);
+    }
+    if (event.target.matches('input[type="checkbox"]')) {
+      markAsComplete(id);}})
 
 // MODULES - LIBRARIES
 
