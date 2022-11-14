@@ -1,3 +1,4 @@
+// we don't need ".js" extension when we are importing from a npm package
 import wait from 'waait';
 import faker from '@faker-js/faker';
 import { formatDistance, format } from 'date-fns';
@@ -50,6 +51,7 @@ function checkIfNameIsCool(firstName) {
 async function checkName() {
   // await to(),  returns an array where the first element is the error, and the second the result
   // we can check first if we have an error. If not, we continue with the code.
+  // If we are fetching, we need de double "await". It's not "axios"
   const [err, successValue] = await to(checkIfNameIsCool('Manu'));
   if (err) {
     console.log(err);

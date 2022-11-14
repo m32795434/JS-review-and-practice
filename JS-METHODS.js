@@ -178,20 +178,29 @@ list.addEventListener('click', (event) => {
       markAsComplete(id);}})
 
 // MODULES - LIBRARIES
+//faker---> generate a big amount of fake data, for test, for what you want.
+//date-fns---->LIKE lodash but for dates
+// await-to-js---->the await to(Promise) return a [err, res]. See 80-npm modules.
+//lodash---->to work with [], {} and other
+//axios---->like fetch, but with only ONE await
 
 // Servers
 // servers and bundlers = ["parcel", "live-server","browser-sync", "pika", "webpack", "rollup" ]
+// remember> "./"--->current folder.
+// when we run a "script" from our package.json, we are running the npm pakage's version described in it.  
+//parcel--->"build": "parcel build index.html" an example of a building script.
 
 // modules 
-// CommonJs
+// CommonJs - Node.Js
 var format = require('date-fns/format')
 // ES 2015
-import format from 'date-fns/format'
+import format from 'date-fns/format'//format is the default export. We can rename it here as we wish.
 // ESM
 import { format } from 'date-fns'
 import * as everything from './currencies.js';
 import colorDePelo,  {returnHi as sayHi} from './utils.js';//one "default", and one "renamed" (as) import
-const { localCurrency, default: currency } = await import('./currencies.js');
+import { rename } from 'fs/promises';//rename is not the default export
+const { localCurrency, default: currency } = await import('./currencies.js');// look we use ":" not "as" for rename, because we are inside a destructuring
 
 // NAMED exports
 export { last2 };
