@@ -8,8 +8,10 @@
   },
   "author": "",
   "license": "ISC",
+  "dependencies": {
+    "parcel": "^2.8.0"
+  },
   "devDependencies": {
-    "@parcel/transformer-sass": "^2.7.0",
-    "sass": "^1.54.9"
+    "@parcel/transformer-sass": "^2.8.0"
   }
 }
