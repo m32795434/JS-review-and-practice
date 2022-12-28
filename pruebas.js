@@ -378,7 +378,7 @@ class Auto extends Automovil {
 const auto1 = new Auto('chevrolet', 2015, 70000, 20);
 */
 
-// Do we need a framework to prevent unnessesary refresh in the DOM?no!
+// Do we need a framework to prevent unnecessary refresh in the DOM? no!
 /*
 class HeroeComponent {
   name = 'ironman';
