@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil-Linkedin</title>
+</head>
+
+<body>
+    <h1>Hello you there!!!</h1>
+    <ul class="list"></ul>
+    <script>
+        const list = document.querySelector('.list');
+        /* eslint-disable */
+        const enterpriseList = [
+            'Globant', 'Santander', 'Ey', 'Accenture', 'Facebook', 'Google', 'Microsoft', 'Apple', 'Amazon', 'Tesla', 'IBM',
+        ];
+        /* eslint-enable */
+        const liHtml = enterpriseList.map((el) => `<li>${el}</li>`).join('');
+        list.innerHTML = liHtml;
+    </script>
+</body>
+
+</html>

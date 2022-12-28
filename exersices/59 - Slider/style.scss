@@ -21,23 +21,27 @@
   border: 5px solid white;
   transition: all .25s;
   transform: translateX(-200%);
+  // z-index: 10;
+
 
   &.next+.slide {
+    // z-index: 10;
+
     transform: translateX(200%);
   }
 
   &.prev {
-    z-index: 10;
+    // z-index: 10;
     transform: translateX(-100%);
   }
 
   &.current {
-    z-index: 10;
+    // z-index: 10;
     transform: translateX(0);
   }
 
   &.next {
-    z-index: 10;
+    // z-index: 10;
     transform: translateX(100%);
   }
 

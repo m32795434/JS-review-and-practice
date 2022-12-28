@@ -1,6 +1,5 @@
 import { cloneDeep } from 'lodash';
 import to from 'await-to-js';
-/* eslint-disable max-classes-per-file */
 
 const myHtml = `
 <div>
@@ -339,11 +338,11 @@ const reducedSortedResponse2 = responseSortedByList.reduce(
 /// ///////////////////
 /*
 class Automovil {
+  gasolina = 0;
   constructor(marca, modelo, km) {
     this.marca = marca;
     this.modelo = modelo;
     this.km = km;
-    this.gasolina = 0;
   }
 
   doblarIzquierda() {
@@ -360,6 +359,10 @@ class Automovil {
     this.pasajeros = 0;
     return this.gasolina;
   }
+
+  set Gasolina(gasolina){
+    this.gasolina=gasolina;
+  }
 }
 
 class Auto extends Automovil {
@@ -373,4 +376,38 @@ class Auto extends Automovil {
   }
 }
 const auto1 = new Auto('chevrolet', 2015, 70000, 20);
+*/
+
+// Do we need a framework to prevent unnessesary refresh in the DOM?no!
+/*
+class HeroeComponent {
+  name = 'ironman';
+
+  age = 45;
+
+  showData() {
+    return `${this.name} is ${this.age} years old`;
+  }
+
+  get toUpperCaseName() {
+    return this.name.toUpperCase();
+  }
+
+  changeName() {
+    this.name = 'Hulk';
+  }
+}
+const changeHero = document.querySelector('.changeHero');
+const heroName = document.querySelector('.heroName');
+const hero1 = new HeroeComponent();
+window.hero1 = hero1;
+heroName.innerText = hero1.name;
+
+// this is how Ng think about data binding?
+changeHero.addEventListener('click', () => {
+  if (!(hero1.name === 'Hulk')) {
+    hero1.changeName();
+    heroName.innerText = hero1.name;
+  }
+});
 */
