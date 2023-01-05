@@ -43,7 +43,7 @@ const myLi4 = myLi3.cloneNode(true)//clone deep true
 Element.classList.replace('una', 'otra');
 [itemsToRemoveClasses].forEach((item)=>item.classList.remove(...arraysWithClasses))// or .remove()
 itemImg.classList.toggle('round');
-myImage.src = 'https://source.unsplash.com/random/400x400';// setting attributes
+myImage.src = 'https://source.unsplash.com/random/400x400';// setting src property
 const cancel = button.hasAttribute('data-cancel')//boolean
 pic.setAttribute('alt', 'random2'); // onother way. Even for non-standard attributes.
 pic.getAttribute('alt')
@@ -161,7 +161,7 @@ function draw({ key }){}//destructuring "key" property as parameter from an {}
 Object.entries(meats).forEach(([item, qty]) => console.log(item, qty));//destructuring from an []
 [prev, current, next] = [current, next, current];//[1 2 3]=[2 3 2]!!don't run individually-SWAPPING VARIABLES CONTENT
 //data-type-min --> dataset.typeMin
-const desc = card.dataset.description; //getting dataset attributes
+const desc = card.dataset.description; //getting data-* attributes
 const isOutside = !event.target.closest('.modal-inner');
 buttonClicked.closest('.playerCard').remove();
 const calculator = utilities.calc.call(localTaxes, 0.15, 21)//localTaxes:the object binded. bind and apply too. bind needs an array as an argument;
