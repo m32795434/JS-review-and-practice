@@ -70,7 +70,7 @@ Number.parseFloat(string)// returns a floating point number/ same as global pars
 parseInt(string, radix)// part of the JavaScript's standard, built-in objects/ same as Number.parseInt()
 string.sort()//sort alfabetically
 'string'.substring(0,5);//'strin'
-
+String.prototype.trim()//remove white spaces!
 //Math
 Math.floor(Math.random());
 Math.abs();Math.ceil();Math.round();Math.max();Math.pow();
