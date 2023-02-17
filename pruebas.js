@@ -118,7 +118,8 @@ const dateOptions = {
   hour: 'numeric',
   minute: 'numeric',
   second: 'numeric',
-  timeZone,
+  hour12: true,
+  timeZoneName: 'short',
 };
 
 // dateObject
