@@ -91,6 +91,16 @@
         opacity: 0.5;
     }
 
+    input:not([type="checkbox"]):not([type="radio"]),
+    textarea,
+    select {
+        display: block;
+    }
+
+    .app :is(button, input, select, textarea) {
+        margin: 0;
+    }
+
     /*TO SEE HOW TO MANAGE CSS VARIABLES ON JAVASCRIPT SEE playground\switch-statements.html*/
 </style>
 <script>

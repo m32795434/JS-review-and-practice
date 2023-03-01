@@ -40,6 +40,7 @@ async function populateVideo() {
     stream = await navigator.mediaDevices.getUserMedia({
       video: { width: 640, height: 360 },
     });
+    console.log(stream);
   } catch (err) {
     alert('You have to authorize the camera recording to use this app😄');
   }
