@@ -31,8 +31,15 @@
         Change Heroe
     </button>
 
+    <button class="button">Botón 1</button>
+    <button class="button">Botón 2</button>
+    <button class="button">Botón 3</button>
 
     <style>
+        body {
+            background-color: rgba(0, 0, 0, 0.559);
+        }
+
         .wrap {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -40,6 +47,70 @@
 
         .date {
             text-align: right;
+        }
+
+        .button {
+            position: relative;
+            display: block;
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #a72323;
+            border: none;
+            outline: none;
+            overflow: hidden;
+            animation: bigger 0.5s ease-in-out
+                /* cursor: pointer; */
+        }
+
+        .button:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 50%;
+            background-color: rgba(255, 255, 255, 0.436);
+            opacity: 0;
+            animation: shine 1s ease-in-out;
+            border-radius: 70%;
+            box-shadow: 0px 0px 17px 9px rgb(255, 255, 255);
+        }
+
+        @keyframes bigger {
+
+            0% {
+                padding: 10px 20px;
+                font-size: 18px;
+            }
+
+            10% {
+                padding: 12px 25px;
+                font-size: 20px;
+            }
+
+            100% {
+                padding: 10px 20px;
+                font-size: 18px;
+            }
+        }
+
+        @keyframes shine {
+            0% {
+                width: 0;
+                opacity: 0;
+            }
+
+            10% {
+                width: .5px;
+                opacity: 1;
+                margin-left: 10%;
+            }
+
+
+            100% {
+                opacity: 1;
+                margin-left: 100%;
+            }
         }
     </style>
     <!-- <script src="https://unpkg.com/lodash"></script> -->
