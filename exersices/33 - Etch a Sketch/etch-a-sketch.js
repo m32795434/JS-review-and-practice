@@ -28,7 +28,7 @@ ctx.stroke();
 /* eslint-enable */
 
 // write a draw function
-function handleRange(e){
+function handleRange(e) {
   dotWidthRange = e.target.value;
   console.log(e.target.value);
 }
