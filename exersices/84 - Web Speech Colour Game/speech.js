@@ -8,15 +8,14 @@ const stopBtn = document.querySelector('.stop');
 // new SpeechRecognition, no matters if it's one of the "webkit" versions
 window.SpeechRecognition =
   window.SpeechRecognition || window.webkitSpeechRecognition;
-const recognition = new SpeechRecognition();
-
+let recognition;
 function displayColors(colors) {
   return colors
     .map(
       (color) =>
         `<span class="color ${color} ${
           isDark(color) ? 'dark' : ''
-        }" style="background:${color}">${color}</span>`
+        }" style="background:${color};">${color}</span>`
     )
     .join('');
 }
@@ -27,8 +26,9 @@ function start() {
     console.log('your browser does not support speech recognition');
     return;
   }
+  recognition = new window.SpeechRecognition();
   console.log('starting....');
-  colorsEl.innerHTML = displayColors(colorsByLength);
+  colorsEl.innerHTML = displayColors(colorsByLength); // could be outside the function?
   recognition.continuous = true;
   recognition.interimResults = true; // will recognize as soon as it hears a word
   recognition.onresult = handleResult;

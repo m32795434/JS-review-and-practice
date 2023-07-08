@@ -8,6 +8,6 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "parcel": "^2.5.0"
+    "parcel": "^2.9.3"
   }
 }
