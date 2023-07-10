@@ -34,9 +34,9 @@ async function getAudio() {
 }
 
 function drawTimeData(timeData) {
+  //   console.log(timeData);
   // inyect the time data into our timeData 8bit array
   analyzer.getByteTimeDomainData(timeData);
-  //   console.log(timeData);
   // now we can draw the data
   // 1. clear the canvas
   ctx.clearRect(0, 0, WIDTH, HEIGHT);
@@ -62,7 +62,9 @@ function drawTimeData(timeData) {
 
   // ask the browser when the next animation frame is, and tell it to run "drawTimeData" for us.
   // it performs better than just calling "drawTimeData();"
-  requestAnimationFrame(() => drawTimeData(timeData));
+  requestAnimationFrame(() => {
+    drawTimeData(timeData);
+  });
 }
 
 function drawFrequency(frequencyData) {
