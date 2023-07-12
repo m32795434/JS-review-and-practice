@@ -1,0 +1,16 @@
+{
+  "name": "58---gallery",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gallery-class-switch-version.js",
+  "scripts": {
+    "start": "parcel serve index.html --public-url / --dist-dir dist",
+    "build": "parcel build index.html --public-url / --dist-dir dist"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "parcel": "^2.9.3"
+  }
+}
